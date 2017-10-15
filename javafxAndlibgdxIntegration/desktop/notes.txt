@@ -1,0 +1,9 @@
+0 Receive and send thread launched before the lingdx application is called (so outside of it),
+and just pass the respective buffers to each. They're only connected by the buffers now
+
+1 winning and losing should kill the connection threads. So should exitting program. Maybe pass 
+the ExecutorService object to the libgdx object
+
+
+man netstat/ipconfig - windows/ ifconfig - linux
+gotta use a port that isn't in use. these utilities give current network statistics
