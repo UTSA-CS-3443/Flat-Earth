@@ -2,7 +2,11 @@ package utilities;
 
 //obviously not optimized, just want to get something working
 // maybe just send keycodes
-
+/**
+ * holds the state of the keyboard
+ * @author mauricio
+ *
+ */
 public class KeyboardState {
 
 	private boolean pressed[];

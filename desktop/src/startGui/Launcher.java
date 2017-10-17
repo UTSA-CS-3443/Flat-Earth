@@ -11,6 +11,12 @@ import javafx.stage.Stage;
 import utilities.*;
 import utilities.ConnectionSettings;
 
+/**
+ * 
+ * doesnt actually do anything
+ *
+ */
+
 public class Launcher extends Application {
 
 	

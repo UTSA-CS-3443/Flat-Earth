@@ -1,8 +1,13 @@
 package utilities;
 
-// this class is set by the Controller/logic handler
-// looks really similar for now to keyboard state but will eventually hold way more things,
-// like enemy positions
+/**
+ * this class is set by the Controller/logic handler
+ * looks really similar for now to keyboard state but will eventually hold way more things,
+ * like enemy positions
+ * @author mauricio
+ *
+ */
+
 
 public class GameState {
 	

@@ -13,6 +13,13 @@ import com.esotericsoftware.kryo.io.Input;
 import utilities.ConnectionSettings;
 import utilities.KeyboardState;
 
+/**
+ * A thred. Runs concurrently with the server. Has access to the same KeybaordState object as Logic.java.
+ * receives a keybaordstate from the client and updates the shared one
+ * @author mauricio
+ *
+ */
+
 public class ServerReceiver implements Runnable {
 
 	private KeyboardState ks;
@@ -34,18 +41,23 @@ public class ServerReceiver implements Runnable {
 	@Override // TODO check
 	public void run() {
 		while(!Thread.currentThread().isInterrupted()) { // not even sure if this does what i want it to
+			//TODO sleep is bad design
 			try {
 				Thread.sleep(1);
 			} catch (Exception e) {
 				System.out.println("sleep error");
 			}
+			// packket for receiving
 			byte[] receivedData = new byte[4096]; // TODO main bug will be size of packets
 			DatagramPacket packet = new DatagramPacket(receivedData, 4096);
+			// try and receive
 			try {
 				socket.receive(packet);
+				// un serialize the received object
 				Input input = new Input(new ByteArrayInputStream(packet.getData()));
 				Kryo kryo = new Kryo();
 				KeyboardState receivedKs = (KeyboardState)kryo.readClassAndObject(input);
+				// update the shared object
 				synchronized (this.ks) {
 					this.ks.updateData(receivedKs);
 				}

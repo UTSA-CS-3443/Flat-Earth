@@ -5,17 +5,12 @@ import com.badlogic.gdx.Input.Keys;
 
 import utilities.KeyboardState;
 
-// probably have this write to whatever buffer for sending
-
-//either that, or, have some sort of state object that stores the current state of the players
-//keyboard presses/clicks, like say:
-// 		up arrow down
-//		left arrow down
-//		(whatever for attacking) down
-// and that is set in key down. Key up just removes that from the list. And just send that state
-// object to the server, that way the server never misses a button click (cause they will probably get that
-// object atleast twice or something, since it processes and send quickly). Might make it hard to make an
-// option that changes key bindings though (so you can have custom key bindings or whatever)
+/**
+ * This implements and event based interface (libgdx's). instantiated in Game(). 
+ * All you do is set what happens for different events(button down, button up, etc)
+ * @author mauricio
+ *
+ */
 
 public class GameInput implements InputProcessor {
 
@@ -25,6 +20,7 @@ public class GameInput implements InputProcessor {
 		this.ks = ks;
 	}
 	
+	// on key down, write to the Keyboardstate
 	@Override
 	public boolean keyDown(int keycode) {
 		switch(keycode) {
@@ -41,6 +37,7 @@ public class GameInput implements InputProcessor {
 		return false;
 	}
 
+	// On button up, write to the keyboardState
 	@Override
 	public boolean keyUp(int keycode) {
 		switch(keycode) {
