@@ -1,21 +1,18 @@
 package com.flatearth.desktop;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.flatearth.Game;
-import communicators.ClientReceiver;
-import communicators.ClientSender;
-import communicators.ServerReceiver;
-import communicators.ServerSender;
+
 import controller.Logic;
 import startGui.Launcher;
-import utilities.ConnectionSettings;
-import utilities.GameState;
-import utilities.KeyboardState;
-import utilities.Settings;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import utilities.*;
+
+import communicators.*;
 
 public class DesktopLauncher {
 	
@@ -86,10 +83,8 @@ public class DesktopLauncher {
 		
 	}
 	
-	public static void test() {
-		int j = 9000;
-    }
-
+	public static void test() {}
+	
 }
 
 
