@@ -83,6 +83,8 @@ public class DesktopLauncher {
 		
 	}
 	
+	public static void test() {}
+	
 }
 
 

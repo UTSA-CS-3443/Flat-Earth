@@ -20,13 +20,12 @@ public class Launcher extends Application {
 	
 	
 	@Override
-	public void start(Stage primaryStage) throws Exception {
+	public void start(final Stage primaryStage) throws Exception {
 		 primaryStage.setTitle("Start Game");
 	        Button btn = new Button();
 	        btn.setText("Start Game");
 	        btn.setOnAction(new EventHandler<ActionEvent>() {
 	 
-	            @Override
 	            public void handle(ActionEvent event) {
 	                System.out.println("Hello World!");
 	                primaryStage.close();
