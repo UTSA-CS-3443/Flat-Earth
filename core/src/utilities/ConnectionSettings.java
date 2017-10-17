@@ -3,16 +3,23 @@ package utilities;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
-// the handshake should be done in javafx, before starting. it should modify this object
+/**
+ * Connection settings. A global one should be modified and created in the javafx, which should
+ * create the handshake with tcp BEFORE the game starts
+ * @author mauricio
+ *
+ */
 
 public class ConnectionSettings {
-
+	
+	// IP object needed by java's udp connections
 	public InetAddress ip;
 	
+	// port for client to receive from
 	public int clientReceivePort;
 	
-		public int serverReceivePort;
-	
+	// port for server to recieve on
+	public int serverReceivePort;
 	
 	public ConnectionSettings(String ip, int crp, int srp) {
 		this.setIP(ip);
