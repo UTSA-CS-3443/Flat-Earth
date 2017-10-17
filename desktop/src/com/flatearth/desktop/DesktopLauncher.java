@@ -56,8 +56,8 @@ public class DesktopLauncher {
 		
 		// Launch the client part (view)
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-    	new LwjglApplication(new Game(s, gs, ks), config);
-    	es.shutdown(); // TODO i don't know if this is actually ending the threads or not. Might have to do that
+		new LwjglApplication(new Game(s, gs, ks), config);
+		es.shutdown(); // TODO i don't know if this is actually ending the threads or not. Might have to do that
     					// GameOver.gameOver thing in the while() of the threads
 	}
 	
@@ -73,9 +73,9 @@ public class DesktopLauncher {
 		
 		// Create the game object
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-    	new LwjglApplication(new Game(s, gs, ks), config);
+		new LwjglApplication(new Game(s, gs, ks), config);
     	
-    	es.shutdown(); // same todo from above method
+		es.shutdown(); // same todo from above method
 		
 	}
 	
