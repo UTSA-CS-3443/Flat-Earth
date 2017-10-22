@@ -61,9 +61,9 @@ public abstract class Character
 		}
 		
 		updateDirection();
-		
+
 		// this gets the sprite that will be drawn on screen and binds it to the body (physics bs) by setting it to the bodies position
-		// bodys position is the apply force stuff
+		// body's position is the apply force stuff
 		this.getFrame().setPosition(body.getPosition().x - getFrame().getWidth() / 2, body.getPosition().y + getFrame().getHeight());
 	}
 	
@@ -165,6 +165,8 @@ public abstract class Character
 		}
 	}
 
-	
+	public Body getBody(){
+		return this.body;
+	}
 
 }
