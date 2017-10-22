@@ -86,7 +86,7 @@ public class DesktopLauncher {
 		GameState gs = new GameState();
 		KeyboardState ks = new KeyboardState();
 		
-		// Launch server, server send thread, and server receiver thread
+		//Launch server, server send thread, and server receiver thread
 		es.execute(new Logic(ks, gs));
 		es.execute(new ServerReceiver(ks, cs));
 		es.execute(new ServerSender(gs, cs));

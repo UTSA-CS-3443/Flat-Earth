@@ -64,7 +64,7 @@ public abstract class Character
 
 		// this gets the sprite that will be drawn on screen and binds it to the body (physics bs) by setting it to the bodies position
 		// body's position is the apply force stuff
-		this.getFrame().setPosition(body.getPosition().x - getFrame().getWidth() / 2, body.getPosition().y + getFrame().getHeight());
+		this.getFrame().setPosition(body.getPosition().x - getFrame().getWidth() / 2, body.getPosition().y);
 	}
 	
 	public void updateDirection()

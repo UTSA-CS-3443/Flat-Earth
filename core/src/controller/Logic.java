@@ -16,7 +16,7 @@ import java.lang.Thread;
 
 public class Logic implements Runnable {
 
-	public static final int FORCE_CONSTANT = 1500;
+	public static int FORCE_CONSTANT = 1;
 
 	// received and updated from clients in ServerReceiver
 	private KeyboardState ks;
@@ -59,6 +59,7 @@ public class Logic implements Runnable {
 			// this synchronized method call is expensive as Mark Robins said (cause synchronized
 			// has a lot of over hang
 			pressed = this.ks.get();
+			forceX = forceY = direction = 0;
 
 			if(pressed[0])
 			{

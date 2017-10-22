@@ -62,19 +62,21 @@ public class Game extends ApplicationAdapter {
 	@Override
 	public void render () {
 
-        batch.setProjectionMatrix(cam.combined);
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
-		this.map.update(Gdx.graphics.getDeltaTime());
 
 		batch.begin();
 		this.map.draw(batch); //render everything that the map has
         batch.end();
 
-		if(Game.debug)
+        this.map.update(Gdx.graphics.getDeltaTime());
+        batch.setProjectionMatrix(cam.combined);
+
+
+        if(Game.debug)
 		{
-			Game.b2dr.render(this.map.getWorld(), Game.debugMatrix);
+            debugMatrix = batch.getProjectionMatrix().cpy();
+            Game.b2dr.render(this.map.getWorld(), Game.debugMatrix);
 		}
 	}
 	

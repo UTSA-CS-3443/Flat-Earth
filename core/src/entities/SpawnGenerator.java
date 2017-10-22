@@ -19,7 +19,7 @@ public class SpawnGenerator
 		Character player = null;
 		short category = FOOT_PHYSICS;
 		short mask = FOOT_PHYSICS | WORLD_PHYSICS;
-		float size = 25f; // TODO Update this for meter conversion.
+		float size = .5f; // TODO Update this for meter conversion.
 		Body body = createPolyBody(world, x, y, category, mask, 
 				new Vector2((size/3)/2,size),
 				new Vector2(size/2,size/3),

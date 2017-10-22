@@ -36,7 +36,7 @@ public class GameMap
 		// world is for the physics. you create and destroy bodies through the world
 		this.world = new World(new Vector2(0, 0), false);
 		this.mapSprite = new Sprite(Game.atlas.findRegion(name));
-		this.mapSprite.setScale(.8f);
+		this.mapSprite.setSize(this.mapSprite.getWidth() / 5, this.mapSprite.getHeight() / 5);
 		
 		knight = SpawnGenerator.spawnPlayer(Knight.class, (this.mapSprite.getX()+ this.mapSprite.getWidth()/2),
                 (this.mapSprite.getY() + this.mapSprite.getHeight()/2), this.world);
@@ -56,17 +56,16 @@ public class GameMap
 		accumulator += delta;
 		while (accumulator >= dt)
 		{
-			this.knight.update(dt, this.gs);
 			//this.wizard.update(dt);
 			//this.archer.update(dt);
 			// ash doesn't know what this is necessarily, ctrl-click for declaration
 			world.step(dt, 6, 2);
-
-            Game.cam.position.x = this.knight.getFrame().getX() + (this.knight.getFrame().getWidth()/2);
-            Game.cam.position.y = this.knight.getFrame().getY() + (this.knight.getFrame().getHeight()/2);
-            Game.cam.update();
-			accumulator -= dt;
+            this.knight.update(dt, this.gs);
+            accumulator -= dt;
 		}
+        Game.cam.position.x = this.knight.getBody().getPosition().x + (this.knight.getFrame().getWidth()/2);
+        Game.cam.position.y = this.knight.getBody().getPosition().y + (this.knight.getFrame().getHeight()/2);
+        Game.cam.update();
 	}
 	
 	/**
