@@ -21,7 +21,8 @@ public class Logic implements Runnable {
 	private KeyboardState ks;
 	// updated and sent to client in Sender
 	private GameState gs;
-	
+	// can maybe cut out the need for this. currently maps to the degrees of a circle on a cartesian plane.
+	// look at it in 2 dimensions and you'll see it's mapping degrees of rotation (inverted)
 	private static final int[][] DIRECTIONS = {{225, 270, 315},{180, -1, 0},{135, 90, 45}};
 	private static final int FORCECONSTANT = 50000;
 	//private static final int TIME_INTERVAL_MS = 10;
@@ -45,13 +46,13 @@ public class Logic implements Runnable {
 				e.printStackTrace();
 			}
 			pressed = this.ks.get();
-			
-			// using boolean arithmetic, this would replace all that shit down there
+			// using boolean arithmetic to find the force in the x and y direction. 
 			forceX = (pressed.left * -FORCECONSTANT) + (pressed.right *FORCECONSTANT);
 			forceY = (pressed.up * FORCECONSTANT) + (pressed.down * -FORCECONSTANT);
+			// gets the direction for the animations. i mapped this out on a cartesian plane
 			direction = DIRECTIONS[(-pressed.down + pressed.up)+1][(-pressed.left+pressed.right)+1];
 			movement = !(forceX == 0 && forceY == 0);
-			// set the object
+			// set the object 
 			synchronized(this.gs) {
 				gs.setCharStats(movement, forceX, forceY, direction);
 			}

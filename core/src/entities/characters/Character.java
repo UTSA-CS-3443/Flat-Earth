@@ -1,4 +1,4 @@
-package entities;
+package entities.characters;
 
 //import com.badlogic.gdx.Gdx;
 //import com.badlogic.gdx.Input.Keys;
@@ -13,10 +13,10 @@ public abstract class Character
 	enum Direction { NORTHEAST, NORTH, NORTHWEST, WEST, SOUTHWEST, SOUTH, SOUTHEAST, EAST; }
 	private Direction[] directionArray = Direction.values();
 	private CharacterType type;
-	private int frameIndex;
-	private float frameTime;
+	protected int frameIndex;
+	protected float frameTime;
 	private Direction direction;
-	private Body body;
+	public Body body;
 	
 	protected Character(CharacterType type, Body body)
 	{
@@ -30,42 +30,7 @@ public abstract class Character
 		
 	}
 	
-	public void update(float delta, GameState gs)
-	{
-		//Animation
-		frameTime += delta;
-		if(frameTime > .05f)
-		{
-			frameIndex ++;
-			frameTime = 0;
-		}
-		if(frameIndex > 3)
-		{
-			frameIndex = 0;
-		}
-		// all the applyForce stuff if moving the body (physics collision stuff)
-		
-		float direction = -1;
-		synchronized (gs) {
-			if (!gs.charMovement()) {
-				body.setLinearVelocity(0, 0);
-				body.setAngularVelocity(0);
-			} else {
-				direction = gs.getCharDirection();
-				this.body.applyForceToCenter(gs.getCharForceX(), gs.getCharForceY(), true); // can this always be true> or do i need to set it?
-			}
-		}
-		if(direction >= 0)
-		{
-			this.body.setTransform(body.getPosition(), (float) Math.toRadians(direction));
-		}
-		
-		updateDirection();
-		
-		// this gets the sprite that will be drawn on screen and binds it to the body (physics bs) by setting it to the bodies position
-		// bodys position is the apply force stuff
-		this.getFrame().setPosition(body.getPosition().x - getFrame().getWidth() / 2, body.getPosition().y + getFrame().getHeight());
-	}
+	public abstract void update(float delta, GameState gs);
 	
 	public void updateDirection()
 	{

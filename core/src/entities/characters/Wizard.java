@@ -1,10 +1,9 @@
-package entities;
+package entities.characters;
 
 import com.badlogic.gdx.physics.box2d.Body;
 
-public class Wizard extends Character
-{
-	protected Wizard(Body body)
+public class Wizard extends Player {
+	public Wizard(Body body)
 	{
 		super(CharacterType.WIZARD, body);
 	}

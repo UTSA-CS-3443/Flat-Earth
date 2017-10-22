@@ -4,15 +4,12 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 
-//import entities.Archer;
-import entities.Knight;
 import entities.SpawnGenerator;
-//import entities.Wizard;
+import entities.characters.Knight;
+import entities.characters.WizardNpc;
 import utilities.GameState;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-
-
 
 
 public class GameMap
@@ -21,6 +18,7 @@ public class GameMap
 	private World world;
 	
 	private Knight knight;
+	private WizardNpc wizardNpc;
 	//private Wizard wizard;
 	//private Archer archer;
 	
@@ -39,6 +37,7 @@ public class GameMap
 		this.mapSprite.setScale(10);
 		
 		knight = SpawnGenerator.spawnPlayer(Knight.class, 100, 150, this.world);
+		wizardNpc = SpawnGenerator.spawnPlayer(WizardNpc.class, 250, 150, world);
 		//wizard = SpawnGenerator.spawnPlayer(Wizard.class, 250, 150, this.world);
 		//archer = SpawnGenerator.spawnPlayer(Archer.class, 175, 250, this.world);
 		this.gs = gs;

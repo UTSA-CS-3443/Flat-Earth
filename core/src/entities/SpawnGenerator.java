@@ -7,6 +7,12 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 
+import entities.characters.Archer;
+import entities.characters.Character;
+import entities.characters.Knight;
+import entities.characters.Wizard;
+import entities.characters.WizardNpc;
+
 public class SpawnGenerator
 {
 	final public static short FOOT_PHYSICS = 0x0001;
@@ -36,7 +42,8 @@ public class SpawnGenerator
 			player = new Wizard(body);
 		else if(type == Archer.class)
 			player = new Archer(body);
-		
+		else if(type == WizardNpc.class)
+			player = new WizardNpc(body);
 		return type.cast(player);
 	}
 	
