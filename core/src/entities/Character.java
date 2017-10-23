@@ -154,6 +154,12 @@ public abstract class Character
 	
 	private float degreeFix(float angle)
 	{
+	    angle %= 360f;
+	    if (angle <= 0f)
+	        return angle + 360f;
+	    return angle;
+	    /* Fairly sure this formula is redundant for our game. - Diego */
+	    /*
 		angle = ((int) angle % 360) + (angle - ((int)angle));
 		if(angle > 0.0)
 		{
@@ -163,6 +169,7 @@ public abstract class Character
 		{
 			return angle + 360f;
 		}
+		*/
 	}
 
 	public Body getBody(){
