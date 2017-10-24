@@ -8,7 +8,7 @@ import java.lang.Thread;
  * logic part of the server. Runs concurrently with ServerSender and ServerReceiver. Receives 
  * KeyboardState objects from client, updates the GameState, then sets that game state so the Sender
  * can send it.
- * TODO relationship between this and sender should be that sender waits for a singla from this to send
+ * TODO relationship between this and sender should be that sender waits for a single from this to send
  * 
  * @author mauricio
  *
@@ -16,7 +16,9 @@ import java.lang.Thread;
 
 public class Logic implements Runnable {
 
-	// received and udpdated from clients in ServerReciever
+	public static int FORCE_CONSTANT = 1;
+
+	// received and updated from clients in ServerReceiver
 	private KeyboardState ks;
 	// updated and sent to client in Sender
 	private GameState gs;
@@ -57,16 +59,11 @@ public class Logic implements Runnable {
 			// this synchronized method call is expensive as Mark Robins said (cause synchronized
 			// has a lot of over hang
 			pressed = this.ks.get();
-			//for (boolean b : pressed)
-			//	System.out.println(b);
-			// OPTIMIZE there's gotta be a cleaner way to do this
 			forceX = forceY = direction = 0;
-			// basically strict copy and paste from ash's code. no keys.UP though
-			// set forces and direction depending on what arrows are set
-			// pressed == [up, down, left, right]
+
 			if(pressed[0])
 			{
-				forceY = 50000;
+				forceY = FORCE_CONSTANT;
 				direction = 90;
 				if(pressed[2])
 					direction = 45;
@@ -75,7 +72,7 @@ public class Logic implements Runnable {
 			}
 			else if(pressed[1])
 			{
-				forceY = -50000;
+				forceY = -FORCE_CONSTANT;
 				direction = 270;
 				if(pressed[2])
 					direction = 225;
@@ -84,7 +81,7 @@ public class Logic implements Runnable {
 			}
 			if(pressed[2])
 			{
-				forceX = -50000;
+				forceX = -FORCE_CONSTANT;
 				direction = 180;
 				if(pressed[0])
 					direction = 135;
@@ -93,7 +90,7 @@ public class Logic implements Runnable {
 			}
 			else if(pressed[3])
 			{
-				forceX = 50000;
+				forceX = FORCE_CONSTANT;
 				direction = 0;
 				if(pressed[0])
 					direction = 45;

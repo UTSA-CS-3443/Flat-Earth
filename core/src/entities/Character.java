@@ -61,10 +61,10 @@ public abstract class Character
 		}
 		
 		updateDirection();
-		
+
 		// this gets the sprite that will be drawn on screen and binds it to the body (physics bs) by setting it to the bodies position
-		// bodys position is the apply force stuff
-		this.getFrame().setPosition(body.getPosition().x - getFrame().getWidth() / 2, body.getPosition().y + getFrame().getHeight());
+		// body's position is the apply force stuff
+		this.getFrame().setPosition(body.getPosition().x - getFrame().getWidth() / 2, body.getPosition().y);
 	}
 	
 	public void updateDirection()
@@ -154,6 +154,12 @@ public abstract class Character
 	
 	private float degreeFix(float angle)
 	{
+	    angle %= 360f;
+	    if (angle <= 0f)
+	        return angle + 360f;
+	    return angle;
+	    /* Fairly sure this formula is redundant for our game. - Diego */
+	    /*
 		angle = ((int) angle % 360) + (angle - ((int)angle));
 		if(angle > 0.0)
 		{
@@ -163,8 +169,11 @@ public abstract class Character
 		{
 			return angle + 360f;
 		}
+		*/
 	}
 
-	
+	public Body getBody(){
+		return this.body;
+	}
 
 }
