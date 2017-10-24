@@ -93,7 +93,7 @@ public enum CharacterType
 		for(int i = 0; i < animation.size; i++)
 		{
 			animation.get(i).flip(flip,  false);
-			animation.get(i).setScale(5);
+			animation.get(i).setSize(1, 1);
 		}
 		return animation;
 	}

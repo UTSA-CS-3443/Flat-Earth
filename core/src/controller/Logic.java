@@ -17,7 +17,9 @@ import java.lang.Thread;
 
 public class Logic implements Runnable {
 
-	// received and udpdated from clients in ServerReciever
+	public static int FORCE_CONSTANT = 1;
+
+	// received and updated from clients in ServerReceiver
 	private KeyboardState ks;
 	// updated and sent to client in Sender
 	private GameState gs;
@@ -45,10 +47,9 @@ public class Logic implements Runnable {
 				e.printStackTrace();
 			}
 			pressed = this.ks.get();
-			
 			// using boolean arithmetic, this would replace all that shit down there
-			forceX = (pressed.left * -FORCECONSTANT) + (pressed.right *FORCECONSTANT);
-			forceY = (pressed.up * FORCECONSTANT) + (pressed.down * -FORCECONSTANT);
+			forceX = (pressed.left * -FORCE_CONSTANT) + (pressed.right *FORCE_CONSTANT);
+			forceY = (pressed.up * FORCE_CONSTANT) + (pressed.down * -FORCE_CONSTANT);
 			direction = DIRECTIONS[(-pressed.down + pressed.up)+1][(-pressed.left+pressed.right)+1];
 			movement = !(forceX == 0 && forceY == 0);
 			// set the object
