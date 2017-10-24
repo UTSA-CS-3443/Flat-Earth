@@ -34,7 +34,7 @@ public abstract class Character
 	{
 		//Animation
 		frameTime += delta;
-		if(frameTime > .25f)
+		if(frameTime > .05f)
 		{
 			frameIndex ++;
 			frameTime = 0;
