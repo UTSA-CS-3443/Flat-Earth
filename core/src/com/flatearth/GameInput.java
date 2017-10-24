@@ -32,6 +32,12 @@ public class GameInput implements InputProcessor {
 			ks.LeftPress(); break;
 		case Keys.RIGHT:
 			ks.RightPress(); break;
+		case Keys.Q:
+			ks.defendPressed(); break;
+		case Keys.W:
+			ks.attack1Pressed(); break;
+		case Keys.E:
+			ks.attack2Pressed(); break;
 		}
 		
 		return false;
@@ -49,6 +55,12 @@ public class GameInput implements InputProcessor {
 			ks.LeftRelease(); break;
 		case Keys.RIGHT:
 			ks.RightRelease(); break;
+		case Keys.Q:
+			ks.defendReleased(); break;
+		case Keys.W:
+			ks.attack1Released(); break;
+		case Keys.E:
+			ks.attack2Released(); break;
 		}
 		return false;
 	}

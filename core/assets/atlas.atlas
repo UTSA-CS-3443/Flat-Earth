@@ -5,322 +5,322 @@ filter: Nearest,Nearest
 repeat: none
 map
   rotate: false
-  xy: 0, 64
+  xy: 1, 55
   size: 115, 67
   orig: 115, 67
   offset: 0, 0
   index: -1
 archer stand back side
   rotate: false
-  xy: 0, 48
+  xy: 1, 37
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 archer stand back
   rotate: false
-  xy: 115, 115
+  xy: 118, 106
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 archer stand front side
   rotate: false
-  xy: 0, 32
+  xy: 1, 19
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 archer stand front
   rotate: false
-  xy: 16, 48
+  xy: 19, 37
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 archer stand side
   rotate: false
-  xy: 115, 99
+  xy: 118, 88
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 archer walk back 1
   rotate: false
-  xy: 131, 115
+  xy: 136, 106
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 archer walk back 2
   rotate: false
-  xy: 0, 16
+  xy: 1, 1
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 archer walk back side 1
   rotate: false
-  xy: 16, 32
+  xy: 19, 19
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 archer walk back side 2
   rotate: false
-  xy: 32, 48
+  xy: 37, 37
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 archer walk front 1
   rotate: false
-  xy: 115, 83
+  xy: 118, 70
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 archer walk front 2
   rotate: false
-  xy: 131, 99
+  xy: 136, 88
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 archer walk front side 1
   rotate: false
-  xy: 147, 115
+  xy: 154, 106
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 archer walk front side 2
   rotate: false
-  xy: 0, 0
+  xy: 19, 1
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 archer walk side 1
   rotate: false
-  xy: 16, 16
+  xy: 37, 19
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 archer walk side 2
   rotate: false
-  xy: 32, 32
+  xy: 55, 37
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 knight stand back side
   rotate: false
-  xy: 48, 48
+  xy: 136, 70
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 knight stand back
   rotate: false
-  xy: 115, 67
+  xy: 154, 88
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 knight stand front side
   rotate: false
-  xy: 131, 83
+  xy: 172, 106
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 knight stand front
   rotate: false
-  xy: 147, 99
+  xy: 37, 1
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 knight stand side
   rotate: false
-  xy: 16, 0
+  xy: 55, 19
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 knight walk back 1
   rotate: false
-  xy: 32, 16
+  xy: 73, 37
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 knight walk back 2
   rotate: false
-  xy: 48, 32
+  xy: 154, 70
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 knight walk back side 1
   rotate: false
-  xy: 64, 48
+  xy: 172, 88
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 knight walk back side 2
   rotate: false
-  xy: 131, 67
+  xy: 190, 106
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 knight walk front 1
   rotate: false
-  xy: 147, 83
+  xy: 55, 1
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 knight walk front 2
   rotate: false
-  xy: 32, 0
+  xy: 73, 19
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 knight walk front side 1
   rotate: false
-  xy: 48, 16
+  xy: 91, 37
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 knight walk front side 2
   rotate: false
-  xy: 64, 32
+  xy: 172, 70
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 knight walk side 1
   rotate: false
-  xy: 80, 48
+  xy: 190, 88
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 knight walk side 2
   rotate: false
-  xy: 147, 67
+  xy: 208, 106
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 wizard stand back side
   rotate: false
-  xy: 48, 0
+  xy: 73, 1
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 wizard stand back
   rotate: false
-  xy: 64, 16
+  xy: 91, 19
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 wizard stand front side
   rotate: false
-  xy: 80, 32
+  xy: 190, 70
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 wizard stand front
   rotate: false
-  xy: 96, 48
+  xy: 208, 88
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 wizard stand side
   rotate: false
-  xy: 64, 0
+  xy: 226, 106
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 wizard walk back 1
   rotate: false
-  xy: 80, 16
+  xy: 91, 1
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 wizard walk back 2
   rotate: false
-  xy: 96, 32
+  xy: 208, 70
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 wizard walk back side 1
   rotate: false
-  xy: 80, 0
+  xy: 226, 88
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 wizard walk back side 2
   rotate: false
-  xy: 96, 16
+  xy: 226, 70
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 wizard walk front 1
   rotate: false
-  xy: 96, 0
+  xy: 118, 52
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 wizard walk front 2
   rotate: false
-  xy: 115, 51
+  xy: 136, 52
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 wizard walk front side 1
   rotate: false
-  xy: 131, 51
+  xy: 154, 52
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 wizard walk front side 2
   rotate: false
-  xy: 147, 51
+  xy: 172, 52
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 wizard walk side 1
   rotate: false
-  xy: 112, 35
+  xy: 190, 52
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 wizard walk side 2
   rotate: false
-  xy: 112, 19
+  xy: 208, 52
   size: 16, 16
   orig: 16, 16
   offset: 0, 0

@@ -63,7 +63,6 @@ project(":core") {
         compile "com.badlogicgames.gdx:gdx-controllers:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx-ai:$aiVersion"
         compile "com.esotericsoftware.kryo:kryo:2.21"
-        
     }
 }
 
