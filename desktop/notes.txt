@@ -7,3 +7,30 @@ the ExecutorService object to the libgdx object
 
 man netstat/ipconfig - windows/ ifconfig - linux
 gotta use a port that isn't in use. these utilities give current network statistics
+
+
+
+sender and receiver threads (both sides) might need some modification
+	for now, just going to hard code only one client, just till enemies work. means that the clientSend thread
+	and servverRecieve thread probably wont need to change. 
+
+client side and server side, give all npcs an id. client side, get gameState from server and update from the array of character
+states via id. server side, update the npcs game state based on the position of the HARDCODED ONE PLAYER
+figure out
+
+enman.update to have a for loop that finds the specific characters id and the respective id in the game state, then update
+
+characters to have an id, probably indexed at 0 on, so just use array indexing
+
+logic thread to coincide with the client amount of enemies, hardcoded for now
+
+game state holds an array of CharacterStates i guess
+
+probably javafx send initial gamestate, which has amount of enemies, positions of you, etc. for now, just start it in the logic thread
+
+//keyboarsState gets id, so does constructor
+//LeysPressed needs an id now
+
+// give character state id
+
+do something with entity manager and server entity manager

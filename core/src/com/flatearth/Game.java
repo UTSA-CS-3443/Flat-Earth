@@ -28,10 +28,13 @@ public class Game extends ApplicationAdapter {
 			
 	private GameState gs;
 	private KeyboardState ks;
+	
+	public static int clientId; // TODO not hardcode this. also fine ash, you were right
 		
-	public Game(Settings s, GameState gs, KeyboardState ks) {
+	public Game(Settings s, GameState gs, KeyboardState ks, int id) {
 		this.ks = ks;
 		this.gs = gs;
+		this.clientId = id;
 	}
 	
 	@Override

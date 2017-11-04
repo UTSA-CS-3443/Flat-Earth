@@ -4,10 +4,12 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 
-//import entities.Archer;
-import entities.Knight;
-import entities.SpawnGenerator;
-//import entities.Wizard;
+import entities.characters.Knight;
+import entities.characters.NpcWizard;
+import entities.characters.SpawnGenerator;
+import entities.characters.Wizard;
+import entities.EntityManager;
+import utilities.CharacterState;
 import utilities.GameState;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -21,12 +23,17 @@ public class GameMap
 	private World world;
 	
 	private Knight knight;
+	//private Knight wiz;
+	private NpcWizard wiz;
 	//private Wizard wizard;
 	//private Archer archer;
 	
 	private float dt = 0.0133f;
 	private float accumulator;
 	private GameState gs;
+	
+	public EntityManager ntit_man;
+	
 	/**
 	 * Makes a map that is 10 times the size of
 	 * its original, tiny size
@@ -40,8 +47,11 @@ public class GameMap
 		
 		knight = SpawnGenerator.spawnPlayer(Knight.class, (this.mapSprite.getX()+ this.mapSprite.getWidth()/2),
                 (this.mapSprite.getY() + this.mapSprite.getHeight()/2), this.world);
-		//wizard = SpawnGenerator.spawnPlayer(Wizard.class, 250, 150, this.world);
-		//archer = SpawnGenerator.spawnPlayer(Archer.class, 175, 250, this.world);
+		wiz = SpawnGenerator.spawnNpc(NpcWizard.class, (this.mapSprite.getX()+ this.mapSprite.getWidth()/2),
+                (this.mapSprite.getY() + this.mapSprite.getHeight()/2), this.world);
+		
+		ntit_man = new EntityManager(knight);
+		ntit_man.add(wiz);
 		this.gs = gs;
 	}
 	
@@ -56,11 +66,10 @@ public class GameMap
 		accumulator += delta;
 		while (accumulator >= dt)
 		{
-			//this.wizard.update(dt);
-			//this.archer.update(dt);
-			// ash doesn't know what this is necessarily, ctrl-click for declaration
+			//get CharaceterState[] from game state
+			CharacterState cs[] = this.gs.getCharacterStates();
 			world.step(dt, 6, 2);
-            this.knight.update(dt, this.gs);
+			ntit_man.updateAll(dt, cs);
             accumulator -= dt;
 		}
         Game.cam.position.x = this.knight.getBody().getPosition().x + (this.knight.getFrame().getWidth()/2);
@@ -75,9 +84,7 @@ public class GameMap
 	public void draw(SpriteBatch batch)
 	{
 		this.mapSprite.draw(batch);
-		this.knight.getFrame().draw(batch);
-		//this.wizard.getFrame().draw(Game.batch);
-		//this.archer.getFrame().draw(Game.batch);
+		this.ntit_man.drawAll(batch);
 	}
 	
 	public void dispose()

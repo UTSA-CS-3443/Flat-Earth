@@ -1,5 +1,7 @@
 package utilities;
 
+import java.util.ArrayList;
+
 /**
  * this class is set by the Controller/logic handler
  * looks really similar for now to keyboard state but will eventually hold way more things,
@@ -11,34 +13,81 @@ package utilities;
 
 public class GameState {
 	
-	private boolean charMovement = false;
-	private float charForceX = 0, charForceY = 0, charDirection = 0;
+	public ArrayList<CharacterState> states;
 	
-	public GameState() {}
-	
-	public void setCharStats(boolean movement, float forceX, float forceY, float direction) {
-		this.charMovement = movement;
-		this.charForceX = forceX;
-		this.charForceY = forceY;
-		this.charDirection = direction;
+	public GameState(int size) {
+		states = new ArrayList<CharacterState>();
+		for (int i = 0; i < size; i++) {
+			states.add(new CharacterState());
+		}
 	}
-
-	// all of these must be called in a synchronized block
-	public boolean charMovement() {return charMovement;}
-
-	public float getCharDirection() {return charDirection;}
-
-	public float getCharForceX() {return charForceX;}
-
-	public float getCharForceY() {return charForceY;}
 	
-	public void updateData(GameState igs) {
-		this.charMovement = igs.charMovement();
-		this.charForceX = igs.getCharForceX();
-		this.charForceY = igs.getCharForceY();
-		this.charDirection = igs.getCharDirection();
+	
+	public CharacterState getState(int id) {
+		return this.states.get(id);
 	}
+	
+	public void setState(int id, CharacterState state) {
+		this.states.get(id).set(state);
+	}
+	
+	public void setStates(CharacterState cs[]) {
+		//System.out.printf("cs is : %d, states is", cs.length);
+		for (int i = 0; i < this.states.size(); i++)
+			this.setState(i, cs[i]);
+	}
+	
+	// TODO need to figure out ways around using synchronized
+	public synchronized CharacterState[] getCharacterStates() {
+
+		CharacterState cs[] = new CharacterState[this.states.size()];
+		cs = this.states.toArray(cs);
+		return cs;
+		
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -1,4 +1,4 @@
-package entities;
+package entities.characters;
 
 //import com.badlogic.gdx.Gdx;
 //import com.badlogic.gdx.Input.Keys;
@@ -6,19 +6,22 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.physics.box2d.Body;
 //import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 
+import utilities.CharacterState;
 import utilities.GameState;
 
 public abstract class Character
 {
 	enum Direction { NORTHEAST, NORTH, NORTHWEST, WEST, SOUTHWEST, SOUTH, SOUTHEAST, EAST; }
-	private Direction[] directionArray = Direction.values();
-	private CharacterType type;
-	private int frameIndex;
-	private float frameTime;
-	private Direction direction;
-	private Body body;
+	protected Direction[] directionArray = Direction.values();
+	protected CharacterType type;
+	protected int frameIndex;
+	protected float frameTime;
+	protected Direction direction;
+	protected Body body;
 	
-	protected Character(CharacterType type, Body body)
+	public int id;
+	
+	protected Character(CharacterType type, Body body, int id)
 	{
 		
 		this.direction = Direction.SOUTH; // Default
@@ -27,50 +30,20 @@ public abstract class Character
 		this.body = body;
 		this.body.setLinearDamping(5);
 		this.body.setAngularDamping(5);
+		this.id = id;
 		
 	}
 	
-	public void update(float delta, GameState gs)
-	{
-		//Animation
-		frameTime += delta;
-		if(frameTime > .05f)
-		{
-			frameIndex ++;
-			frameTime = 0;
-		}
-		if(frameIndex > 3)
-		{
-			frameIndex = 0;
-		}
-		// all the applyForce stuff if moving the body (physics collision stuff)
-		
-		float direction = -1;
-		synchronized (gs) {
-			if (!gs.charMovement()) {
-				body.setLinearVelocity(0, 0);
-				body.setAngularVelocity(0);
-			} else {
-				direction = gs.getCharDirection();
-				this.body.applyForceToCenter(gs.getCharForceX(), gs.getCharForceY(), true); // can this always be true> or do i need to set it?
-			}
-		}
-		if(direction >= 0)
-		{
-			this.body.setTransform(body.getPosition(), (float) Math.toRadians(direction));
-		}
-		
-		updateDirection();
-
-		// this gets the sprite that will be drawn on screen and binds it to the body (physics bs) by setting it to the bodies position
-		// body's position is the apply force stuff
-		this.getFrame().setPosition(body.getPosition().x - getFrame().getWidth() / 2, body.getPosition().y);
-	}
+	public abstract void update(float delta, CharacterState cs);
 	
 	public void updateDirection()
 	{
 		float degrees = degreeFix((float) Math.toDegrees(this.body.getAngle()));
-		direction = this.directionArray[((int)degrees/45)-1];
+//		direction = (degrees < 45) ? Direction.EAST : this.directionArray[((int)degrees/45)-1];
+		int directionIndex = ((int)degrees/45)-1;
+		if(directionIndex < 0)
+			directionIndex = 0;
+		direction = Direction.values()[directionIndex];
 	}
 	
 	public Sprite getFrame()

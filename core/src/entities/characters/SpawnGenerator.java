@@ -1,4 +1,4 @@
-package entities;
+package entities.characters;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -6,6 +6,7 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
+import com.flatearth.Game;
 
 public class SpawnGenerator
 {
@@ -14,10 +15,10 @@ public class SpawnGenerator
 	final public static short WORLD_PHYSICS = 0x0004;
 	final public static short BOUNDING_BODY_PHYSICS = 0x0008;
 	
-	public static <T extends Character> T spawnPlayer(Class<T> type, float x, float y, World world)
+	public static <T extends Player> T spawnPlayer(Class<T> type, float x, float y, World world)
 	{
-		Character player = null;
-		short category = FOOT_PHYSICS;
+		Player player = null;
+		short category = FOOT_PHYSICS; 
 		short mask = FOOT_PHYSICS | WORLD_PHYSICS;
 		float size = .5f; // TODO Update this for meter conversion.
 		Body body = createPolyBody(world, x, y, category, mask, 
@@ -29,15 +30,35 @@ public class SpawnGenerator
 				new Vector2(-size/2,-size/3),
 				new Vector2(-size/2,size/3),
 				new Vector2((-size/3)/2,size));
-		
+		// TODO figure out this id bullshit
 		if(type == Knight.class)
-			player = new Knight(body);
+			player = new Knight(body, Game.clientId); // fine ash, you were right you fuck
 		else if(type == Wizard.class)
-			player = new Wizard(body);
+			player = new Wizard(body, Game.clientId);
 		else if(type == Archer.class)
-			player = new Archer(body);
+			player = new Archer(body, Game.clientId);
 		
 		return type.cast(player);
+	}
+	
+	public static <T extends Character> T spawnNpc(Class<T> type, float x, float y, World world)
+	{
+		Npc npc = null;
+		short category = FOOT_PHYSICS;
+		short mask = FOOT_PHYSICS | WORLD_PHYSICS;
+		float size = .5f; 
+		Body body = createPolyBody(world, x, y, category, mask, 
+				new Vector2((size/3)/2,size),
+				new Vector2(size/2,size/3),
+				new Vector2(size/2,-size/3),
+				new Vector2((size/3)/2,-size),
+				new Vector2((-size/3)/2,-size),
+				new Vector2(-size/2,-size/3),
+				new Vector2(-size/2,size/3),
+				new Vector2((-size/3)/2,size));
+		
+		npc = new NpcWizard(body, 1); //TODO hardcoded in id 1
+		return type.cast(npc);
 	}
 	
 	

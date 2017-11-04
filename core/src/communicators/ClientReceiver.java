@@ -66,7 +66,9 @@ public class ClientReceiver implements Runnable {
 				// update the shared GameState object
 				GameState receivedGs = (GameState)kryo.readClassAndObject(input);
 				synchronized (this.gs) {
-					this.gs.updateData(receivedGs);
+					//this.gs.updateData(receivedGs); 
+					//TODO fix this, this is residual from adding enemies
+					// probably just copy over the CharacterState array or something
 				}
 			} catch (IOException e) {
 				System.out.println("Error in whileloop in ClientReceiver");

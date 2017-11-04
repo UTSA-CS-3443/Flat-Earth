@@ -1,4 +1,4 @@
-package entities;
+package entities.characters;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasSprite;

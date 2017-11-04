@@ -18,9 +18,16 @@ package utilities;
  * @author mauricio
  *
  */
+
+//TODO porbably make a wrapper class for this, holds an array of them or something
+// maybe not though
+
 public class KeyboardState {
 	
+	private int id;
+	
 	// TODO these might be getting serialized as well, don't send these
+	// as in put them in a seperate file or something
 	// shift amounts for first byte
 	private static final int UP_MOD = 0;
 	private static final int DOWN_MOD = 1;
@@ -35,8 +42,9 @@ public class KeyboardState {
 	// short my cause a bug, might just use an int	
 	private short bitField;
 	
-	public KeyboardState() {
+	public KeyboardState(int id) {
 		this.bitField = 0;
+		this.id = id;
 	}
 	
 	// presses
@@ -69,10 +77,10 @@ public class KeyboardState {
 		pressed.down = (this.bitField >> DOWN_MOD) & 1;
 		pressed.left = (this.bitField >> LEFT_MOD) & 1;
 		pressed.right = (this.bitField >> RIGHT_MOD) & 1;
-		pressed.defend = (this.bitField >> DEFEND_MOD) & 1;
-		pressed.attack1 = (this.bitField >> ATTACK1_MOD) & 1;
-		pressed.attack2 = (this.bitField >> ATTACK2_MOD) & 1;
-			
+		pressed.defend = ((this.bitField >> DEFEND_MOD) & 1) == 1; // maybe should do 0
+		pressed.attack1 = ((this.bitField >> ATTACK1_MOD) & 1) == 1;
+		pressed.attack2 = ((this.bitField >> ATTACK2_MOD) & 1) == 1;
+		pressed.id = this.id;
 		return pressed;
 	}
 	
