@@ -5,8 +5,6 @@ import utilities.GameState;
 import utilities.KeysPressed;
 import java.lang.Thread;
 
-import com.badlogic.gdx.graphics.g2d.Sprite;
-
 import controller.entities.*;
 /**
  * logic part of the server. Runs concurrently with ServerSender and ServerReceiver. Receives 

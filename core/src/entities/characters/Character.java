@@ -9,6 +9,8 @@ import com.badlogic.gdx.physics.box2d.Body;
 import utilities.CharacterState;
 import utilities.GameState;
 
+import java.util.ArrayList;
+
 public abstract class Character
 {
 	enum Direction { NORTHEAST, NORTH, NORTHWEST, WEST, SOUTHWEST, SOUTH, SOUTHEAST, EAST; }
@@ -23,7 +25,6 @@ public abstract class Character
 	
 	protected Character(CharacterType type, Body body, int id)
 	{
-		
 		this.direction = Direction.SOUTH; // Default
 		this.type = type;
 		this.frameIndex = 0;
