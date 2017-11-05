@@ -57,7 +57,7 @@ public class Game extends ApplicationAdapter {
 		
 		this.map = new GameMap("map", this.gs);
 
-		/* Controller purposes */
+		/* Controller testing purposes */
 		for (Controller c : Controllers.getControllers()){
 			System.out.println(c.getName());
 		}

@@ -29,7 +29,7 @@ public class KeyboardState {
 	private int id;
 	
 	// TODO these might be getting serialized as well, don't send these
-	// as in put them in a seperate file or something
+	// as in put them in a separate file or something
 	// shift amounts for first byte
 	private static final int UP_MOD = 0;
 	private static final int DOWN_MOD = 1;
