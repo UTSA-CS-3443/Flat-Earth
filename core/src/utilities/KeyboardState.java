@@ -22,6 +22,8 @@ package utilities;
 //TODO porbably make a wrapper class for this, holds an array of them or something
 // maybe not though
 
+//TODO Let's change the name of this to "InputState" to accommodate the new gamepad implementations. -Diego
+
 public class KeyboardState {
 	
 	private int id;

@@ -5,6 +5,7 @@ import java.util.concurrent.ExecutorService;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -12,6 +13,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.controllers.Controller;
 
 import utilities.*;
 
@@ -28,6 +30,7 @@ public class Game extends ApplicationAdapter {
 			
 	private GameState gs;
 	private KeyboardState ks;
+
 	
 	public static int clientId; // TODO not hardcode this. also fine ash, you were right
 		
@@ -39,28 +42,35 @@ public class Game extends ApplicationAdapter {
 	
 	@Override
 	public void create () {
-        // Constructs a new OrthographicCamera, using the given viewport width and height
-        // Height is multiplied by aspect ratio.
+        /* Constructs a new OrthographicCamera, using the given viewport width and height */
+        /* Height is multiplied by aspect ratio. */
         float w = Gdx.graphics.getWidth();
         float h = Gdx.graphics.getHeight();
         cam = new OrthographicCamera(30, 30 * (h / w));
         cam.position.set(cam.viewportWidth / 2f, cam.viewportHeight / 2f, 0);
         cam.update();
 
-		//statics
+		/* statics */
 		batch = new SpriteBatch();
 		assets = new AssetManager();
 		loadAssets();
 		
 		this.map = new GameMap("map", this.gs);
 
-		// currently not doing anything
-		Gdx.input.setInputProcessor(new GameInput(this.ks));
-		
-		//box2d debug
-		// is this what paints the hit boxes?
+		/* Controller purposes */
+		for (Controller c : Controllers.getControllers()){
+			System.out.println(c.getName());
+		}
+		/* Check Settings.java for input specifier */
+		setInput();
+
+
+		/* box2d debug */
+		/* is this what paints the hit boxes? */
 		debugMatrix = batch.getProjectionMatrix().cpy();
 		b2dr = new Box2DDebugRenderer();
+
+
 	}
 
 	@Override
@@ -75,7 +85,6 @@ public class Game extends ApplicationAdapter {
 
         this.map.update(Gdx.graphics.getDeltaTime());
         batch.setProjectionMatrix(cam.combined);
-
 
         if(Game.debug)
 		{
@@ -107,5 +116,20 @@ public class Game extends ApplicationAdapter {
 		assets.load("atlas.atlas", TextureAtlas.class);
 		assets.finishLoading();
 		atlas = assets.get("atlas.atlas");
+	}
+
+	private void setInput()
+	{
+		switch (Settings.getControlOption()) {
+			case 0: // Keyboard
+				Gdx.input.setInputProcessor(new GameInput(this.ks));
+				break;
+			case 1: // D-Pad Controller
+				Gdx.input.setInputProcessor(new GameInputDPad(this.ks));
+				break;
+			case 2: // Joystick Controller
+				Gdx.input.setInputProcessor(new GameInputJoystick(this.ks));
+				break;
+		}
 	}
 }
