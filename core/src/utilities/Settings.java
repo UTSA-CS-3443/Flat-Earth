@@ -4,14 +4,14 @@ import com.badlogic.gdx.controllers.PovDirection;
 
 /**
  * some general settings, set by the javafx
- * @author mauricio
+ * @author Diego
  *
  */
 
 public class Settings {
 
 	public int chosenState;
-	public boolean controller = true;
+	public static int controlOption = 2;
 	public boolean music = true;
 
 	public static final int BUTTON_X = 0;
@@ -29,12 +29,20 @@ public class Settings {
 	public static final PovDirection BUTTON_DPAD_DOWN = PovDirection.south;
 	public static final PovDirection BUTTON_DPAD_RIGHT = PovDirection.east;
 	public static final PovDirection BUTTON_DPAD_LEFT = PovDirection.west;
+	public static final PovDirection BUTTON_DPAD_CENTER = PovDirection.center;
 
 	public static final int AXIS_LX = 0;
 	public static final int AXIS_LY = 1;
+	/* Leaving the following just in case, but probably won't be used. -Diego */
 	// public static final int AXIS_RX = 2;
 	// public static final int AXIS_RY = 3;
 	// public static final int AXIS_TRIGGER = 4;
 
-	
+
+	private void setControlOption(){
+		this.controlOption = 1;
+	}
+	public static int getControlOption(){
+		return controlOption;
+	}
 }
