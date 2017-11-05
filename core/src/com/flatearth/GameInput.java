@@ -12,6 +12,7 @@ import utilities.KeyboardState;
  *
  */
 
+//TODO Let's change the name of this to "GameInputKB" to accommodate the new gamepad implementations. - Diego
 public class GameInput implements InputProcessor {
 
 	private KeyboardState ks;

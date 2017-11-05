@@ -1,5 +1,7 @@
 package utilities;
 
+
+// TODO Let's change the name of this to "InputPressed" or something to accommodate the new implementations. -Diego
 public class KeysPressed {
 	
 	// int's so i can do boolean arithmetic
