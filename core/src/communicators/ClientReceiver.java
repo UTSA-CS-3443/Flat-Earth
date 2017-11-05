@@ -15,8 +15,8 @@ import utilities.ConnectionSettings;
 import java.io.ByteArrayInputStream;
 
 /**
- * A thread, instatiated once. Run concurrently with the client. Has access to the same GameState object
- * that the client uses to update it's view. Receives a serialzed GameState object from the server, and
+ * A thread, instantiated once. Run concurrently with the client. Has access to the same GameState object
+ * that the client uses to update it's view. Receives a serialized GameState object from the server, and
  * updates the shared one.
  * 
  * @author mauricio

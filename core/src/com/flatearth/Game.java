@@ -5,6 +5,7 @@ import java.util.concurrent.ExecutorService;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -12,6 +13,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.controllers.Controller;
 
 import utilities.*;
 
@@ -28,6 +30,7 @@ public class Game extends ApplicationAdapter {
 			
 	private GameState gs;
 	private KeyboardState ks;
+
 	
 	public static int clientId; // TODO not hardcode this. also fine ash, you were right
 		
@@ -56,11 +59,16 @@ public class Game extends ApplicationAdapter {
 
 		// currently not doing anything
 		Gdx.input.setInputProcessor(new GameInput(this.ks));
-		
+
 		//box2d debug
 		// is this what paints the hit boxes?
 		debugMatrix = batch.getProjectionMatrix().cpy();
 		b2dr = new Box2DDebugRenderer();
+
+		/* Controller purposes */
+		for (Controller c : Controllers.getControllers()){
+			System.out.println(c.getName());
+		}
 	}
 
 	@Override
@@ -75,7 +83,6 @@ public class Game extends ApplicationAdapter {
 
         this.map.update(Gdx.graphics.getDeltaTime());
         batch.setProjectionMatrix(cam.combined);
-
 
         if(Game.debug)
 		{
