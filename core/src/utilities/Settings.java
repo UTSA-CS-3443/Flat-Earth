@@ -11,7 +11,7 @@ import com.badlogic.gdx.controllers.PovDirection;
 public class Settings {
 
 	public int chosenState;
-	public static int controlOption = 2;
+	public static int controlOption = 0;
 	public boolean music = true;
 
 	public static final int BUTTON_X = 0;
@@ -40,7 +40,7 @@ public class Settings {
 
 
 	private void setControlOption(){
-		this.controlOption = 1;
+		//TODO - link JavaFX
 	}
 	public static int getControlOption(){
 		return controlOption;
