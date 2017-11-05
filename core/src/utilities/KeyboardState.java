@@ -24,8 +24,8 @@ package utilities;
 
 //TODO Let's change the name of this to "InputState" to accommodate the new gamepad implementations. -Diego
 
-public class KeyboardState {
-	
+public class KeyboardState
+{
 	private int id;
 	
 	// TODO these might be getting serialized as well, don't send these
@@ -44,7 +44,8 @@ public class KeyboardState {
 	// short my cause a bug, might just use an int	
 	private short bitField;
 	
-	public KeyboardState(int id) {
+	public KeyboardState(int id)
+	{
 		this.bitField = 0;
 		this.id = id;
 	}
@@ -72,7 +73,8 @@ public class KeyboardState {
 	public void attack2Released() {bitField = (short) (bitField & ~(1 << DEFEND_MOD));}
 
 	
-	public synchronized KeysPressed get() {
+	public synchronized KeysPressed get()
+	{
 		KeysPressed pressed = new KeysPressed();
 		
 		pressed.up = (this.bitField >> UP_MOD) & 1;

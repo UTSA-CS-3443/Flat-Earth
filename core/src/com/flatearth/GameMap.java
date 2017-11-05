@@ -14,9 +14,6 @@ import utilities.GameState;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-
-
-
 public class GameMap
 {
 	private Sprite mapSprite;

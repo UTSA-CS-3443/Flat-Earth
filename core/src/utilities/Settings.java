@@ -8,8 +8,8 @@ import com.badlogic.gdx.controllers.PovDirection;
  *
  */
 
-public class Settings {
-
+public class Settings
+{
 	public int chosenState;
 	public static int controlOption = 2;
 	public boolean music = true;
@@ -39,10 +39,12 @@ public class Settings {
 	// public static final int AXIS_TRIGGER = 4;
 
 
-	private void setControlOption(){
-		this.controlOption = 1;
+	private void setControlOption()
+    {
+		//TODO - Ready for JavaFX attachment.
 	}
-	public static int getControlOption(){
+	public static int getControlOption()
+    {
 		return controlOption;
 	}
 }

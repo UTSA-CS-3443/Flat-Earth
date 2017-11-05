@@ -2,7 +2,6 @@ package com.flatearth;
 
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Input.Keys;
-
 import utilities.KeyboardState;
 
 /**
@@ -13,8 +12,8 @@ import utilities.KeyboardState;
  */
 
 //TODO Let's change the name of this to "GameInputKB" to accommodate the new gamepad implementations. - Diego
-public class GameInput implements InputProcessor {
-
+public class GameInput implements InputProcessor
+{
 	private KeyboardState ks;
 	//boolean hasControllers = true;
 	
@@ -27,7 +26,8 @@ public class GameInput implements InputProcessor {
 	@Override
 	public boolean keyDown(int keycode)
 	{
-		switch(keycode) {
+		switch(keycode)
+        {
 		case Keys.UP:
 			ks.UpPress(); break;
 		case Keys.DOWN:
@@ -51,7 +51,8 @@ public class GameInput implements InputProcessor {
 	@Override
 	public boolean keyUp(int keycode)
 	{
-		switch(keycode) {
+		switch(keycode)
+        {
 		case Keys.UP:
 			ks.UpRelease(); break;
 		case Keys.DOWN:

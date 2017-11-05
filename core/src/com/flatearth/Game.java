@@ -17,7 +17,8 @@ import com.badlogic.gdx.controllers.Controller;
 
 import utilities.*;
 
-public class Game extends ApplicationAdapter {
+public class Game extends ApplicationAdapter
+{
 	public static SpriteBatch batch;
 	public static OrthographicCamera cam;
 	public GameMap map;
@@ -34,14 +35,16 @@ public class Game extends ApplicationAdapter {
 	
 	public static int clientId; // TODO not hardcode this. also fine ash, you were right
 		
-	public Game(Settings s, GameState gs, KeyboardState ks, int id) {
+	public Game(Settings s, GameState gs, KeyboardState ks, int id)
+	{
 		this.ks = ks;
 		this.gs = gs;
 		this.clientId = id;
 	}
 	
 	@Override
-	public void create () {
+	public void create ()
+	{
         /* Constructs a new OrthographicCamera, using the given viewport width and height */
         /* Height is multiplied by aspect ratio. */
         float w = Gdx.graphics.getWidth();
@@ -58,23 +61,23 @@ public class Game extends ApplicationAdapter {
 		this.map = new GameMap("map", this.gs);
 
 		/* Controller testing purposes */
-		for (Controller c : Controllers.getControllers()){
+		for (Controller c : Controllers.getControllers())
+		{
 			System.out.println(c.getName());
 		}
 		/* Check Settings.java for input specifier */
 		setInput();
-
 
 		/* box2d debug */
 		/* is this what paints the hit boxes? */
 		debugMatrix = batch.getProjectionMatrix().cpy();
 		b2dr = new Box2DDebugRenderer();
 
-
 	}
 
 	@Override
-	public void render () {
+	public void render ()
+	{
 
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -94,12 +97,14 @@ public class Game extends ApplicationAdapter {
 	}
 	
 	@Override
-	public void dispose () {
+	public void dispose ()
+	{
 		batch.dispose();
 		this.map.dispose();
 	}
 	@Override
-	public void resize(int width, int height) {
+	public void resize(int width, int height)
+	{
 	    cam.viewportWidth = width/32f;
 		cam.viewportHeight = cam.viewportWidth * height/width;
 		cam.update();
@@ -120,7 +125,8 @@ public class Game extends ApplicationAdapter {
 
 	private void setInput()
 	{
-		switch (Settings.getControlOption()) {
+		switch (Settings.getControlOption())
+		{
 			case 0: // Keyboard
 				Gdx.input.setInputProcessor(new GameInput(this.ks));
 				break;
