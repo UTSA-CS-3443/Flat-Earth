@@ -4,14 +4,14 @@ import com.badlogic.gdx.controllers.PovDirection;
 
 /**
  * some general settings, set by the javafx
- * @author Diego
+ * @author digWallace
  *
  */
 
 public class Settings
 {
 	public int chosenState;
-	public static int controlOption = 2;
+	private static int controlOption = 2;
 	public boolean music = true;
 
 	public static final int BUTTON_X = 0;
