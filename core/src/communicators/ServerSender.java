@@ -8,8 +8,8 @@ import java.net.SocketException;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.io.Output;
 
+import communicators.serverToClient.GameState;
 import utilities.ConnectionSettings;
-import utilities.GameState;
 
 /**
  * A thread. Runs concurrently with server. Shares the GameSate object with it. Send that object to the

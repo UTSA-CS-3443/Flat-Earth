@@ -10,8 +10,8 @@ import java.util.Arrays;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.io.Input;
 
+import communicators.clientToServer.KeyboardState;
 import utilities.ConnectionSettings;
-import utilities.KeyboardState;
 
 /**
  * A thred. Runs concurrently with the server. Has access to the same KeybaordState object as Logic.java.

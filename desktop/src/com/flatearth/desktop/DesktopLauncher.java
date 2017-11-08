@@ -5,14 +5,11 @@ import java.util.concurrent.Executors;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
-import com.flatearth.Game;
 
-import controller.Logic;
-//import startGui.Launcher;
-
-import utilities.*;
-
+import zzzztrash.com.flatearth.Game;
+import zzzztrash.controller.Logic;
 import communicators.*;
+import utilities.*;
 
 public class DesktopLauncher {
 	

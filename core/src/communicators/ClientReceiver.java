@@ -9,7 +9,7 @@ import java.net.SocketException;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.io.Input;
 
-import utilities.GameState;
+import communicators.serverToClient.GameState;
 import utilities.ConnectionSettings;
 
 import java.io.ByteArrayInputStream;
