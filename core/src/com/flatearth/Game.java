@@ -12,6 +12,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.audio.Music;
 
 import utilities.*;
 
@@ -30,6 +31,8 @@ public class Game extends ApplicationAdapter {
 	private KeyboardState ks;
 	
 	public static int clientId; // TODO not hardcode this. also fine ash, you were right
+
+	Music music;
 		
 	public Game(Settings s, GameState gs, KeyboardState ks, int id) {
 		this.ks = ks;
@@ -61,6 +64,11 @@ public class Game extends ApplicationAdapter {
 		// is this what paints the hit boxes?
 		debugMatrix = batch.getProjectionMatrix().cpy();
 		b2dr = new Box2DDebugRenderer();
+
+		music = Gdx.audio.newMusic(Gdx.files.internal("bg.wav"));
+		music.setLooping(true);
+		music.setVolume(1.0f);
+		music.play();
 	}
 
 	@Override
@@ -88,6 +96,7 @@ public class Game extends ApplicationAdapter {
 	public void dispose () {
 		batch.dispose();
 		this.map.dispose();
+		music.dispose();
 	}
 	@Override
 	public void resize(int width, int height) {

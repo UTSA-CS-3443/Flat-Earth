@@ -42,6 +42,9 @@ public class GameMap
 	{
 		// world is for the physics. you create and destroy bodies through the world
 		this.world = new World(new Vector2(0, 0), false);
+
+		new ParseMap();
+
 		this.mapSprite = new Sprite(Game.atlas.findRegion(name));
 		this.mapSprite.setSize(this.mapSprite.getWidth() / 5, this.mapSprite.getHeight() / 5);
 		
