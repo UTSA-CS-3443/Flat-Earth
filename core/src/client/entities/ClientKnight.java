@@ -9,3 +9,4 @@ public class ClientKnight extends ClientCharacter
 	}
 
 }
+
