@@ -1,4 +1,4 @@
-package utilities;
+package communicators.clientToServer;
 
 //obviously not optimized, just want to get something working
 // maybe just send key codes
@@ -23,6 +23,9 @@ package utilities;
 // maybe not though
 
 public class KeyboardState {
+	
+	public float x;
+	public float y;
 	
 	private int id;
 	
@@ -69,8 +72,8 @@ public class KeyboardState {
 	public void attack1Released() {bitField = (short) (bitField & ~(1 << ATTACK2_MOD));}
 	public void attack2Released() {bitField = (short) (bitField & ~(1 << DEFEND_MOD));}
 
-	
-	public synchronized KeysPressed get() {
+	// used to be get()
+	public synchronized KeysPressed getKeysPressed() {
 		KeysPressed pressed = new KeysPressed();
 		
 		pressed.up = (this.bitField >> UP_MOD) & 1;

@@ -1,4 +1,4 @@
-package utilities;
+package communicators.serverToClient;
 
 import java.util.ArrayList;
 
@@ -23,18 +23,18 @@ public class GameState {
 	}
 	
 	
-	public CharacterState getState(int id) {
+	public synchronized CharacterState getState(int id) {
 		return this.states.get(id);
 	}
 	
-	public void setState(int id, CharacterState state) {
+	public synchronized void setState(int id, CharacterState state) {
 		this.states.get(id).set(state);
 	}
 	
-	public void setStates(CharacterState cs[]) {
+	public synchronized void setStates(CharacterState cs[]) {
 		//System.out.printf("cs is : %d, states is", cs.length);
 		for (int i = 0; i < this.states.size(); i++)
-			this.setState(i, cs[i]);
+			this.states.get(i).set(cs[i]);
 	}
 	
 	// TODO need to figure out ways around using synchronized

@@ -1,4 +1,4 @@
-package utilities;
+package communicators.clientToServer;
 
 public class KeysPressed {
 	

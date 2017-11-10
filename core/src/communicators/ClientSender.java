@@ -1,8 +1,5 @@
 package communicators;
 
-import utilities.KeyboardState;
-import utilities.ConnectionSettings;
-
 import java.io.ByteArrayOutputStream;
 import java.lang.Thread;
 import java.net.DatagramPacket;
@@ -12,6 +9,9 @@ import java.util.Arrays;
 
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.io.Output;
+
+import communicators.clientToServer.KeyboardState;
+import utilities.ConnectionSettings;
 
 /**
  * Ran as a thread. Runs concurrently with the client. Has access to the same KeyboardState object shared
