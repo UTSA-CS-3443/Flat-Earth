@@ -2,10 +2,9 @@ package client;
 
 import communicators.serverToClient.CharacterState;
 import communicators.serverToClient.GameState;
-import server.entities.ServerSpawner;
 import utilities.Exit;
-import utilities.MapDetails;
-import zzzztrash.com.flatearth.Game;
+import utilities.ParseMap.MapDetails;
+//import zzzztrash.com.flatearth.Game;
 import client.entities.ClientCharacter;
 import client.entities.ClientEntityManager;
 

@@ -10,9 +10,12 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 
 import communicators.clientToServer.KeyboardState;
 import communicators.serverToClient.GameState;
-import utilities.MapDetails;
+import utilities.Exit;
+import utilities.ParseMap.MapDetails;
 import utilities.Settings;
 
+import java.io.IOException;
+import java.text.ParseException;
 public class Game extends ApplicationAdapter {
 	public static SpriteBatch batch;
 	public static OrthographicCamera cam;
@@ -48,8 +51,14 @@ public class Game extends ApplicationAdapter {
 		batch = new SpriteBatch();
 		assets = new AssetManager();
 		loadAssets();
-		
-		this.map = new ClientGameMap(new MapDetails(this.mapName), this.clientId);
+
+		try {
+			this.map = new ClientGameMap(new MapDetails(this.mapName), this.clientId);
+		} catch (IOException e) {
+			Exit.exit(e.getMessage());
+		} catch (ParseException e) {
+			Exit.exit(e.getMessage());
+		}
 		//this.map.initialize();
 		
 		Gdx.input.setInputProcessor(new GameInput(this.ks));

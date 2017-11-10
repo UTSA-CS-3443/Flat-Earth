@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import communicators.serverToClient.CharacterState;
 import utilities.Exit;
-import zzzztrash.entities.characters.Character;
+//import zzzztrash.entities.characters.Character;
 
 public class ClientEntityManager {
 

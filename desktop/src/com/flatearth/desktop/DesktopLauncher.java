@@ -3,12 +3,15 @@ package com.flatearth.desktop;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import client.Game;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 
-import zzzztrash.com.flatearth.Game;
-import zzzztrash.controller.Logic;
 import communicators.*;
+import communicators.clientToServer.KeyboardState;
+import communicators.serverToClient.GameState;
+import server.Logic;
+
 import utilities.*;
 
 public class DesktopLauncher {

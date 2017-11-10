@@ -6,7 +6,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import communicators.clientToServer.KeysPressed;
 import server.entities.ServerEntityManager;
 import utilities.Exit;
-import utilities.MapDetails;
+import utilities.ParseMap.MapDetails;
 
 public class ServerGameMap {
 

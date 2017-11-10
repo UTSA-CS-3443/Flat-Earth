@@ -1,10 +1,11 @@
 package client.entities;
 
+import client.Game;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasSprite;
 import com.badlogic.gdx.utils.Array;
 
-import zzzztrash.com.flatearth.*;
+//import zzzztrash.com.flatearth.*;
 
 /**
  * Creates AtlasSprite animation arrays for each type of character.

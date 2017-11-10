@@ -1,12 +1,14 @@
 package server;
 
+import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
 
 import communicators.clientToServer.KeyboardState;
 import communicators.clientToServer.KeysPressed;
 import communicators.serverToClient.GameState;
 import utilities.Exit;
-import utilities.MapDetails;
+import utilities.ParseMap.MapDetails;
 /**
  * 	playerCount should be the same as the size of kss. both will be 1 if launching
  *	as solo play. this is built to be dynamic to be ran for the server, and also 
@@ -37,7 +39,13 @@ public class Logic implements Runnable {
 	}
 	
 	public void setMapLogistics(String mapName) {
-		map = new ServerGameMap(new MapDetails(mapName), playerCount);
+		try {
+			map = new ServerGameMap(new MapDetails(mapName), playerCount);
+		} catch (IOException e) {
+			Exit.exit(e.getMessage());
+		} catch (ParseException e) {
+			Exit.exit(e.getMessage());
+		}
 		map.initialize();
 		this.mapLogisticsSet = true;
 	}
