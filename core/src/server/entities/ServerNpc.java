@@ -17,33 +17,61 @@ public class ServerNpc extends ServerCharacter
 	public void update(Vector2 vectors[])
 	{
 
-		Vector2 closest;
-
+		float forceX = 0f;
+		float forceY = 0f;
+		/* Create vector for aggro target. */
+		Vector2 closest = vectors[0f];
+		/* Find closest aggro target by cycling through vectors[]. */
 		for(Vector2 target: vectors)
-		{
-			if (Math.abs(vectors[target].x - this.body.getPosition().x) +
-					Math.abs(vectors[target].x - this.body.getPosition().y))
-			{
+			if ((Math.abs(target.x - this.body.getPosition().x) +
+				 Math.abs(target.y - this.body.getPosition().y) <
+				 Math.abs(closest.x - this.body.getPosition().x) +
+				 Math.abs(closest.y - this.body.getPosition().y)))
 				closest = target;
-			}
-		}
 
-		if (Math.sqrt(closest.x * closest.x + closest.y * closest.y) <= 30f)
+		float distance = (float) Math.sqrt(Math.pow((closest.x - this.body.getPosition().x), 2)
+								          -Math.pow((closest.y - this.body.getPosition().y), 2));
+
+		/* Test if closest target is within aggro range. Moves if so. */
+		if (distance <= 30f)
 		{
+			float angle;
+			/* Calculate angle. */
+			angle = (float) Math.atan2(closest.y - this.body.getPosition().y, closest.x - this.body.getPosition().x);
 
+			if (Math.cos(angle) > 0f)
+				forceX =  1f;
+			if (Math.cos(angle) < 0f)
+				forceX = -1f;
+			if (Math.sin(angle) > 0f)
+				forceY =  1f;
+			if (Math.sin(angle) < 0f)
+				forceY = -1f;
 		}
 
+		/* Attack distance check */
+		if (distance <= 2f)
+			attack();
 
-		// find closest player, go towards them
-		// if close enough to attack, start/keep attacking
-		// TODO 
+		/* Modulated code for possible future implementation of a lower-end aggro threshold. */
+		if (distance <= 1f)
+			forceX = forceY = 0f;
+
+
+		this.body.applyForceToCenter(forceX, forceY, true);
+
 		Exit.exit("exiting in Npc.update");
 	}
-	
+
+	private void attack()
+	{
+		// TODO
+	}
+
 	@Override
 	public CharacterState getState()
 	{
 		return new CharacterState(this.movement, this.body.getPosition().x, this.body.getPosition().y, this.direction);
 	}
-	
+
 }
