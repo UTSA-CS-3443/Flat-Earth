@@ -20,7 +20,7 @@ public class ServerNpc extends ServerCharacter
 		float forceX = 0f;
 		float forceY = 0f;
 		/* Create vector for aggro target. */
-		Vector2 closest = vectors[0f];
+		Vector2 closest = vectors[0];
 		/* Find closest aggro target by cycling through vectors[]. */
 		for(Vector2 target: vectors)
 			if ((Math.abs(target.x - this.body.getPosition().x) +
