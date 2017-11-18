@@ -19,7 +19,7 @@ public class ClientGameMap {
 	
 	private Sprite mapSprite;
 	
-	// a refernce to the player. This is still stored in the entity manager,
+	// a reference to the player. This is still stored in the entity manager,
 	// but we need this here for the orthographic camera
 	private ClientCharacter player;
 	

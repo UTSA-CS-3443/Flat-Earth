@@ -49,9 +49,13 @@ public class ServerNpc extends ServerCharacter
 				forceY = -1f;
 		}
 
-		/* Attack distance check */
+		/* Melee attack distance check */
 		if (distance <= 2f)
-			attack();
+			meleeAttack();
+
+		/* Ranged attack distance check */
+		if (distance <= 8f)
+			rangedAttack();
 
 		/* Modulated code for possible future implementation of a lower-end aggro threshold. */
 		if (distance <= 1f)
@@ -63,7 +67,12 @@ public class ServerNpc extends ServerCharacter
 		Exit.exit("exiting in Npc.update");
 	}
 
-	private void attack()
+	private void meleeAttack()
+	{
+		// TODO
+	}
+
+	private void rangedAttack()
 	{
 		// TODO
 	}
