@@ -7,6 +7,8 @@ import communicators.serverToClient.CharacterState;
 
 public class ClientCharacter
 {
+	public boolean outOfBounds;
+
 	enum Direction { NORTHEAST, NORTH, NORTHWEST, WEST, SOUTHWEST, SOUTH, SOUTHEAST, EAST; }
 	protected Direction[] directionArray = Direction.values();
 	protected CharacterType type;
@@ -19,14 +21,18 @@ public class ClientCharacter
 	
 	public float x;
 	public float y;
+
+	private float scale;
+	private int rotation;
 	
 	protected ClientCharacter(CharacterType type)
 	{
-		
+		this.scale = 1f;
+		this.rotation = 0;
+		this.outOfBounds = false;
 		this.direction = Direction.SOUTH; // Default
 		this.type = type;
 		this.frameIndex = 0;
-		
 	}
 	
 	public void update(float delta, CharacterState cs)
@@ -61,14 +67,21 @@ public class ClientCharacter
 	}
 	
 	public Sprite getFrame()
-	{		
+	{
+		Sprite s;
 		//if attacking
 		//return getAttackFrame();
 		//if(this.body.getLinearVelocity().x == 0 && this.body.getLinearVelocity().y == 0)
 		if(!this.charMovement)
-			return getStandFrame();
+			s = getStandFrame();
 		else //walking
-			return getWalkFrame();
+			s = getWalkFrame();
+		if (outOfBounds)
+		{
+			s.scale(this.scale * 0.5f);
+			s.rotate(this.rotation + 15);
+		}
+		return s;
 	}
 	
 	private Sprite getWalkFrame()
@@ -115,6 +128,7 @@ public class ClientCharacter
 			default: //SOUTHEAST
 				return type.getStandFrontRight();
 		}
+
 	}
 	
 	private Sprite getAttackFrame()
@@ -139,14 +153,14 @@ public class ClientCharacter
 				return type.getAttackFrontRight().get(frameIndex);
 		}
 	}
-	
+
 	private float degreeFix(float angle)
 	{
 	    angle %= 360f;
 	    if (angle <= 0f)
 	        return angle + 360f;
 	    return angle;
-	    /* Fairly sure this formula is redundant for our game. - Diego */
+	    /* Fairly sure thSprite.scale(this.scale * 0.5f);is formula is redundant for our game. - Diego */
 	    /*
 		angle = ((int) angle % 360) + (angle - ((int)angle));
 		if(angle > 0.0)

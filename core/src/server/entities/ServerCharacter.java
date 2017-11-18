@@ -29,5 +29,6 @@ public abstract class ServerCharacter {
 	}
 	
 	public abstract CharacterState getState();
-	
+
+
 }

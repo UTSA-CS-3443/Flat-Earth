@@ -69,12 +69,12 @@ public class ServerNpc extends ServerCharacter
 
 	private void meleeAttack()
 	{
-		// TODO
+		// TODO - May be better to place in ServerCharacter.
 	}
 
 	private void rangedAttack()
 	{
-		// TODO
+		// TODO - May be better to place in ServerCharacter.
 	}
 
 	@Override

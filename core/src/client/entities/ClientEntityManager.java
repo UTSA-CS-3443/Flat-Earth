@@ -26,8 +26,10 @@ public class ClientEntityManager {
 	}
 	
 	public void drawAll(SpriteBatch batch) {
-		for (ClientCharacter c : characters) 
+		for (ClientCharacter c : characters)
+		{
 			c.getFrame().draw(batch);
+		}
 	}
 	
 }
