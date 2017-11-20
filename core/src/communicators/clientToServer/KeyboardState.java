@@ -27,6 +27,8 @@ public class KeyboardState {
 	public float x;
 	public float y;
 	
+	// probably only get's used in multiplayer, so the recieveing thread/listener knows
+	// who's sending what
 	private int id;
 	
 	// TODO these might be getting serialized as well, don't send these

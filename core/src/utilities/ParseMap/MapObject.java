@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public abstract class MapObject
 {
-    protected ArrayList<Property> properties = new ArrayList<>();
+    protected ArrayList<Property> properties = new ArrayList<Property>();
 
     public final void addProperty (Property property)
     {

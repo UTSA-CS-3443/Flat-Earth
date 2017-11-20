@@ -13,4 +13,9 @@ public class KeysPressed {
 	public boolean attack2 = false;
 	
 	public int id; // id of the player/client whatever
+	
+	public String toString() {
+		return "" + up + " " + down + " " + right + " " + left;
+	}
+	
 }

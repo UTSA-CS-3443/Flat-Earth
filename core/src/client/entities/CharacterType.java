@@ -16,7 +16,8 @@ import com.badlogic.gdx.utils.Array;
  */
 public enum CharacterType
 {
-	KNIGHT(1, 3, 3, "knight"), WIZARD(1, 3, 3, "wizard"), ARCHER(1, 3, 3, "archer");
+	// TODO the NPC type in here has no functionality for the animations, so probably don't use it right now
+	KNIGHT(1, 3, 3, "knight"), WIZARD(1, 3, 3, "wizard"), ARCHER(1, 3, 3, "archer");//, NPC(1, 3, 3, "npc");
 	
 	private Array<AtlasSprite> attackLeft, attackFrontLeft, attackFront, attackFrontRight, attackRight, attackBack, attackBackLeft, attackBackRight,
 	walkLeft, walkFrontLeft, walkFront, walkFrontRight, walkRight, walkBack, walkBackLeft, walkBackRight;

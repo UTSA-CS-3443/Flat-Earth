@@ -43,4 +43,8 @@ public class CharacterState {
 
 	public float getY() {return y;}
 	
+	public String toString() {
+		return "" + this.x + " " + this.y;
+	}
+	
 }

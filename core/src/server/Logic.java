@@ -7,13 +7,21 @@ import java.util.ArrayList;
 import communicators.clientToServer.KeyboardState;
 import communicators.clientToServer.KeysPressed;
 import communicators.serverToClient.GameState;
-import utilities.Exit;
+import utilities.Sys;
+import utilities.Settings;
 import utilities.ParseMap.MapDetails;
+
+
 /**
  * 	playerCount should be the same as the size of kss. both will be 1 if launching
  *	as solo play. this is built to be dynamic to be ran for the server, and also 
  *	to be part of the solo play launch
  * @author mauricio
+ *
+ *	should be used like this:
+ *		MapDetails details = new MapDetails(mapName);
+ *		Logic logic = new Logic(count, gs, kss);
+ *		logic.setMapLogistics(details)
  *
  */
 
@@ -26,47 +34,38 @@ public class Logic implements Runnable {
 	
 	private int playerCount;
 	
-	private boolean mapLogisticsSet = false;
-
-	public Logic(int playerCount, GameState gs, ArrayList<KeyboardState> kss) {
-		Exit.exit("Logic.java: Need to properly set the game state objects for playercount" +
-					"\n Also need to set the keyboard states right, all before calling this");
+	public Logic(Settings settings,GameState gs, ArrayList<KeyboardState> kss, MapDetails details) {
+		//Exit.exit("Logic.java: Need to properly set the game state objects for playercount" +
+		//			"\n Also need to set the keyboard states right, all before calling this");
 		this.gs = gs;
 		this.kss = kss;
-		this.playerCount = playerCount;
-	
-
-	}
-	
-	public void setMapLogistics(String mapName) {
-		try {
-			map = new ServerGameMap(new MapDetails(mapName), playerCount);
-		} catch (IOException e) {
-			Exit.exit(e.getMessage());
-		} catch (ParseException e) {
-			Exit.exit(e.getMessage());
-		}
+		this.playerCount = settings.playerCount;
+		map = new ServerGameMap(details, playerCount);
 		map.initialize();
-		this.mapLogisticsSet = true;
 	}
+	
 	
 	@Override
 	public void run() {
 		
-		if(!mapLogisticsSet)
-			Exit.exit("Logic.java: didn't call setMapLogistics()");
-		
 		KeysPressed pressed[] = new KeysPressed[this.playerCount];
+		float currentTime, lastTime = System.currentTimeMillis();
 		
 		while(!Thread.currentThread().isInterrupted()) {
+			Sys.sleep(1, "Logic.java: sleep error");
+			// get keys pressed TODO maybe lock the objects, otherwise this will 
+			// be inefficient cause of having to wait for all of the keyboard states. 
+			// either that or make a wrapper class that holds the array and lock that
+			// object while getting
 			
-			// get keys pressed
-			for (int i = 0; i < this.kss.size(); i++)
+			for (int i = 0; i < this.kss.size(); i++) {
 				pressed[i] = this.kss.get(i).getKeysPressed();
-			
-			Exit.exit("Actually caluculate this");
-			float deltaTime = 0;//current time - last time
-			// last time = current time
+				//Sys.print(pressed[i].toString() + " at " + i);
+			}
+			// get the delta time
+			currentTime = System.currentTimeMillis();
+			float deltaTime = currentTime - lastTime;
+			lastTime = currentTime;
 			
 			//update everything
 			map.update(pressed, deltaTime);

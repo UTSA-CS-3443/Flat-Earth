@@ -7,7 +7,7 @@ import com.badlogic.gdx.physics.box2d.World;
 
 import communicators.clientToServer.KeysPressed;
 import communicators.serverToClient.CharacterState;
-import utilities.Exit;
+import utilities.Sys;
 
 public class ServerEntityManager {
 
@@ -29,14 +29,16 @@ public class ServerEntityManager {
 	 * @param pressed
 	 */
 	public void updateAll(KeysPressed pressed[]) {
-		int i;
 		
+		int i;
+		//Sys.print("sshahahah" + pressed.length);
 		Vector2 v[] = new Vector2[pressed.length];
 		
 		for (i = 0; i < pressed.length; i++) {
 			ServerCharacter c = characters.get(i);
 			((ServerPlayer)c).update(pressed[i]);
 			v[i] = c.getVector();
+			//Sys.print(v[i].toString());
 		}
 		
 		for (i = pressed.length; i < characters.size(); i++)
@@ -45,6 +47,7 @@ public class ServerEntityManager {
 	
 	/**
 	 * returns a list of all the character states. used for sending to the client 
+	 * there might be ways to optimize this, cause this is a lot of iterations TODO
 	 * @return
 	 */
 	public CharacterState[] getStates() {

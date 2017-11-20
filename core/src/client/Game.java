@@ -10,7 +10,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 
 import communicators.clientToServer.KeyboardState;
 import communicators.serverToClient.GameState;
-import utilities.Exit;
+import utilities.Sys;
 import utilities.ParseMap.MapDetails;
 import utilities.Settings;
 
@@ -27,22 +27,28 @@ public class Game extends ApplicationAdapter {
 	private KeyboardState ks;
 	
 	public int clientId; 
-		
-	private String mapName;
 	
-	public Game(Settings s, GameState gs, KeyboardState ks, int id, String mapName) {
+	private Settings s;
+	
+	MapDetails details;
+	
+	public Game(Settings s, GameState gs, KeyboardState ks, MapDetails details) {
 		this.ks = ks;
 		this.gs = gs;
-		this.mapName = mapName;
-		this.clientId = id;
+		this.s = s;
+		this.clientId = s.clientId;
+		this.details = details;
 	}
-	
+
+	// TODO all this needs to be less hardcoded
+	// cant tell if this is an old comment 
 	@Override
 	public void create () {
-
+		// TODO have we even given it anything for it too pull w and h?
         float w = Gdx.graphics.getWidth();
         float h = Gdx.graphics.getHeight();
-        
+        // TODO set this to the players x y stuff, from the client id and the spawn beacons in 
+        // game map
         cam = new OrthographicCamera(30, 30 * (h / w));
         cam.position.set(cam.viewportWidth / 2f, cam.viewportHeight / 2f, 0);
         cam.update();
@@ -51,15 +57,8 @@ public class Game extends ApplicationAdapter {
 		batch = new SpriteBatch();
 		assets = new AssetManager();
 		loadAssets();
-
-		try {
-			this.map = new ClientGameMap(new MapDetails(this.mapName), this.clientId);
-		} catch (IOException e) {
-			Exit.exit(e.getMessage());
-		} catch (ParseException e) {
-			Exit.exit(e.getMessage());
-		}
-		//this.map.initialize();
+		this.map = new ClientGameMap(this.details, this.s);
+		
 		
 		Gdx.input.setInputProcessor(new GameInput(this.ks));
 	}

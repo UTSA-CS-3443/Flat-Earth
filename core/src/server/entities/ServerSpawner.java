@@ -7,7 +7,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 
-import utilities.Exit;
+import utilities.Sys;
 
 public class ServerSpawner
 {
@@ -41,9 +41,9 @@ public class ServerSpawner
 		return type.cast(player);
 	}
 	
-	public static <T extends ServerPlayer> T spawnNpc(Class<T> type, float x, float y, World world)
+	public static <T extends ServerNpc> T spawnNpc(Class<T> type, float x, float y, World world)
 	{
-		ServerPlayer player = null;
+		ServerNpc player = null;
 		short category = FOOT_PHYSICS; 
 		short mask = FOOT_PHYSICS | WORLD_PHYSICS;
 		float size = .5f; 
@@ -56,13 +56,9 @@ public class ServerSpawner
 				new Vector2(-size/2,-size/3),
 				new Vector2(-size/2,size/3),
 				new Vector2((-size/3)/2,size));
-//		if(type == Knight.class)
-//			player = new Knight(body);
-//		else if(type == Wizard.class)
-//			player = new Wizard(body);
-//		else if(type == Archer.class)
-//			player = new Archer(body);
-		Exit.exit("Spawner.java: Do this type stuff");
+		
+		player = new ServerNpc(body);
+		
 		return type.cast(player);
 	}
 	

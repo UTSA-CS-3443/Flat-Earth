@@ -3,9 +3,10 @@ package client.entities;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import communicators.serverToClient.CharacterState;
+import utilities.Sys;
 
 
-public class ClientCharacter
+public class ClientCharacter implements Comparable
 {
 	enum Direction { NORTHEAST, NORTH, NORTHWEST, WEST, SOUTHWEST, SOUTH, SOUTHEAST, EAST; }
 	protected Direction[] directionArray = Direction.values();
@@ -22,7 +23,6 @@ public class ClientCharacter
 	
 	protected ClientCharacter(CharacterType type)
 	{
-		
 		this.direction = Direction.SOUTH; // Default
 		this.type = type;
 		this.frameIndex = 0;
@@ -47,16 +47,15 @@ public class ClientCharacter
 		this.degrees = cs.charDirection;
 		this.x = cs.x;
 		this.y = cs.y;
-		this.getFrame().setPosition(cs.x - getFrame().getWidth() / 2, cs.y);
+		this.getFrame().setPosition(this.x - getFrame().getWidth() / 2, this.y);
 		updateDirection();
-
 	}
 	
 	public void updateDirection()
 	{
 		int directionIndex = ((int)this.degrees/45)-1;
 		if(directionIndex < 0)
-			directionIndex = 0;
+			directionIndex = 7;
 		direction = Direction.values()[directionIndex];
 	}
 	
@@ -64,10 +63,16 @@ public class ClientCharacter
 	{		
 		//if attacking
 		//return getAttackFrame();
-		//if(this.body.getLinearVelocity().x == 0 && this.body.getLinearVelocity().y == 0)
+//		Sprite s = null;
+//		if(!this.charMovement)
+//			s = getStandFrame();
+//		else
+//			s = getWalkFrame();
+//		s.setPosition(this.x - getFrame().getWidth() / 2, this.y);
+//		return s;
 		if(!this.charMovement)
 			return getStandFrame();
-		else //walking
+		else
 			return getWalkFrame();
 	}
 	
@@ -159,5 +164,35 @@ public class ClientCharacter
 		}
 		*/
 	}
+
+	@Override
+	public int compareTo(Object o) {
+		float othery = ((ClientCharacter)o).y;
+		if (this.y > othery)
+			return -1;
+		else if (this.y < othery)
+			return 1;
+		return 0;
+	}
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

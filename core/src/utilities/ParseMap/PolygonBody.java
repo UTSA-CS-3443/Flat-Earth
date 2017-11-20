@@ -10,11 +10,14 @@ import java.util.ArrayList;
 
 public class PolygonBody extends MapObject{
 
-    private ArrayList<Vector2> vector2s = new ArrayList<>();
+    private ArrayList<Vector2> vector2s = new ArrayList<Vector2>();
 
     public void addVector2 (Vector2 vector2)
     {
         this.vector2s.add(vector2);
+    }
+    public ArrayList<Vector2> getVectors() {
+    	return this.vector2s;
     }
 
 }
