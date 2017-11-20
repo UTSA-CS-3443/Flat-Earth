@@ -50,7 +50,7 @@ public class DesktopLauncher {
 	public static void soloPlay() {
 		MapDetails details = null;
 		try {
-			details = new MapDetails("two_beacons.pp");
+			details = new MapDetails("map.pp");
 		} catch (Exception e) {
 			e.printStackTrace();
 			Sys.exit("DeskptopLauncher: MapDetails failed");

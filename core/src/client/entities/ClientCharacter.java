@@ -47,7 +47,6 @@ public class ClientCharacter implements Comparable
 		this.degrees = cs.charDirection;
 		this.x = cs.x;
 		this.y = cs.y;
-		this.getFrame().setPosition(this.x - getFrame().getWidth() / 2, this.y);
 		updateDirection();
 	}
 	
@@ -63,17 +62,13 @@ public class ClientCharacter implements Comparable
 	{		
 		//if attacking
 		//return getAttackFrame();
-//		Sprite s = null;
-//		if(!this.charMovement)
-//			s = getStandFrame();
-//		else
-//			s = getWalkFrame();
-//		s.setPosition(this.x - getFrame().getWidth() / 2, this.y);
-//		return s;
+		Sprite s = null;
 		if(!this.charMovement)
-			return getStandFrame();
+			s = getStandFrame();
 		else
-			return getWalkFrame();
+			s = getWalkFrame();
+		s.setPosition(this.x - s.getWidth() / 2, this.y);
+		return s;
 	}
 	
 	private Sprite getWalkFrame()
@@ -151,18 +146,6 @@ public class ClientCharacter implements Comparable
 	    if (angle <= 0f)
 	        return angle + 360f;
 	    return angle;
-	    /* Fairly sure this formula is redundant for our game. - Diego */
-	    /*
-		angle = ((int) angle % 360) + (angle - ((int)angle));
-		if(angle > 0.0)
-		{
-			return angle;
-		}
-		else
-		{
-			return angle + 360f;
-		}
-		*/
 	}
 
 	@Override
