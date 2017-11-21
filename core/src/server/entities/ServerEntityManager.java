@@ -12,7 +12,7 @@ import utilities.Sys;
 
 public class ServerEntityManager {
 
-	ArrayList<ServerCharacter> characters; // TODO this is not optimized
+	public ArrayList<ServerCharacter> characters; // TODO this is not optimized
 	ArrayList<Body> holes;
 	
 	

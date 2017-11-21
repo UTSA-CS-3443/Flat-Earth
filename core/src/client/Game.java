@@ -34,9 +34,9 @@ public class Game extends ApplicationAdapter {
 	
 	MapDetails details;
 	
-	// TODO for debugging, should eventually not be here
+	// for debugging
 	public static boolean debug = true;
-	public static boolean debugFromStart = false;
+	public static boolean debugFromStart = true;
 	public static Box2DDebugRenderer b2dr;
 	public static Matrix4 debugMatrix;
 

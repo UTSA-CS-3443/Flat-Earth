@@ -24,14 +24,35 @@ public class CollisionListener implements ContactListener {
 				fixtureB.getFilterData().categoryBits == ServerSpawner.HOLE_PHYSICS)
 		{
 			Sys.print("Falling now");
-			ServerCharacter victim = (ServerCharacter)fixtureA.getBody().getUserData();
-			victim.state = ActionState.FALLING;
+//			ServerCharacter victim = null;
+//			Body body = fixtureA.getBody();
+//			Sys.print("CollisionListner: THIS IS A TEMPORY FIX, LOGIC.JAVA'S SERVERMAP CANNOT STAY STATIC OR YOU CAN ONLY LAUNCH ONE INSTANCE OF THE SERVER");
+//			Sys.print("CollisionListener: also make ServerCharacters body protected again and ServerMaps entitymanagaer protected too. and get ash's method working");
+//			for (ServerCharacter c : Logic.map.getEntityManager().characters) {
+//				if (body == c.body) {
+//					victim = c;
+//					break;
+//				}
+//			}
+//			victim.state = ActionState.FALLING;
 		} else if(fixtureA.getFilterData().categoryBits == ServerSpawner.HOLE_PHYSICS &&
 				fixtureB.getFilterData().categoryBits == ServerSpawner.FOOT_PHYSICS)
 		{
+//			Sys.print("Falling now");
+//			ServerCharacter victim = (ServerCharacter)fixtureB.getBody().getUserData();
+//			victim.state = ActionState.FALLING;
 			Sys.print("Falling now");
-			ServerCharacter victim = (ServerCharacter)fixtureB.getBody().getUserData();
-			victim.state = ActionState.FALLING;
+//			ServerCharacter victim = null;
+//			Body body = fixtureB.getBody();
+//			Sys.print("CollisionListner: THIS IS A TEMPORY FIX, LOGIC.JAVA'S SERVERMAP CANNOT STAY STATIC OR YOU CAN ONLY LAUNCH ONE INSTANCE OF THE SERVER");
+//			Sys.print("CollisionListener: also make ServerCharacters body protected again and ServerMaps entitymanagaer protected too. and get ash's method working");
+//			for (ServerCharacter c : Logic.map.getEntityManager().characters) {
+//				if (body == c.body) {
+//					victim = c;
+//					break;
+//				}
+//			}
+//			victim.state = ActionState.FALLING;
 		}
 		
 //		if(fixtureA.getFilterData().categoryBits == ServerSpawner.FOOT_PHYSICS &&

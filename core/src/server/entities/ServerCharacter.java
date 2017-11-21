@@ -20,7 +20,7 @@ public abstract class ServerCharacter {
 	protected static final float FORCE_CONSTANT = .07f;
 	
 	protected static final int[][] DIRECTIONS = {{225, 270, 315},{180, -1, 0},{135, 90, 45}};
-	protected Body body;
+	public Body body;
 	
 	public ServerCharacter (Body body) {
 		this.body = body;

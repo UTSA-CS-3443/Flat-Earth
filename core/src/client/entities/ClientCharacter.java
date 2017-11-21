@@ -25,9 +25,12 @@ public class ClientCharacter implements Comparable<ClientCharacter>
 	
 	protected int health;
 	
-	protected float scale = 1f;
+	protected float xscale = .9f;
+	protected float yscale = 1.1f;
 	protected int rotation = 0;	
 	protected ActionState state = ActionState.NORMAL;
+	protected int fallCount = 0;
+	
 	
 	protected ClientCharacter(CharacterType type)
 	{
@@ -75,14 +78,8 @@ public class ClientCharacter implements Comparable<ClientCharacter>
 		if(!this.charMovement)
 			s = getStandFrame();
 		else
-			s = getWalkFrame();
-		
-		if (state == ActionState.FALLING) {
-			s.scale(this.scale * 0.5f);
-			s.rotate(this.rotation + 15);
-		} else  {
-			s.setPosition(this.x - s.getWidth() / 2, this.y);
-		}
+			s = getWalkFrame(); 
+		s.setPosition(this.x - s.getWidth() / 2, this.y);
 		return s;
 	}
 	

@@ -27,7 +27,7 @@ import utilities.ParseMap.MapDetails;
 
 public class Logic implements Runnable {
 
-	ServerGameMap map;
+	public static ServerGameMap map;
 	
 	private GameState gs;
 	private ArrayList<KeyboardState> kss;

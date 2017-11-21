@@ -1,5 +1,7 @@
 package startGui;
-/*
+
+import com.flatearth.desktop.DesktopLauncher;
+
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -16,7 +18,7 @@ import utilities.ConnectionSettings;
  * doesnt actually do anything
  *
  *
-
+ */
 public class Launcher extends Application {
 
 	
@@ -44,4 +46,4 @@ public class Launcher extends Application {
 	        primaryStage.show();		
 	}
 	
-}*/
+}

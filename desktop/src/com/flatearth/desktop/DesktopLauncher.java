@@ -11,7 +11,7 @@ import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import communicators.clientToServer.KeyboardState;
 import communicators.serverToClient.GameState;
 import server.Logic;
-
+import startGui.Launcher;
 import utilities.*;
 import utilities.ParseMap.MapDetails;
 
@@ -31,8 +31,8 @@ public class DesktopLauncher {
 		s.connectionSettings = new ConnectionSettings("localhost", 9876, 9877);
 		// launch the javafx
 		// sets settings object, also creates handshake for connection settings
-		//Launcher.launchGui(args);
-		s.characterType = 0;
+		Launcher.launchGui(args);
+		s.characterType = 1;
 		switch(s.chosenState) {
 		case 0: // currently runs even if they close the window instead of hitting start. fix that
 			soloPlay();
@@ -79,6 +79,7 @@ public class DesktopLauncher {
 		Sys.print("Some spawn points are off the map, most likely a problem with the map maker");
 		Sys.print("Eventually get rid of console prints and exits");
 		Sys.print("gotta get rid of the sleep in logic.java");
+		Sys.print("IN LOGIC.JAVA WHATEVER, NEED TO MAKE ENTITY MANAGER OR MAP NON STATIC, WILL FUCK SHIT UP");
 		Sys.print("------");
 	}
 	

@@ -22,7 +22,7 @@ public class ServerSpawner
 	{
 		ServerPlayer player = null;
 		short category = FOOT_PHYSICS; 
-		short mask = FOOT_PHYSICS | WORLD_PHYSICS;
+		short mask = FOOT_PHYSICS | WORLD_PHYSICS | HOLE_PHYSICS;
 		float size = .5f; 
 		Body body = createPolyBody(world, x, y, category, mask, 
 				new Vector2((size/3)/2,size),
@@ -47,7 +47,7 @@ public class ServerSpawner
 	{
 		ServerNpc player = null;
 		short category = FOOT_PHYSICS; 
-		short mask = FOOT_PHYSICS | WORLD_PHYSICS;
+		short mask = FOOT_PHYSICS | WORLD_PHYSICS | HOLE_PHYSICS;
 		float size = .5f; 
 		Body body = createPolyBody(world, x, y, category, mask, 
 				new Vector2((size/3)/2,size),
