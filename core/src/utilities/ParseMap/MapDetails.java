@@ -354,6 +354,10 @@ import java.util.ArrayList;
  */
 
 public class MapDetails {
+	// this scale is used for all sprites and all values read in from the map parser
+	// not called in this class, used outside it.
+	public static final float SCALE = (float) (1.0/16.0);
+	
 	// what is this
 	private boolean isPolygon;
 	private boolean isBeacon;

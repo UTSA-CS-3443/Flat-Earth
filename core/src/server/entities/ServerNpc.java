@@ -83,7 +83,7 @@ public class ServerNpc extends ServerCharacter {
 	
 	@Override
 	public CharacterState getState() {
-		return new CharacterState(this.movement, this.body.getPosition().x, this.body.getPosition().y, this.direction);
+		return new CharacterState(this.movement, this.body.getPosition().x, this.body.getPosition().y, this.direction, this.health);
 	}
 	
 }

@@ -32,6 +32,7 @@ public class DesktopLauncher {
 		// launch the javafx
 		// sets settings object, also creates handshake for connection settings
 		//Launcher.launchGui(args);
+		s.characterType = 0;
 		switch(s.chosenState) {
 		case 0: // currently runs even if they close the window instead of hitting start. fix that
 			soloPlay();
@@ -64,6 +65,7 @@ public class DesktopLauncher {
 		es.execute(new Logic(s, gs, kss, details));
 		
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
+		// SETTING FULLSCREEN REALLY MESSES WITH MY UBUNTU 16.04, probably don't do it
 		new LwjglApplication(new Game(s, gs, kss.get(0), details), config);
 	}
 	

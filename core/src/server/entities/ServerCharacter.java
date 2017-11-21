@@ -9,11 +9,12 @@ import communicators.serverToClient.CharacterState;
 public abstract class ServerCharacter {
 
 	protected boolean alive;
+	protected int health = 100;
 	
 	protected float direction;
 	protected boolean movement;
 	
-	protected static final float FORCE_CONSTANT = .2f;
+	protected static final float FORCE_CONSTANT = .07f;
 	
 	protected static final int[][] DIRECTIONS = {{225, 270, 315},{180, -1, 0},{135, 90, 45}};
 	protected Body body;

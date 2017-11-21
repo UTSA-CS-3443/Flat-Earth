@@ -2,11 +2,12 @@ package client.entities;
 
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
+
 import communicators.serverToClient.CharacterState;
 import utilities.Sys;
 
 
-public class ClientCharacter implements Comparable
+public class ClientCharacter implements Comparable<ClientCharacter>
 {
 	enum Direction { NORTHEAST, NORTH, NORTHWEST, WEST, SOUTHWEST, SOUTH, SOUTHEAST, EAST; }
 	protected Direction[] directionArray = Direction.values();
@@ -21,12 +22,13 @@ public class ClientCharacter implements Comparable
 	public float x;
 	public float y;
 	
+	protected int health;
+		
 	protected ClientCharacter(CharacterType type)
 	{
 		this.direction = Direction.SOUTH; // Default
 		this.type = type;
-		this.frameIndex = 0;
-		
+		this.frameIndex = 0;		
 	}
 	
 	public void update(float delta, CharacterState cs)
@@ -47,6 +49,7 @@ public class ClientCharacter implements Comparable
 		this.degrees = cs.charDirection;
 		this.x = cs.x;
 		this.y = cs.y;
+		this.health = cs.health;
 		updateDirection();
 	}
 	
@@ -149,11 +152,10 @@ public class ClientCharacter implements Comparable
 	}
 
 	@Override
-	public int compareTo(Object o) {
-		float othery = ((ClientCharacter)o).y;
-		if (this.y > othery)
+	public int compareTo(ClientCharacter other) {
+		if (this.y > other.y)
 			return -1;
-		else if (this.y < othery)
+		else if (this.y < other.y)
 			return 1;
 		return 0;
 	}

@@ -14,6 +14,7 @@ import client.entities.ClientNpc;
 import client.entities.ClientSpawner;
 import client.entities.ClientWizard;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -25,7 +26,8 @@ public class ClientGameMap {
 	public MapDetails details;
 	
 	private Sprite mapSprite;
-	
+	private Sprite spaceSprite;
+		
 	// a refernce to the player. This is still stored in the entity manager,
 	// but we need this here for the orthographic camera
 	private ClientCharacter player;
@@ -46,17 +48,21 @@ public class ClientGameMap {
 		//Exit.exit("GameMap.java: figure out ");
 		//this.mapSprite = new Sprite(Game.atlas.findRegion(details.mapName));
 		this.mapSprite = new Sprite(new Texture(details.mapName));
+		this.mapSprite.setSize(mapSprite.getWidth()*details.SCALE, mapSprite.getHeight()*details.SCALE);
+		
+		this.spaceSprite = new Sprite(new Texture("space.png"));
+		this.spaceSprite.setSize(50, 50);
 		// need to store a reference to the Character for this client,
 		// for the orthographic camera
 		switch(settings.characterType) {
 		case 0:
-			this.player = ClientSpawner.spawn(ClientKnight.class, details.getBeacons().get(settings.clientId).getX(), details.getBeacons().get(settings.clientId).getY());
+			this.player = ClientSpawner.spawn(ClientKnight.class, details.getBeacons().get(settings.clientId).getX()*details.SCALE, details.getBeacons().get(settings.clientId).getY()*details.SCALE);
 			break;
 		case 1:
-			this.player = ClientSpawner.spawn(ClientArcher.class, details.getBeacons().get(settings.clientId).getX(), details.getBeacons().get(settings.clientId).getY());
+			this.player = ClientSpawner.spawn(ClientArcher.class, details.getBeacons().get(settings.clientId).getX()*details.SCALE, details.getBeacons().get(settings.clientId).getY()*details.SCALE);
 			break;
 		case 2:
-			this.player = ClientSpawner.spawn(ClientWizard.class, details.getBeacons().get(settings.clientId).getX(), details.getBeacons().get(settings.clientId).getY());
+			this.player = ClientSpawner.spawn(ClientWizard.class, details.getBeacons().get(settings.clientId).getX()*details.SCALE, details.getBeacons().get(settings.clientId).getY()*details.SCALE);
 			break;
 		}
 		// spawn the players
@@ -64,12 +70,14 @@ public class ClientGameMap {
 			if (i == settings.clientId) {
 				entityManager.add(this.player);
 			} else { // just spawning wizards for now, but will eventaully have to be what the players are (should be sent over the server, in the settings object)
-				entityManager.add(ClientSpawner.spawn(ClientWizard.class, details.getBeacons().get(i).getX(), details.getBeacons().get(i).getY()));
+				entityManager.add(ClientSpawner.spawn(ClientWizard.class, details.getBeacons().get(i).getX()*details.SCALE, details.getBeacons().get(i).getY()*details.SCALE));
 			}
 		}
 		for (int i = settings.playerCount; i < details.getBeacons().size(); i++) { // TODO spawning wizards for now, needs to be specific npcs later
-				entityManager.add(ClientSpawner.spawn(ClientWizard.class, details.getBeacons().get(i).getX(), details.getBeacons().get(i).getY()));
+				entityManager.add(ClientSpawner.spawn(ClientWizard.class, details.getBeacons().get(i).getX()*details.SCALE, details.getBeacons().get(i).getY()*details.SCALE));
 		}
+		
+		
 		
 		// here would be where we spawn all the trees or whatever but that's not in the MapDetails yet
 	}
@@ -84,6 +92,8 @@ public class ClientGameMap {
 	}
 	
 	public void draw(SpriteBatch batch) {
+		this.spaceSprite.setCenter(this.player.x, this.player.y);
+		this.spaceSprite.draw(batch);
 		this.mapSprite.draw(batch);
 		this.entityManager.drawAll(batch);
 	}

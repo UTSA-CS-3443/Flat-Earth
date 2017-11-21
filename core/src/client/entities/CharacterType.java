@@ -1,6 +1,8 @@
 package client.entities;
 
 import client.Game;
+import utilities.ParseMap.MapDetails;
+
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasSprite;
 import com.badlogic.gdx.utils.Array;
@@ -96,7 +98,7 @@ public enum CharacterType
 		for(int i = 0; i < animation.size; i++)
 		{
 			animation.get(i).flip(flip,  false);
-			animation.get(i).setSize(1, 1);
+			animation.get(i).setSize(animation.get(i).getWidth()*MapDetails.SCALE, animation.get(i).getHeight()*MapDetails.SCALE);
 		}
 		return animation;
 	}

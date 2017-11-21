@@ -53,11 +53,11 @@ public class ServerGameMap {
 		ArrayList<Beacon> beacons = details.getBeacons();
 		int i;
 		for (i = 0; i < this.playerCount; i++) {
-			entityManager.add(ServerSpawner.spawnPlayer(ServerKnight.class, beacons.get(i).getX(), beacons.get(i).getY(), world));
+			entityManager.add(ServerSpawner.spawnPlayer(ServerKnight.class, beacons.get(i).getX()*details.SCALE, beacons.get(i).getY()*details.SCALE, world));
 		}
 		for(i = playerCount; i < details.getBeacons().size(); i++) { // will eventuall need to spawn the approriate type of npc, that will
 			// be set in the .pp file TODO
-			entityManager.add(ServerSpawner.spawnNpc(ServerNpc.class, beacons.get(i).getX(), beacons.get(i).getY(), world));
+			entityManager.add(ServerSpawner.spawnNpc(ServerNpc.class, beacons.get(i).getX()*details.SCALE, beacons.get(i).getY()*details.SCALE, world));
 		}
 		
 		// TODO now initialize polygons
