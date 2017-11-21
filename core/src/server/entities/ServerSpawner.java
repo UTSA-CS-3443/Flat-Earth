@@ -67,7 +67,7 @@ public class ServerSpawner
 	public static Body spawnHole(Vector2[] vs, World world) {
 		BodyDef def = new BodyDef();
 		def.type = BodyDef.BodyType.StaticBody;
-		def.position.set(vs[0].x, vs[0].y);
+		def.position.set(0, 0);
 		def.fixedRotation = false;
 		PolygonShape shape = new PolygonShape();
 		shape.set(vs);

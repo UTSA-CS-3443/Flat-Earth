@@ -47,7 +47,7 @@ public class ClientGameMap {
 	public ClientGameMap(MapDetails details, Settings settings) {
 		entityManager = new ClientEntityManager();
 		this.details = details;		
-		if (Game.debug) {
+		if (Game.debugFromStart) {
 			this.world = new World(new Vector2(0, 0), false);
 			this.world.setContactListener(new DebuggingContact());
 		}
@@ -89,7 +89,7 @@ public class ClientGameMap {
 		}
 		
 		// spanw the polygons, for debugging
-		if (Game.debug) {
+		if (Game.debugFromStart) {
 			for (PolygonBody pb : details.getPolygonBodies()) {
 				if(pb.getVectors().size() > 8)
 					Sys.print("ClientGameMap: initializing game holes: More than 8 vectors, wont work with libgdx");

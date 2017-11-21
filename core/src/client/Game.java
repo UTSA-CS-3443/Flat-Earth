@@ -36,6 +36,7 @@ public class Game extends ApplicationAdapter {
 	
 	// TODO for debugging, should eventually not be here
 	public static boolean debug = true;
+	public static boolean debugFromStart = false;
 	public static Box2DDebugRenderer b2dr;
 	public static Matrix4 debugMatrix;
 
@@ -98,7 +99,7 @@ public class Game extends ApplicationAdapter {
         
         
 
-        if(Game.debug) {
+        if(Game.debug && Game.debugFromStart) {
             debugMatrix = batch.getProjectionMatrix().cpy();
             Game.b2dr.render(this.map.world, Game.debugMatrix);
 		}

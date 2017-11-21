@@ -63,7 +63,7 @@ public class GameInput implements InputProcessor {
 		case Keys.E:
 			ks.attack2Released(); break;
 		case Keys.D:
-			Game.debug = !Game.debug; break;
+			Game.debug = !Game.debug;
 		}
 		return false;
 	}
@@ -95,7 +95,7 @@ public class GameInput implements InputProcessor {
 
 	@Override
 	public boolean scrolled(int amount) {
-		Game.cam.zoom += amount;
+		//Game.cam.zoom += amount;
 		return false;
 	}
 

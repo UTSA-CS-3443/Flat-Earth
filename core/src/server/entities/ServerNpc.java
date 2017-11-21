@@ -71,7 +71,7 @@ public class ServerNpc extends ServerCharacter {
 		if (this.movement) 
 			this.direction = DIRECTIONS[(-down + up)+1][(-left + right)+1];
 		//Sys.print("" + this.direction);
-		//this.body.applyForceToCenter(forceX, forceY, true);
+		this.body.applyForceToCenter(forceX, forceY, true);
 	}
 	
 	public void attack() {
