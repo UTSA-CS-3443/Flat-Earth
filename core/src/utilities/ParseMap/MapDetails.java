@@ -341,6 +341,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 
+import utilities.Sys;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -386,7 +388,6 @@ public class MapDetails {
 		this.mapName = line;
 
 		while ((line = brd.readLine()) != null) {
-
 			if (line.equals("<polygon>")) {
 				this.isPolygon = true;
 				this.isBeacon = false;

@@ -186,10 +186,6 @@ coordinates 159.69978 382.6998 191.69978 412.4998 167.29977 452.0998 115.89977 3
 </polygon>
 
 <polygon>
-coordinates "Name" "Map Object 50"
-</polygon>
-
-<polygon>
 coordinates 82.499756 260.89987 103.099754 271.89987 119.499756 292.89987 87.49974 314.49988 70.69974 289.89987
 "hole"
 </polygon>
@@ -313,4 +309,27 @@ coordinates 449.79968 325.7999 465.39972 323.3999 469.39972 332.8999 461.8997 34
 coordinates 455.59967 243.99983 459.99966 222.99985 480.39966 208.39984 500.19968 210.99985 509.79968 228.39984 507.59967 245.59985 490.79968 264.99985 471.3997 263.39987
 "hole"
 </polygon>
+
+<beacon>
+coordinates 163.0 154.99997
+"player" 
+</beacon>
+
+<beacon>
+coordinates 468.0 138.99997
+"enemy" "knight"
+</beacon>
+
+<beacon>
+coordinates 487.0 381.0
+"enemy" "archer"
+</beacon>
+
+<beacon>
+coordinates 261.0 460.99997
+"enemy" "wizard"
+</beacon>
+
+
+
 

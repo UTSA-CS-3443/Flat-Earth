@@ -4,11 +4,9 @@ import java.util.ArrayList;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.Contact;
-import com.badlogic.gdx.physics.box2d.ContactImpulse;
-import com.badlogic.gdx.physics.box2d.ContactListener;
-import com.badlogic.gdx.physics.box2d.Fixture;
-import com.badlogic.gdx.physics.box2d.Manifold;
+import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 
 import communicators.clientToServer.KeysPressed;
@@ -19,6 +17,7 @@ import server.entities.ServerSpawner;
 import utilities.Sys;
 import utilities.ParseMap.Beacon;
 import utilities.ParseMap.MapDetails;
+import utilities.ParseMap.PolygonBody;
 
 public class ServerGameMap {
 
@@ -59,9 +58,13 @@ public class ServerGameMap {
 			// be set in the .pp file TODO
 			entityManager.add(ServerSpawner.spawnNpc(ServerNpc.class, beacons.get(i).getX()*details.SCALE, beacons.get(i).getY()*details.SCALE, world));
 		}
-		
-		// TODO now initialize polygons
-		
+		// TODO now initialize polygons]
+		for (PolygonBody pb : details.getPolygonBodies()) {
+			if(pb.getVectors().size() > 8)
+				Sys.print("ServerGameMap: initializing game holes: More than 8 vectors, wont work with libgdx");
+			else 
+				entityManager.addHole(ServerSpawner.spawnHole(pb.getArray(), world));
+		}
 	}
 	
 	public ServerEntityManager getEntityManager() {

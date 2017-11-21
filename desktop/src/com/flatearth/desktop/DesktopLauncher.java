@@ -51,7 +51,7 @@ public class DesktopLauncher {
 	public static void soloPlay() {
 		MapDetails details = null;
 		try {
-			details = new MapDetails("map.pp");
+			details = new MapDetails("map_polygons.pp");
 		} catch (Exception e) {
 			e.printStackTrace();
 			Sys.exit("DeskptopLauncher: MapDetails failed");
@@ -78,6 +78,7 @@ public class DesktopLauncher {
 		Sys.print("ServerGameMap, took out the while loop that nobody knows how it works or what it does but we should put it back. it was messing things up though");
 		Sys.print("Some spawn points are off the map, most likely a problem with the map maker");
 		Sys.print("Eventually get rid of console prints and exits");
+		Sys.print("gotta get rid of the sleep in logic.java");
 		Sys.print("------");
 	}
 	

@@ -9,11 +9,13 @@ import com.badlogic.gdx.physics.box2d.Manifold;
 
 //import server.Skill;
 import server.entities.ServerSpawner;
+import utilities.Sys;
 
 public class CollisionListener implements ContactListener {
 	// TODO this whole class, once animations are done
 	@Override
 	public void beginContact(Contact contact) {
+		Sys.print("contact");
 //		Fixture fixtureA = contact.getFixtureA();
 //		Fixture fixtureB = contact.getFixtureB();
 //		

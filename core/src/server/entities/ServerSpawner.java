@@ -61,6 +61,26 @@ public class ServerSpawner
 		
 		return type.cast(player);
 	}
+		
+	
+	public static Body spawnHole(Vector2[] vs, World world) {
+		BodyDef def = new BodyDef();
+		def.type = BodyDef.BodyType.StaticBody;
+		def.position.set(vs[0].x, vs[0].y);
+		def.fixedRotation = false;
+		PolygonShape shape = new PolygonShape();
+		shape.set(vs);
+		FixtureDef fixtureDef = new FixtureDef();
+		fixtureDef.shape = shape;
+		fixtureDef.friction = .99f;
+		fixtureDef.density = 5.0f / 100;
+		fixtureDef.filter.categoryBits = WORLD_PHYSICS;
+		fixtureDef.filter.maskBits = FOOT_PHYSICS;
+		Body body = world.createBody(def).createFixture(fixtureDef).getBody();
+		shape.dispose();
+		return body;
+	}
+	
 	
 	public static Body createPolyBody(World world, float x, float y, short category, short mask, Vector2...vertices)
 	{
@@ -81,3 +101,28 @@ public class ServerSpawner
 		return body;
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

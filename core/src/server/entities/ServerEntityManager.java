@@ -3,6 +3,7 @@ package server.entities;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
 
 import communicators.clientToServer.KeysPressed;
@@ -12,9 +13,12 @@ import utilities.Sys;
 public class ServerEntityManager {
 
 	ArrayList<ServerCharacter> characters; // TODO this is not optimized
+	ArrayList<Body> holes;
+	
 	
 	public ServerEntityManager() {
 		characters = new ArrayList<ServerCharacter>();
+		holes = new ArrayList<Body>();
 	}
 	
 	// if the id is even needed
@@ -56,6 +60,12 @@ public class ServerEntityManager {
 			css[i] = this.characters.get(i).getState();
 		return css;
 	}
+	
+	
+	public void addHole(Body body) {
+		holes.add(body);
+	}
+	
 }
 
 
