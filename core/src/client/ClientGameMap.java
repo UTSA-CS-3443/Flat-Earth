@@ -59,7 +59,7 @@ public class ClientGameMap {
 		//Exit.exit("GameMap.java: figure out ");
 		//this.mapSprite = new Sprite(Game.atlas.findRegion(details.mapName));
 		this.mapSprite = new Sprite(new Texture(details.mapName));
-		this.mapSprite.setSize(mapSprite.getWidth()*(MapDetails.SCALE*.5f), mapSprite.getHeight()*(MapDetails.SCALE*.5f));
+		this.mapSprite.setSize(mapSprite.getWidth()*MapDetails.SCALE, mapSprite.getHeight()*MapDetails.SCALE);
 		
 		this.spaceSprite = new Sprite(new Texture("space.png"));
 		this.spaceSprite.setSize(50, 50);
