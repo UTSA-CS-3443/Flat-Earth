@@ -6,6 +6,8 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.math.Matrix4;
+import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 
 import communicators.clientToServer.KeyboardState;
@@ -31,6 +33,12 @@ public class Game extends ApplicationAdapter {
 	private Settings s;
 	
 	MapDetails details;
+	
+	// TODO for debugging, should eventually not be here
+	public static boolean debug = false;
+	public static Box2DDebugRenderer b2dr;
+	public static Matrix4 debugMatrix;
+
 	
 	public Game(Settings s, GameState gs, KeyboardState ks, MapDetails details) {
 		this.ks = ks;
@@ -61,6 +69,13 @@ public class Game extends ApplicationAdapter {
 		
 		
 		Gdx.input.setInputProcessor(new GameInput(this.ks));
+		
+		
+		// for debugging
+		debugMatrix = batch.getProjectionMatrix().cpy();
+		b2dr = new Box2DDebugRenderer();
+		
+		
 	}
 
 	@Override
@@ -79,6 +94,10 @@ public class Game extends ApplicationAdapter {
         cam.position.y = map.getPlayer().y + (map.getPlayer().getFrame().getHeight()/2);
         cam.update();
         batch.setProjectionMatrix(cam.combined);
+        
+        
+        debugMatrix = batch.getProjectionMatrix().cpy();
+        b2dr = new Box2DDebugRenderer();
 
 	}
 	
