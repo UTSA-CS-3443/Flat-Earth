@@ -35,5 +35,12 @@ public class PolygonBody extends MapObject{
 		return vs;
     }
     
+    public Vector2[] getScaledArray() {
+    	Vector2 vs[] = new Vector2[this.vector2s.size()];
+    	for (int i = 0; i < vector2s.size(); i++)
+			vs[i] = new Vector2(vector2s.get(i).x * MapDetails.SCALE, vector2s.get(i).y * MapDetails.SCALE);
+		return vs;
+    }
+    
 }
 

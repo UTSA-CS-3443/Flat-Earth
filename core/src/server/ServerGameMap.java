@@ -63,7 +63,7 @@ public class ServerGameMap {
 			if(pb.getVectors().size() > 8)
 				Sys.print("ServerGameMap: initializing game holes: More than 8 vectors, wont work with libgdx");
 			else 
-				entityManager.addHole(ServerSpawner.spawnHole(pb.getArray(), world));
+				entityManager.addHole(ServerSpawner.spawnHole(pb.getScaledArray(), world));
 		}
 	}
 	

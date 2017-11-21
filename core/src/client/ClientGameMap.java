@@ -2,9 +2,11 @@ package client;
 
 import communicators.serverToClient.CharacterState;
 import communicators.serverToClient.GameState;
+import server.entities.ServerSpawner;
 import utilities.Sys;
 import utilities.Settings;
 import utilities.ParseMap.MapDetails;
+import utilities.ParseMap.PolygonBody;
 import client.entities.ClientArcher;
 //import zzzztrash.com.flatearth.Game;
 import client.entities.ClientCharacter;
@@ -18,9 +20,14 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.World;
 
 public class ClientGameMap {
-
+	
+	// TODO for debugging, should eventually not be here
+	public World world;
+	
 	public ClientEntityManager entityManager;
 	
 	public MapDetails details;
@@ -39,7 +46,11 @@ public class ClientGameMap {
 	// will communicate before the game actually starts
 	public ClientGameMap(MapDetails details, Settings settings) {
 		entityManager = new ClientEntityManager();
-		this.details = details;
+		this.details = details;		
+		if (Game.debug) {
+			this.world = new World(new Vector2(0, 0), false);
+			this.world.setContactListener(new DebuggingContact());
+		}
 		this.initialize(settings);
 	}
 	
@@ -48,7 +59,7 @@ public class ClientGameMap {
 		//Exit.exit("GameMap.java: figure out ");
 		//this.mapSprite = new Sprite(Game.atlas.findRegion(details.mapName));
 		this.mapSprite = new Sprite(new Texture(details.mapName));
-		this.mapSprite.setSize(mapSprite.getWidth()*details.SCALE, mapSprite.getHeight()*details.SCALE);
+		this.mapSprite.setSize(mapSprite.getWidth()*(MapDetails.SCALE*.5f), mapSprite.getHeight()*(MapDetails.SCALE*.5f));
 		
 		this.spaceSprite = new Sprite(new Texture("space.png"));
 		this.spaceSprite.setSize(50, 50);
@@ -77,7 +88,15 @@ public class ClientGameMap {
 				entityManager.add(ClientSpawner.spawn(ClientWizard.class, details.getBeacons().get(i).getX()*details.SCALE, details.getBeacons().get(i).getY()*details.SCALE));
 		}
 		
-		
+		// spanw the polygons, for debugging
+		if (Game.debug) {
+			for (PolygonBody pb : details.getPolygonBodies()) {
+				if(pb.getVectors().size() > 8)
+					Sys.print("ClientGameMap: initializing game holes: More than 8 vectors, wont work with libgdx");
+				else 
+					ServerSpawner.spawnHole(pb.getScaledArray(), world);
+			}
+		}
 		
 		// here would be where we spawn all the trees or whatever but that's not in the MapDetails yet
 	}

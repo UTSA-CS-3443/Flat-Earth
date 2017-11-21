@@ -35,7 +35,7 @@ public class Game extends ApplicationAdapter {
 	MapDetails details;
 	
 	// TODO for debugging, should eventually not be here
-	public static boolean debug = false;
+	public static boolean debug = true;
 	public static Box2DDebugRenderer b2dr;
 	public static Matrix4 debugMatrix;
 
@@ -72,9 +72,10 @@ public class Game extends ApplicationAdapter {
 		
 		
 		// for debugging
-		debugMatrix = batch.getProjectionMatrix().cpy();
-		b2dr = new Box2DDebugRenderer();
-		
+		if (debug) {
+			debugMatrix = batch.getProjectionMatrix().cpy();
+			b2dr = new Box2DDebugRenderer();
+		}
 		
 	}
 
@@ -96,8 +97,11 @@ public class Game extends ApplicationAdapter {
         batch.setProjectionMatrix(cam.combined);
         
         
-        debugMatrix = batch.getProjectionMatrix().cpy();
-        b2dr = new Box2DDebugRenderer();
+
+        if(Game.debug) {
+            debugMatrix = batch.getProjectionMatrix().cpy();
+            Game.b2dr.render(this.map.world, Game.debugMatrix);
+		}
 
 	}
 	

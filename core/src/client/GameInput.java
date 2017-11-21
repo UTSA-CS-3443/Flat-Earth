@@ -57,7 +57,7 @@ public class GameInput implements InputProcessor {
 		case Keys.RIGHT:
 			ks.RightRelease(); break;
 		case Keys.Q:
-			ks.defendReleased(); break;
+			Game.debug = !Game.debug; ks.defendReleased(); break;
 		case Keys.W:
 			ks.attack1Released(); break;
 		case Keys.E:
