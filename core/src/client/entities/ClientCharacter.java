@@ -4,6 +4,7 @@ package client.entities;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
 import communicators.serverToClient.CharacterState;
+import utilities.ActionState;
 import utilities.Sys;
 
 
@@ -23,7 +24,11 @@ public class ClientCharacter implements Comparable<ClientCharacter>
 	public float y;
 	
 	protected int health;
-		
+	
+	protected float scale = 1f;
+	protected int rotation = 0;	
+	protected ActionState state = ActionState.NORMAL;
+	
 	protected ClientCharacter(CharacterType type)
 	{
 		this.direction = Direction.SOUTH; // Default
@@ -50,6 +55,7 @@ public class ClientCharacter implements Comparable<ClientCharacter>
 		this.x = cs.x;
 		this.y = cs.y;
 		this.health = cs.health;
+		this.state = cs.state;
 		updateDirection();
 	}
 	
@@ -70,7 +76,13 @@ public class ClientCharacter implements Comparable<ClientCharacter>
 			s = getStandFrame();
 		else
 			s = getWalkFrame();
-		s.setPosition(this.x - s.getWidth() / 2, this.y);
+		
+		if (state == ActionState.FALLING) {
+			s.scale(this.scale * 0.5f);
+			s.rotate(this.rotation + 15);
+		} else  {
+			s.setPosition(this.x - s.getWidth() / 2, this.y);
+		}
 		return s;
 	}
 	

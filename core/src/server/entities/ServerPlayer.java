@@ -29,7 +29,7 @@ public class ServerPlayer extends ServerCharacter {
 	
 	@Override
 	public CharacterState getState() {
-		return new CharacterState(this.movement, this.body.getPosition().x, this.body.getPosition().y, this.direction, this.health);
+		return new CharacterState(this.movement, this.body.getPosition().x, this.body.getPosition().y, this.direction, this.health, this.state);
 	}
 	
 }

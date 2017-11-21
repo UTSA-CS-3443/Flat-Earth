@@ -8,17 +8,32 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
 
 //import server.Skill;
-import server.entities.ServerSpawner;
+import server.entities.*;
+import utilities.ActionState;
 import utilities.Sys;
 
 public class CollisionListener implements ContactListener {
 	// TODO this whole class, once animations are done
 	@Override
 	public void beginContact(Contact contact) {
-		Sys.print("contact");
-//		Fixture fixtureA = contact.getFixtureA();
-//		Fixture fixtureB = contact.getFixtureB();
-//		
+		Fixture fixtureA = contact.getFixtureA();
+		Fixture fixtureB = contact.getFixtureB();
+		
+		// for falling off the map
+		if(fixtureA.getFilterData().categoryBits == ServerSpawner.FOOT_PHYSICS &&
+				fixtureB.getFilterData().categoryBits == ServerSpawner.HOLE_PHYSICS)
+		{
+			Sys.print("Falling now");
+			ServerCharacter victim = (ServerCharacter)fixtureA.getBody().getUserData();
+			victim.state = ActionState.FALLING;
+		} else if(fixtureA.getFilterData().categoryBits == ServerSpawner.HOLE_PHYSICS &&
+				fixtureB.getFilterData().categoryBits == ServerSpawner.FOOT_PHYSICS)
+		{
+			Sys.print("Falling now");
+			ServerCharacter victim = (ServerCharacter)fixtureB.getBody().getUserData();
+			victim.state = ActionState.FALLING;
+		}
+		
 //		if(fixtureA.getFilterData().categoryBits == ServerSpawner.FOOT_PHYSICS &&
 //				fixtureB.getFilterData().categoryBits == ServerSpawner.FOOT_PHYSICS)
 //		{

@@ -4,10 +4,13 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 
 import communicators.serverToClient.CharacterState;
+import utilities.ActionState;
 
 
 public abstract class ServerCharacter {
 
+	public ActionState state = ActionState.NORMAL;
+	
 	protected boolean alive;
 	protected int health = 100;
 	

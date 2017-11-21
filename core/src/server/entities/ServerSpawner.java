@@ -16,6 +16,7 @@ public class ServerSpawner
 	final public static short ATTACK_PHYSICS = 0x0002;
 	final public static short WORLD_PHYSICS = 0x0004;
 	final public static short BOUNDING_BODY_PHYSICS = 0x0008;
+	final public static short HOLE_PHYSICS = 0x0010;
 	
 	public static <T extends ServerPlayer> T spawnPlayer(Class<T> type, float x, float y, World world)
 	{
@@ -75,7 +76,7 @@ public class ServerSpawner
 		fixtureDef.shape = shape;
 		fixtureDef.friction = .99f;
 		fixtureDef.density = 5.0f / 100;
-		fixtureDef.filter.categoryBits = WORLD_PHYSICS;
+		fixtureDef.filter.categoryBits = HOLE_PHYSICS;
 		fixtureDef.filter.maskBits = FOOT_PHYSICS;
 		Body body = world.createBody(def).createFixture(fixtureDef).getBody();
 		shape.dispose();
