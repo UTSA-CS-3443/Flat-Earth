@@ -25,6 +25,9 @@ public class ServerPlayer extends ServerCharacter {
 		// direction is used by client for deciding what animation frame to use
 		if (this.movement) 
 			this.direction = DIRECTIONS[(-pressed.down + pressed.up)+1][(-pressed.left+pressed.right)+1];
+
+
+
 		this.body.applyForceToCenter(forceX, forceY, true);
 	}
 	

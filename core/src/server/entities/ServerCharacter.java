@@ -7,7 +7,7 @@ import communicators.serverToClient.CharacterState;
 import utilities.ActionState;
 
 
-public abstract class ServerCharacter {
+public abstract class ServerCharacter implements PosAndDir {
 
 	public ActionState state = ActionState.NORMAL;
 	
@@ -27,10 +27,14 @@ public abstract class ServerCharacter {
 		this.body.setLinearDamping(5);
 		this.body.setAngularDamping(5);
 	}
-	
-	public Vector2 getVector() {
+
+	@Override
+	public Vector2 getPosition() {
 		return this.body.getPosition();
 	}
+
+	@Override
+	public float getDirection() { return this.direction; }
 	
 	public abstract CharacterState getState();
 	

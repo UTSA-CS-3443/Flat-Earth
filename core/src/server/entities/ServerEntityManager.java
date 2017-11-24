@@ -4,11 +4,9 @@ import java.util.ArrayList;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.World;
 
 import communicators.clientToServer.KeysPressed;
 import communicators.serverToClient.CharacterState;
-import utilities.Sys;
 
 public class ServerEntityManager {
 
@@ -41,7 +39,7 @@ public class ServerEntityManager {
 		for (i = 0; i < pressed.length; i++) {
 			ServerCharacter c = characters.get(i);
 			((ServerPlayer)c).update(pressed[i]);
-			v[i] = c.getVector();
+			v[i] = c.getPosition();
 			//Sys.print(v[i].toString());
 		}
 		
