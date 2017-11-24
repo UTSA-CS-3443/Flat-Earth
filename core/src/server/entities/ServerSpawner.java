@@ -1,11 +1,7 @@
 package server.entities;
 
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.badlogic.gdx.physics.box2d.PolygonShape;
-import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.physics.box2d.*;
 
 import utilities.Sys;
 import utilities.ParseMap.MapDetails;
@@ -98,6 +94,27 @@ public class ServerSpawner
 		fixtureDef.density = 5.0f / 100;
 		fixtureDef.filter.categoryBits = category;
 		fixtureDef.filter.maskBits = mask;
+		Body body = world.createBody(def).createFixture(fixtureDef).getBody();
+		shape.dispose();
+		return body;
+	}
+
+	public static Body createWeaponBody(World world, float x, float y, short category, short mask, float range, Vector2...vertices)
+	{
+		BodyDef def = new BodyDef();
+		def.type = BodyDef.BodyType.DynamicBody;
+		def.position.set(x,y);
+		def.linearDamping = 0f;
+		def.fixedRotation = true;
+		PolygonShape shape = new PolygonShape();
+		shape.set(vertices);
+		FixtureDef fixtureDef = new FixtureDef();
+		fixtureDef.shape = shape;
+		fixtureDef.filter.categoryBits = category;
+		fixtureDef.filter.maskBits = mask;
+		fixtureDef.isSensor = true;
+		fixtureDef.friction = .95f;
+		fixtureDef.density = 1.0f / 10;
 		Body body = world.createBody(def).createFixture(fixtureDef).getBody();
 		shape.dispose();
 		return body;

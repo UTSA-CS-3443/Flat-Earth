@@ -2,6 +2,9 @@ package communicators.clientToServer;
 
 //obviously not optimized, just want to get something working
 // maybe just send key codes
+
+import utilities.Sys;
+
 /**
  * holds the state of the keyboard
  * 
@@ -70,14 +73,13 @@ public class KeyboardState {
 	public void LeftRelease() {bitField = (short) (bitField & ~(1 << LEFT_MOD));}
 	public void RightRelease() {bitField = (short) (bitField & ~(1 << RIGHT_MOD));}
 	// second byte
-	public void defendReleased() {bitField = (short) (bitField & ~(1 << ATTACK1_MOD));}
-	public void attack1Released() {bitField = (short) (bitField & ~(1 << ATTACK2_MOD));}
-	public void attack2Released() {bitField = (short) (bitField & ~(1 << DEFEND_MOD));}
+	public void attack1Released() {bitField = (short) (bitField & ~(1 << ATTACK1_MOD));}
+	public void attack2Released() {bitField = (short) (bitField & ~(1 << ATTACK2_MOD));}
+	public void defendReleased() {bitField = (short) (bitField & ~(1 << DEFEND_MOD));}
 
 	// used to be get()
 	public synchronized KeysPressed getKeysPressed() {
 		KeysPressed pressed = new KeysPressed();
-		
 		pressed.up = (this.bitField >> UP_MOD) & 1;
 		pressed.down = (this.bitField >> DOWN_MOD) & 1;
 		pressed.left = (this.bitField >> LEFT_MOD) & 1;

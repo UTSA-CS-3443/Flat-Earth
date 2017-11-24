@@ -2,6 +2,8 @@ package server;
 
 import java.util.ArrayList;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -14,6 +16,7 @@ import server.entities.ServerEntityManager;
 import server.entities.ServerKnight;
 import server.entities.ServerNpc;
 import server.entities.ServerSpawner;
+import server.skills.ShootArrow;
 import utilities.Sys;
 import utilities.ParseMap.Beacon;
 import utilities.ParseMap.MapDetails;
@@ -34,6 +37,8 @@ public class ServerGameMap {
 	MapDetails details;
 	
 	private World world;
+
+	private ShootArrow arrow;
 	
 	
 	public ServerGameMap(MapDetails details, int playerCount) {
@@ -43,7 +48,7 @@ public class ServerGameMap {
 		this.playerCount = playerCount;
 		this.details = details;
 		
-		entityManager = new ServerEntityManager();
+		entityManager = new ServerEntityManager(this);
 	}
 	
 	public void initialize() {		
@@ -70,6 +75,8 @@ public class ServerGameMap {
 	public ServerEntityManager getEntityManager() {
 		return this.entityManager;
 	}
+
+	public World getWorld() { return this.world; }
 	
 	public void update(KeysPressed pressed[], float delta) {
 		//System.out.println("serverGameMap: this uopdate is called---------");
@@ -81,7 +88,13 @@ public class ServerGameMap {
 		entityManager.updateAll(pressed);
         accumulator -= dt;
 		//}
-		
+
+		if (pressed[0].attack1)
+		{
+			this.arrow = new ShootArrow(entityManager.characters.get(0), this);
+			arrow.perform(this.entityManager.characters.get(0));
+		}
+
 	}
 	
 }

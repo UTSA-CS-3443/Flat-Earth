@@ -1,9 +1,10 @@
 package server.skills;
 
 import com.badlogic.gdx.math.Vector2;
+import server.Updateable;
 import server.entities.PosAndDir;
 
-public abstract class PerformableSkill implements Skill, PosAndDir
+public abstract class PerformableSkill implements Skill, PosAndDir, Updateable
 {
     protected float power;
     protected Vector2 position;
