@@ -99,7 +99,7 @@ public class ServerGameMap {
 		//{
 		//Sys.print("hahahahah");
 		world.step(dt, 6, 2);
-		entityManager.updateAll(pressed);
+		entityManager.updateAll(pressed, delta);
         accumulator -= dt;
 		//}
 

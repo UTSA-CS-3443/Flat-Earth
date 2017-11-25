@@ -26,7 +26,7 @@ public class ServerShootFireBall extends PerformableSkill
     private PosAndDir caster;
 
     private boolean done;
-
+    
     public ServerShootFireBall(PosAndDir caster, ServerGameMap gameMap)
     {
         super(caster, 3);
@@ -39,6 +39,7 @@ public class ServerShootFireBall extends PerformableSkill
         this.yInitial = this.position.y;
         this.distanceCovered = 0;
         this.done = false;
+        this.power = 8;
     }
 
     @Override
@@ -90,4 +91,10 @@ public class ServerShootFireBall extends PerformableSkill
 	public SkillState getState() {
 		return new SkillState(this.position.x, this.position.y, this.direction, SkillType.FIREBALL);
 	}
+	
+	@Override 
+	public void setPerformer(ServerCharacter c) {
+		this.performer = c;
+	}
+	
 }

@@ -3,13 +3,14 @@ package server.skills;
 import com.badlogic.gdx.math.Vector2;
 import server.Updateable;
 import server.entities.PosAndDir;
+import server.entities.ServerCharacter;
 
-public abstract class PerformableSkill implements ServerSkill, PosAndDir, Updateable
+public abstract class PerformableSkill extends ServerSkill implements PosAndDir, Updateable
 {
     protected float power;
     protected Vector2 position;
     protected float direction;
-
+    
     public PerformableSkill(PosAndDir caster, float power)
     {
         this.position = new Vector2(caster.getPosition());
@@ -28,4 +29,6 @@ public abstract class PerformableSkill implements ServerSkill, PosAndDir, Update
 
     @Override
     public float getDirection() { return 0; }
+
+    
 }

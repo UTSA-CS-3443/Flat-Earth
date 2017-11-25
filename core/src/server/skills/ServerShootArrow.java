@@ -26,7 +26,7 @@ public class ServerShootArrow extends PerformableSkill
     private PosAndDir caster;
 
     private boolean done;
-
+    
     public ServerShootArrow(PosAndDir caster, ServerGameMap gameMap)
     {
         super(caster, 3);
@@ -41,6 +41,7 @@ public class ServerShootArrow extends PerformableSkill
         this.mask = ServerSpawner.BOUNDING_BODY_PHYSICS | ServerSpawner.FOOT_PHYSICS;
         this.distanceCovered = 0;
         this.done = false;
+        this.power = 10;
     }
 
     @Override
@@ -92,5 +93,29 @@ public class ServerShootArrow extends PerformableSkill
 	public SkillState getState() {
 		return new SkillState(this.position.x, this.position.y, this.direction, SkillType.ARROW);
 	}
+	
+	@Override 
+	public void setPerformer(ServerCharacter c) {
+		this.performer = c;
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

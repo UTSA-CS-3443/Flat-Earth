@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import client.skills.ClientArrow;
 import client.skills.ClientFireBall;
+import client.skills.ClientHealthBars;
 import client.skills.ClientSkill;
 import client.skills.ClientSlash;
 import communicators.serverToClient.CharacterState;
@@ -26,6 +27,7 @@ public class ClientEntityManager {
 		charactersUpdateOrder = new ArrayList<ClientCharacter>();
 		charactersYOrder = new ArrayList<ClientCharacter>();
 		skills = new ArrayList<ClientSkill>();
+		ClientHealthBars.initialize();
 	}
 	
 	public void add (ClientCharacter character) {
@@ -48,6 +50,7 @@ public class ClientEntityManager {
 		
 		for (ClientCharacter c : charactersYOrder) {
 			c.getFrame().draw(batch);
+			c.getHealthBar().draw(batch);
 		}
 		
 		for (ClientSkill cs : this.skills) {

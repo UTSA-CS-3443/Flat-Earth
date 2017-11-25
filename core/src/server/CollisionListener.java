@@ -9,6 +9,7 @@ import com.badlogic.gdx.physics.box2d.Manifold;
 
 //import server.Skill;
 import server.entities.*;
+import server.skills.ServerSkill;
 import utilities.ActionTrigger;
 import utilities.Sys;
 
@@ -18,83 +19,34 @@ public class CollisionListener implements ContactListener {
 	public void beginContact(Contact contact) {
 		Fixture fixtureA = contact.getFixtureA();
 		Fixture fixtureB = contact.getFixtureB();
-		Sys.print("some type of hit");
-		// for falling off the map
+		
 		if(fixtureA.getFilterData().categoryBits == ServerSpawner.FOOT_PHYSICS &&
 				fixtureB.getFilterData().categoryBits == ServerSpawner.HOLE_PHYSICS)
 		{
 			Sys.print("Falling now");
-//			ServerCharacter victim = null;
-//			Body body = fixtureA.getBody();
-//			Sys.print("CollisionListner: THIS IS A TEMPORY FIX, LOGIC.JAVA'S SERVERMAP CANNOT STAY STATIC OR YOU CAN ONLY LAUNCH ONE INSTANCE OF THE SERVER");
-//			Sys.print("CollisionListener: also make ServerCharacters body protected again and ServerMaps entitymanagaer protected too. and get ash's method working");
-//			for (ServerCharacter c : Logic.map.getEntityManager().characters) {
-//				if (body == c.body) {
-//					victim = c;
-//					break;
-//				}
-//			}
-//			victim.state = ActionState.FALLING;
 		} else if(fixtureA.getFilterData().categoryBits == ServerSpawner.HOLE_PHYSICS &&
 				fixtureB.getFilterData().categoryBits == ServerSpawner.FOOT_PHYSICS)
-		{
-//			Sys.print("Falling now");
-//			ServerCharacter victim = (ServerCharacter)fixtureB.getBody().getUserData();
-//			victim.state = ActionState.FALLING;
-			Sys.print("Falling now");
-//			ServerCharacter victim = null;
-//			Body body = fixtureB.getBody();
-//			Sys.print("CollisionListner: THIS IS A TEMPORY FIX, LOGIC.JAVA'S SERVERMAP CANNOT STAY STATIC OR YOU CAN ONLY LAUNCH ONE INSTANCE OF THE SERVER");
-//			Sys.print("CollisionListener: also make ServerCharacters body protected again and ServerMaps entitymanagaer protected too. and get ash's method working");
-//			for (ServerCharacter c : Logic.map.getEntityManager().characters) {
-//				if (body == c.body) {
-//					victim = c;
-//					break;
-//				}
-//			}
-//			victim.state = ActionState.FALLING;
+		{	
+			Sys.print("Falling now");	
 		} else if(fixtureA.getFilterData().categoryBits == ServerSpawner.ATTACK_PHYSICS &&
 				fixtureB.getFilterData().categoryBits == ServerSpawner.FOOT_PHYSICS)
 		{
-			Sys.print("hit!");
+			ServerSkill s = (ServerSkill)fixtureA.getBody().getUserData();
+			ServerCharacter c = (ServerCharacter)fixtureB.getBody().getUserData();
+			if (s.performer == c) {
+				return;
+			}
+			c.health -= s.getPower();
 		} else if(fixtureA.getFilterData().categoryBits == ServerSpawner.FOOT_PHYSICS &&
 				fixtureB.getFilterData().categoryBits == ServerSpawner.ATTACK_PHYSICS)
 		{
-			Sys.print("hit!");
+			ServerSkill s = (ServerSkill)fixtureB.getBody().getUserData();
+			ServerCharacter c = (ServerCharacter)fixtureA.getBody().getUserData();
+			if (s.performer == c) {
+				return;
+			}
+			c.health -= s.getPower();
 		}
-		
-//		if(fixtureA.getFilterData().categoryBits == ServerSpawner.FOOT_PHYSICS &&
-//				fixtureB.getFilterData().categoryBits == ServerSpawner.FOOT_PHYSICS)
-//		{
-//			System.out.println("two characters hit each other");
-//		}
-//		else if(fixtureA.getFilterData().categoryBits == ServerSpawner.ATTACK_PHYSICS &&
-//				fixtureB.getFilterData().categoryBits == ServerSpawner.FOOT_PHYSICS)
-//		{
-//			Body attack = fixtureA.getBody();
-//			Skill skill = (Skill)attack.getUserData();
-//			Character victim = (Character)fixtureB.getBody().getUserData();
-//			victim.health -= skill.getPower();
-//		}
-//		else if(fixtureB.getFilterData().categoryBits == ServerSpawner.ATTACK_PHYSICS &&
-//				fixtureA.getFilterData().categoryBits == ServerSpawner.FOOT_PHYSICS)
-//		{
-//			
-//		}
-//		else if(fixtureA.getFilterData().categoryBits == ServerSpawner.ATTACK_PHYSICS &&
-//				fixtureB.getFilterData().categoryBits == ServerSpawner.WORLD_PHYSICS)
-//		{
-//			Body attack = fixtureA.getBody();
-//			Skill skill = (Skill)attack.getUserData();
-//			skill.collideWithWorld();
-//		}
-//		else if(fixtureB.getFilterData().categoryBits == ServerSpawner.ATTACK_PHYSICS &&
-//				fixtureA.getFilterData().categoryBits == ServerSpawner.WORLD_PHYSICS)
-//		{
-//			Body attack = fixtureB.getBody();
-//			Skill skill = (Skill)attack.getUserData();
-//			skill.collideWithWorld();
-//		}
 	}
 
 	@Override

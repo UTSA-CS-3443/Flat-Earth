@@ -5,6 +5,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 
 import communicators.serverToClient.CharacterState;
 import server.ServerGameMap;
+import utilities.ActionTrigger;
 import utilities.Sys;
 
 public class ServerNpc extends ServerCharacter {
@@ -13,7 +14,7 @@ public class ServerNpc extends ServerCharacter {
 		super(gameMap, body);
 	}
 	
-	public void update(Vector2 vectors[]) {
+	public void update(Vector2 vectors[], float delta) {
 		
 		float forceX = 0;
 		float forceY = 0;
@@ -84,7 +85,7 @@ public class ServerNpc extends ServerCharacter {
 	
 	@Override
 	public CharacterState getState() {
-		return new CharacterState(this.movement, this.body.getPosition().x, this.body.getPosition().y, this.direction, this.health, this.state);
+		return new CharacterState(this.movement, this.body.getPosition().x, this.body.getPosition().y, this.direction, this.health, this.trigger);
 	}
 	
 }

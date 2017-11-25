@@ -6,6 +6,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 import communicators.serverToClient.SkillState;
 import server.ServerGameMap;
 import server.entities.PosAndDir;
+import server.entities.ServerCharacter;
 import server.entities.ServerSpawner;
 
 public class ServerSlash extends PerformableSkill {
@@ -20,7 +21,7 @@ public class ServerSlash extends PerformableSkill {
 	private PosAndDir caster;
 	private float timeAlive = 0;
 	private float maxTimeAlive = .7f;
-	
+		
 	public ServerSlash(PosAndDir caster, ServerGameMap gameMap) {
 		super(caster, 5);
         this.caster = caster;
@@ -30,6 +31,7 @@ public class ServerSlash extends PerformableSkill {
         this.yInitial = this.position.y;
         this.category = ServerSpawner.ATTACK_PHYSICS;
         this.mask = ServerSpawner.BOUNDING_BODY_PHYSICS | ServerSpawner.FOOT_PHYSICS;
+        this.power = 15;
 	}
 
 	@Override
@@ -66,6 +68,11 @@ public class ServerSlash extends PerformableSkill {
 	@Override
 	public SkillState getState() {
 		return new SkillState(this.position.x, this.position.y, this.direction, SkillType.SLASH);
+	}
+	
+	@Override 
+	public void setPerformer(ServerCharacter c) {
+		this.performer = c;
 	}
 	
 }

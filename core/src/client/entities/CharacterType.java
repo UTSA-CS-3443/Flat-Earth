@@ -1,6 +1,7 @@
 package client.entities;
 
 import client.Game;
+import utilities.Sys;
 import utilities.ParseMap.MapDetails;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -34,14 +35,14 @@ public enum CharacterType
 	CharacterType(int standFrame, int attackFrameCount, int runFrameCount, String name)
 	{
 		// Haven't done these animations yet
-//		attackLeft = addAnimation(name, "attack", "left", 1, 3);
-//		attackRight = addAnimation(name, "attack", "right", 1, 3);
-//		attackFront = addAnimation(name, "attack", "front", 1, 3);
-//		attackBack = addAnimation(name, "attack", "back", 1, 3);
-//		attackFrontLeft = addAnimation(name, "attack", "front left", 1, 3);
-//		attackFrontRight = addAnimation(name, "attack", "front right", 1, 3);
-//		attackBackLeft = addAnimation(name, "attack", "back left", 1, 3);
-//		attackBackRight = addAnimation(name, "attack", "back right", 1, 3);
+		attackLeft = addAnimation(name, "attack", "side", 3, 3, true);
+		attackRight = addAnimation(name, "attack", "side", 3, 3, false);
+		attackFront = addAnimation(name, "attack", "front", 3, 3, false);
+		attackBack = addAnimation(name, "attack", "back", 3, 3, false);
+		attackFrontLeft = addAnimation(name, "attack", "front side", 3, 3, true);
+		attackFrontRight = addAnimation(name, "attack", "front side", 3, 3, false);
+		attackBackLeft = addAnimation(name, "attack", "back side", 3, 3, true);
+		attackBackRight = addAnimation(name, "attack", "back side", 3, 3, false);
 		
 		walkLeft = addAnimation(name, "walk", "side", standFrame, runFrameCount, true);
 		standLeft = walkLeft.get(standFrame);
@@ -100,6 +101,7 @@ public enum CharacterType
 			animation.get(i).flip(flip,  false);
 			animation.get(i).setSize(animation.get(i).getWidth()*MapDetails.SCALE, animation.get(i).getHeight()*MapDetails.SCALE);
 		}
+		Sys.print(type +  " "+ direction + "size = " +animation.size);
 		return animation;
 	}
 	

@@ -11,10 +11,10 @@ import utilities.ActionTrigger;
 
 public abstract class ServerCharacter implements PosAndDir {
 
-	public ActionTrigger state = ActionTrigger.NORMAL;
+	public ActionTrigger trigger = ActionTrigger.NORMAL;
 	
 	protected boolean alive;
-	protected int health = 100;
+	public int health = 100;
 	
 	protected float direction;
 	protected boolean movement;
@@ -28,6 +28,8 @@ public abstract class ServerCharacter implements PosAndDir {
 	public Body body;
 	
 	protected ServerGameMap gameMap;
+	
+	protected float attackFrequency = .5f;
 	
 	public ServerCharacter (ServerGameMap gameMap, Body body) {
 		this.gameMap = gameMap;

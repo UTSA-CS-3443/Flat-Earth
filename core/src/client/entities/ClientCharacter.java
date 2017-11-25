@@ -3,6 +3,7 @@ package client.entities;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
+import client.skills.ClientHealthBars;
 import communicators.serverToClient.CharacterState;
 import utilities.ActionTrigger;
 import utilities.Sys;
@@ -24,27 +25,56 @@ public class ClientCharacter implements Comparable<ClientCharacter>
 	public float y;
 	
 	protected int health;
+	protected int maxHealth = 100;
 	
 	protected float xscale = .9f;
 	protected float yscale = 1.1f;
 	protected int rotation = 0;	
-	protected ActionTrigger state = ActionTrigger.NORMAL;
+	protected ActionTrigger trigger = ActionTrigger.NORMAL;
 	protected int fallCount = 0;
+	
+	// this is for the attacking phase
+	protected float prevFrameIndex = 0;
 	
 	
 	protected ClientCharacter(CharacterType type)
 	{
 		this.direction = Direction.SOUTH; // Default
 		this.type = type;
-		this.frameIndex = 0;		
+		this.frameIndex = 0;	
 	}
 	
 	public void update(float delta, CharacterState cs)
 	{
+		float frameThreshold = .05f; // for animations
+		
+		this.charMovement = cs.charMovement;
+		this.degrees = cs.charDirection;
+		this.x = cs.x;
+		this.y = cs.y;
+		this.health = cs.health;
+		// this is where those finite state machines come into play
+		// should probably implement that
+		
+		if (this.trigger == ActionTrigger.NORMAL && cs.trigger == ActionTrigger.ATTACKING) {
+			this.frameIndex = 0;
+			this.prevFrameIndex = 0;
+			this.trigger = ActionTrigger.ATTACKING;
+		}
+		
+		if (this.trigger == ActionTrigger.ATTACKING) {
+			if (this.prevFrameIndex != 0 && this.frameIndex == 0) { //reset attacking phase shit
+				this.trigger = ActionTrigger.NORMAL;
+			} else {
+				frameThreshold = .1f; // gotta move the attacking animations a little slower
+			}
+		}
+		
 		//Animation
 		frameTime += delta;
-		if(frameTime > .05f)
+		if(frameTime > frameThreshold)
 		{
+			prevFrameIndex = frameIndex;
 			frameIndex ++;
 			frameTime = 0;
 		}
@@ -53,12 +83,7 @@ public class ClientCharacter implements Comparable<ClientCharacter>
 			frameIndex = 0;
 		}
 		
-		this.charMovement = cs.charMovement;
-		this.degrees = cs.charDirection;
-		this.x = cs.x;
-		this.y = cs.y;
-		this.health = cs.health;
-		this.state = cs.state;
+				
 		updateDirection();
 	}
 	
@@ -75,12 +100,20 @@ public class ClientCharacter implements Comparable<ClientCharacter>
 		//if attacking
 		//return getAttackFrame();
 		Sprite s = null;
-		if(!this.charMovement)
+		if (this.trigger == ActionTrigger.ATTACKING)
+			s = getAttackFrame();
+		else if(!this.charMovement)
 			s = getStandFrame();
 		else
 			s = getWalkFrame(); 
 		s.setPosition(this.x - s.getWidth() / 2, this.y);
 		return s;
+	}
+	
+	public Sprite getHealthBar() {
+		Sprite bar = ClientHealthBars.getAppropriateHealthBar(((float)this.health/this.maxHealth) * 100f);
+		bar.setPosition(this.x - bar.getWidth() / 2, this.y + 1.15f);
+		return bar;
 	}
 	
 	protected Sprite getWalkFrame()

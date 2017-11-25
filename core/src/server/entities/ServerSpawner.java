@@ -37,6 +37,8 @@ public class ServerSpawner
 		else if(type == ServerArcher.class)
 			player = new ServerArcher(gameMap, body);
 		
+		body.setUserData(type.cast(player));
+		
 		return type.cast(player);
 	}
 	
@@ -58,6 +60,8 @@ public class ServerSpawner
 		
 		player = new ServerNpc(gameMap, body);
 		
+		body.setUserData(type.cast(player));
+
 		return type.cast(player);
 	}
 		

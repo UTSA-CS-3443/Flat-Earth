@@ -2,15 +2,21 @@ package server.skills;
 
 import communicators.serverToClient.SkillState;
 import server.entities.PosAndDir;
+import server.entities.ServerCharacter;
+import server.entities.ServerPlayer;
 
-public interface ServerSkill
+public abstract class ServerSkill
 {
-    void perform(PosAndDir initial);
+	public ServerCharacter performer;
+	
+    public abstract void perform(PosAndDir initial);
 
-    float getPower();
+    public abstract float getPower();
     
-    ServerSkill copy();
+    public abstract ServerSkill copy();
     
-    SkillState getState();
+    public abstract SkillState getState();
+
+    public abstract void setPerformer(ServerCharacter c);
     
 }

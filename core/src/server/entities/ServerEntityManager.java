@@ -12,6 +12,8 @@ import communicators.serverToClient.SkillState;
 import server.ServerGameMap;
 import server.Updateable;
 import server.skills.ServerSkill;
+import utilities.ActionTrigger;
+import utilities.Sys;
 
 public class ServerEntityManager {
 
@@ -44,7 +46,7 @@ public class ServerEntityManager {
 	 * rest based on the coordinates (Vector2's) of those players
 	 * @param pressed
 	 */
-	public void updateAll(KeysPressed pressed[]) {
+	public void updateAll(KeysPressed pressed[], float delta) {
 		
 		int i;
 		//Sys.print("sshahahah" + pressed.length);
@@ -52,16 +54,16 @@ public class ServerEntityManager {
 		
 		for (i = 0; i < pressed.length; i++) {
 			ServerCharacter c = characters.get(i);
-			((ServerPlayer)c).update(pressed[i]);
+			((ServerPlayer)c).update(pressed[i], delta);
 			v[i] = c.getPosition();
 			//Sys.print(v[i].toString());
 		}
 		
 		for (i = pressed.length; i < characters.size(); i++)
-			((ServerNpc)characters.get(i)).update(v);
+			((ServerNpc)characters.get(i)).update(v, delta);
 
 		for(i = 0; i < updateables.size; i++)
-			updateables.get(i).update(.01f);
+			updateables.get(i).update(delta);
 
 		for(i = 0; i < bodiesToDestroy.size; i++)
 			this.gameMap.getWorld().destroyBody(bodiesToDestroy.get(i));
@@ -75,8 +77,9 @@ public class ServerEntityManager {
 	 */
 	public CharacterState[] getCharacterStates() {
 		CharacterState css[] = new CharacterState[this.characters.size()];
-		for (int i = 0; i < characters.size(); i++)
+		for (int i = 0; i < characters.size(); i++) {
 			css[i] = this.characters.get(i).getState();
+		}
 		return css;
 	}
 	

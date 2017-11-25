@@ -79,7 +79,6 @@ public class DesktopLauncher {
 		Sys.print("Some spawn points are off the map, most likely a problem with the map maker");
 		Sys.print("Eventually get rid of console prints and exits");
 		Sys.print("gotta get rid of the sleep in logic.java");
-		Sys.print("IN LOGIC.JAVA WHATEVER, NEED TO MAKE ENTITY MANAGER OR MAP NON STATIC, WILL FUCK SHIT UP");
 		Sys.print("------");
 	}
 	

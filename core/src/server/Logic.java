@@ -66,7 +66,7 @@ public class Logic implements Runnable {
 			lastTime = currentTime;
 			
 			//update everything
-			map.update(pressed, deltaTime);
+			map.update(pressed, .01f); // delta time for now
 			
 			//wrtie to gamestate
 			this.gs.setStates(map.getEntityManager().getCharacterStates());
