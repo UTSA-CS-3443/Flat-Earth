@@ -82,11 +82,11 @@ public class ClientGameMap {
 			if (i == settings.clientId) {
 				entityManager.add(this.player);
 			} else { // just spawning wizards for now, but will eventaully have to be what the players are (should be sent over the server, in the settings object)
-				entityManager.add(ClientSpawner.spawn(ClientWizard.class, details.getBeacons().get(i).getX()*details.SCALE, details.getBeacons().get(i).getY()*details.SCALE));
+				entityManager.add(ClientSpawner.spawn(ClientNpc.class, details.getBeacons().get(i).getX()*details.SCALE, details.getBeacons().get(i).getY()*details.SCALE));
 			}
 		}
 		for (int i = settings.playerCount; i < details.getBeacons().size(); i++) { // TODO spawning wizards for now, needs to be specific npcs later
-				entityManager.add(ClientSpawner.spawn(ClientWizard.class, details.getBeacons().get(i).getX()*details.SCALE, details.getBeacons().get(i).getY()*details.SCALE));
+				entityManager.add(ClientSpawner.spawn(ClientNpc.class, details.getBeacons().get(i).getX()*details.SCALE, details.getBeacons().get(i).getY()*details.SCALE));
 		}
 		
 		// spanw the polygons, for debugging

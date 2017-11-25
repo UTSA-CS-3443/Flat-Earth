@@ -1,6 +1,7 @@
 package client.entities;
 
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
 import client.skills.ClientHealthBars;
@@ -162,7 +163,7 @@ public class ClientCharacter implements Comparable<ClientCharacter>
 		}
 	}
 	
-	private Sprite getAttackFrame()
+	protected Sprite getAttackFrame()
 	{
 		switch(this.direction)
 		{

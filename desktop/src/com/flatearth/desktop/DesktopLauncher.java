@@ -32,7 +32,7 @@ public class DesktopLauncher {
 		// launch the javafx
 		// sets settings object, also creates handshake for connection settings
 		Launcher.launchGui(args);
-		s.characterType = 0;
+		s.characterType = 1;
 		switch(s.chosenState) {
 		case 0: // currently runs even if they close the window instead of hitting start. fix that
 			soloPlay();
