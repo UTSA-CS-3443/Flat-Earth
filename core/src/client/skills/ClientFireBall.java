@@ -19,7 +19,9 @@ public class ClientFireBall extends ClientSkill {
 	
 	@Override
 	public void update(SkillState ss) {
-		Sys.exit("ClientFireBall.update() : not doing anything");
+		this.x = ss.x-.1f;
+		this.y = ss.y;
+		this.direction = ss.direction;
 	}
 	
 	@Override

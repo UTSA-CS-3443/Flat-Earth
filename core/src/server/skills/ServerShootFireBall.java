@@ -11,7 +11,7 @@ import server.entities.ServerCharacter;
 import server.entities.ServerEntityManager;
 import server.entities.ServerSpawner;
 
-public class ServerShootArrow extends PerformableSkill
+public class ServerShootFireBall extends PerformableSkill
 {
     private Body body;
     private float size;
@@ -19,7 +19,7 @@ public class ServerShootArrow extends PerformableSkill
     private float xInitial;
     private float yInitial;
     private short category = ServerSpawner.ATTACK_PHYSICS;
-    private short mask = ServerSpawner.FOOT_PHYSICS;
+    private short mask = ServerSpawner.BOUNDING_BODY_PHYSICS | ServerSpawner.FOOT_PHYSICS;
     private float speed;
     private float range;
     private float distanceCovered;
@@ -27,7 +27,7 @@ public class ServerShootArrow extends PerformableSkill
 
     private boolean done;
 
-    public ServerShootArrow(PosAndDir caster, ServerGameMap gameMap)
+    public ServerShootFireBall(PosAndDir caster, ServerGameMap gameMap)
     {
         super(caster, 3);
         this.caster = caster;
@@ -37,8 +37,6 @@ public class ServerShootArrow extends PerformableSkill
         this.gameMap = gameMap;
         this.xInitial = this.position.x;
         this.yInitial = this.position.y;
-        this.category = ServerSpawner.ATTACK_PHYSICS;
-        this.mask = ServerSpawner.BOUNDING_BODY_PHYSICS | ServerSpawner.FOOT_PHYSICS;
         this.distanceCovered = 0;
         this.done = false;
     }
@@ -85,12 +83,11 @@ public class ServerShootArrow extends PerformableSkill
 
 	@Override
 	public ServerSkill copy() {
-		return new ServerShootArrow(this.caster, this.gameMap);
+		return new ServerShootFireBall(this.caster, this.gameMap);
 	}
 
 	@Override
 	public SkillState getState() {
-		return new SkillState(this.position.x, this.position.y, this.direction, SkillType.ARROW);
+		return new SkillState(this.position.x, this.position.y, this.direction, SkillType.FIREBALL);
 	}
 }
-

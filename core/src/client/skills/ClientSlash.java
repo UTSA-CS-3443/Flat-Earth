@@ -18,7 +18,8 @@ public class ClientSlash extends ClientSkill {
 	
 	@Override
 	public void update(SkillState ss) {
-		Sys.exit("ClientSlash.update() : this never really needs to be called");
+		// does nothing since these classes are mainly for free-forming skills, like fireballs and arrows.
+		// still, just keep it here for consistency
 	}
 
 	@Override

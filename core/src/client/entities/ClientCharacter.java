@@ -83,7 +83,7 @@ public class ClientCharacter implements Comparable<ClientCharacter>
 		return s;
 	}
 	
-	private Sprite getWalkFrame()
+	protected Sprite getWalkFrame()
 	{
 		switch(this.direction)
 		{
@@ -106,7 +106,7 @@ public class ClientCharacter implements Comparable<ClientCharacter>
 		}
 	}
 	
-	private Sprite getStandFrame()
+	protected Sprite getStandFrame()
 	{
 		switch(this.direction)
 		{
