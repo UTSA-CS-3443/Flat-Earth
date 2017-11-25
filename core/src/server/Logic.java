@@ -1,7 +1,5 @@
 package server;
 
-import java.io.IOException;
-import java.text.ParseException;
 import java.util.ArrayList;
 
 import communicators.clientToServer.KeyboardState;
@@ -41,7 +39,7 @@ public class Logic implements Runnable {
 		this.kss = kss;
 		this.playerCount = settings.playerCount;
 		map = new ServerGameMap(details, playerCount);
-		map.initialize();
+		map.initialize(settings);
 	}
 	
 	
@@ -71,7 +69,8 @@ public class Logic implements Runnable {
 			map.update(pressed, deltaTime);
 			
 			//wrtie to gamestate
-			this.gs.setStates(map.getEntityManager().getStates());
+			this.gs.setStates(map.getEntityManager().getCharacterStates());
+			this.gs.setSkillStates(map.getEntityManager().getSkillStates());
 		}
 	}
 	

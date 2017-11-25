@@ -1,6 +1,6 @@
 package communicators.serverToClient;
 
-import utilities.ActionState;
+import utilities.ActionTrigger;
 
 public class CharacterState {
 	
@@ -11,16 +11,16 @@ public class CharacterState {
 	
 	public int health;
 	
-	public ActionState state = ActionState.NORMAL;
+	public ActionTrigger state = ActionTrigger.NORMAL;
 	
 	public CharacterState() {}
 	
-	public CharacterState(boolean movement, float fx, float fy, float direction, int health, ActionState state) {
+	public CharacterState(boolean movement, float fx, float fy, float direction, int health, ActionTrigger state) {
 		this.set(movement, fx, fy, direction, health, state);
 	}
 	
 	// two different ways to set the state, this one probably never used
-	public void set(boolean movement, float fx, float fy, float direction, int health, ActionState state) {
+	public void set(boolean movement, float fx, float fy, float direction, int health, ActionTrigger state) {
 		charMovement = movement;
 		x = fx;
 		y = fy;
@@ -45,7 +45,7 @@ public class CharacterState {
 	
 	public int getHealth() {return health;}
 	
-	public ActionState getState() { return this.state; }
+	public ActionTrigger getState() { return this.state; }
 	
 	public String toString() {
 		return "" + this.x + " " + this.y;

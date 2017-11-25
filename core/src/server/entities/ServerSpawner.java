@@ -3,6 +3,7 @@ package server.entities;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 
+import server.ServerGameMap;
 import utilities.Sys;
 import utilities.ParseMap.MapDetails;
 
@@ -14,13 +15,13 @@ public class ServerSpawner
 	final public static short BOUNDING_BODY_PHYSICS = 0x0008;
 	final public static short HOLE_PHYSICS = 0x0010;
 	
-	public static <T extends ServerPlayer> T spawnPlayer(Class<T> type, float x, float y, World world)
+	public static <T extends ServerPlayer> T spawnPlayer(Class<T> type, float x, float y, ServerGameMap gameMap)
 	{
 		ServerPlayer player = null;
 		short category = FOOT_PHYSICS; 
-		short mask = FOOT_PHYSICS | WORLD_PHYSICS | HOLE_PHYSICS;
+		short mask = FOOT_PHYSICS | WORLD_PHYSICS | HOLE_PHYSICS | ATTACK_PHYSICS;
 		float size = .5f; 
-		Body body = createPolyBody(world, x, y, category, mask, 
+		Body body = createPolyBody(gameMap.getWorld(), x, y, category, mask, 
 				new Vector2((size/3)/2,size),
 				new Vector2(size/2,size/3),
 				new Vector2(size/2,-size/3),
@@ -30,22 +31,22 @@ public class ServerSpawner
 				new Vector2(-size/2,size/3),
 				new Vector2((-size/3)/2,size));
 		if(type == ServerKnight.class)
-			player = new ServerKnight(body);
+			player = new ServerKnight(gameMap, body);
 		else if(type == ServerWizard.class)
-			player = new ServerWizard(body);
+			player = new ServerWizard(gameMap, body);
 		else if(type == ServerArcher.class)
-			player = new ServerArcher(body);
+			player = new ServerArcher(gameMap, body);
 		
 		return type.cast(player);
 	}
 	
-	public static <T extends ServerNpc> T spawnNpc(Class<T> type, float x, float y, World world)
+	public static <T extends ServerNpc> T spawnNpc(Class<T> type, float x, float y, ServerGameMap gameMap)
 	{
 		ServerNpc player = null;
 		short category = FOOT_PHYSICS; 
-		short mask = FOOT_PHYSICS | WORLD_PHYSICS | HOLE_PHYSICS;
+		short mask = FOOT_PHYSICS | WORLD_PHYSICS | HOLE_PHYSICS | ATTACK_PHYSICS;
 		float size = .5f; 
-		Body body = createPolyBody(world, x, y, category, mask, 
+		Body body = createPolyBody(gameMap.getWorld(), x, y, category, mask, 
 				new Vector2((size/3)/2,size),
 				new Vector2(size/2,size/3),
 				new Vector2(size/2,-size/3),
@@ -55,7 +56,7 @@ public class ServerSpawner
 				new Vector2(-size/2,size/3),
 				new Vector2((-size/3)/2,size));
 		
-		player = new ServerNpc(body);
+		player = new ServerNpc(gameMap, body);
 		
 		return type.cast(player);
 	}

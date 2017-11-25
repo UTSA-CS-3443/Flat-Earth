@@ -16,6 +16,7 @@ import utilities.Sys;
 public class GameState {
 	
 	public ArrayList<CharacterState> states;
+	public SkillState[] skillStates;
 	
 	public GameState(int amt) {
 		states = new ArrayList<CharacterState>();
@@ -39,6 +40,11 @@ public class GameState {
 			//this.states.get(i).set(cs[i]);
 	}
 	
+	// remarkably inefficient, jesus christ 
+	public synchronized void setSkillStates(SkillState[] sss) {
+		this.skillStates = sss;
+	}
+	
 	// TODO ? might need to figure out ways around using synchronized
 	public synchronized CharacterState[] getCharacterStates() {
 
@@ -46,6 +52,10 @@ public class GameState {
 		cs = this.states.toArray(cs);
 		return cs;
 		
+	}
+
+	public synchronized SkillState[] getSkillStates() {
+		return this.skillStates;
 	}
 	
 }

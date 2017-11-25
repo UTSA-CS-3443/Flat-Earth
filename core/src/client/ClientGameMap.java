@@ -2,6 +2,7 @@ package client;
 
 import communicators.serverToClient.CharacterState;
 import communicators.serverToClient.GameState;
+import communicators.serverToClient.SkillState;
 import server.entities.ServerSpawner;
 import utilities.Sys;
 import utilities.Settings;
@@ -107,7 +108,8 @@ public class ClientGameMap {
 	
 	public void update(float delta, GameState gs) {
 		CharacterState cs[] = gs.getCharacterStates();
-		entityManager.updateAll(delta, cs);
+		SkillState ss[] = gs.getSkillStates();
+		entityManager.updateAll(delta, cs, ss);
 	}
 	
 	public void draw(SpriteBatch batch) {

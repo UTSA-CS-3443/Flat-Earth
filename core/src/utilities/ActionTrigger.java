@@ -1,6 +1,6 @@
 package utilities;
 
-public enum ActionState {
+public enum ActionTrigger {
 	FALLING,
 	DEAD,
 	ATTACKING,

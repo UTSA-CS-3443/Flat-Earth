@@ -88,6 +88,9 @@ public class KeyboardState {
 		pressed.attack1 = ((this.bitField >> ATTACK1_MOD) & 1) == 1;
 		pressed.attack2 = ((this.bitField >> ATTACK2_MOD) & 1) == 1;
 		pressed.id = this.id;
+		this.attack1Released();
+		this.attack2Released();
+		this.defendReleased();
 		return pressed;
 	}
 	

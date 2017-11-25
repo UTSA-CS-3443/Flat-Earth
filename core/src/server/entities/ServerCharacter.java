@@ -4,12 +4,14 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 
 import communicators.serverToClient.CharacterState;
-import utilities.ActionState;
+import server.ServerGameMap;
+import server.skills.ServerSkill;
+import utilities.ActionTrigger;
 
 
 public abstract class ServerCharacter implements PosAndDir {
 
-	public ActionState state = ActionState.NORMAL;
+	public ActionTrigger state = ActionTrigger.NORMAL;
 	
 	protected boolean alive;
 	protected int health = 100;
@@ -17,12 +19,19 @@ public abstract class ServerCharacter implements PosAndDir {
 	protected float direction;
 	protected boolean movement;
 	
-	protected static final float FORCE_CONSTANT = .07f;
+	public static final float FORCE_CONSTANT = .07f;
 	
 	protected static final int[][] DIRECTIONS = {{225, 270, 315},{180, -1, 0},{135, 90, 45}};
+	
+	protected ServerSkill[] skills;
+	
 	public Body body;
 	
-	public ServerCharacter (Body body) {
+	protected ServerGameMap gameMap;
+	
+	public ServerCharacter (ServerGameMap gameMap, Body body) {
+		this.gameMap = gameMap;
+		this.skills = new ServerSkill[3];
 		this.body = body;
 		this.body.setLinearDamping(5);
 		this.body.setAngularDamping(5);

@@ -4,15 +4,17 @@ import com.badlogic.gdx.physics.box2d.Body;
 
 import communicators.clientToServer.KeysPressed;
 import communicators.serverToClient.CharacterState;
-import utilities.ActionState;
+import server.ServerGameMap;
+import server.skills.ServerSkill;
+import utilities.ActionTrigger;
 import utilities.Sys;
 
 
 
 public class ServerPlayer extends ServerCharacter {
 	
-	public ServerPlayer(Body body) {
-		super(body);
+	public ServerPlayer(ServerGameMap gameMap, Body body) {
+		super(gameMap, body);
 		this.direction = 270; // direction to start off should be looking down
 	}
 	
@@ -25,7 +27,11 @@ public class ServerPlayer extends ServerCharacter {
 		// direction is used by client for deciding what animation frame to use
 		if (this.movement) 
 			this.direction = DIRECTIONS[(-pressed.down + pressed.up)+1][(-pressed.left+pressed.right)+1];
-
+		
+		if (pressed.attack1) {
+			ServerSkill skill = this.skills[0].copy();
+			skill.perform(this);
+		}
 
 
 		this.body.applyForceToCenter(forceX, forceY, true);

@@ -9,7 +9,7 @@ import com.badlogic.gdx.physics.box2d.Manifold;
 
 //import server.Skill;
 import server.entities.*;
-import utilities.ActionState;
+import utilities.ActionTrigger;
 import utilities.Sys;
 
 public class CollisionListener implements ContactListener {
@@ -18,7 +18,7 @@ public class CollisionListener implements ContactListener {
 	public void beginContact(Contact contact) {
 		Fixture fixtureA = contact.getFixtureA();
 		Fixture fixtureB = contact.getFixtureB();
-		
+		Sys.print("some type of hit");
 		// for falling off the map
 		if(fixtureA.getFilterData().categoryBits == ServerSpawner.FOOT_PHYSICS &&
 				fixtureB.getFilterData().categoryBits == ServerSpawner.HOLE_PHYSICS)
@@ -53,6 +53,14 @@ public class CollisionListener implements ContactListener {
 //				}
 //			}
 //			victim.state = ActionState.FALLING;
+		} else if(fixtureA.getFilterData().categoryBits == ServerSpawner.ATTACK_PHYSICS &&
+				fixtureB.getFilterData().categoryBits == ServerSpawner.FOOT_PHYSICS)
+		{
+			Sys.print("hit!");
+		} else if(fixtureA.getFilterData().categoryBits == ServerSpawner.FOOT_PHYSICS &&
+				fixtureB.getFilterData().categoryBits == ServerSpawner.ATTACK_PHYSICS)
+		{
+			Sys.print("hit!");
 		}
 		
 //		if(fixtureA.getFilterData().categoryBits == ServerSpawner.FOOT_PHYSICS &&

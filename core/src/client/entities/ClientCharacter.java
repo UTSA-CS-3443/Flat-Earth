@@ -4,7 +4,7 @@ package client.entities;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
 import communicators.serverToClient.CharacterState;
-import utilities.ActionState;
+import utilities.ActionTrigger;
 import utilities.Sys;
 
 
@@ -28,7 +28,7 @@ public class ClientCharacter implements Comparable<ClientCharacter>
 	protected float xscale = .9f;
 	protected float yscale = 1.1f;
 	protected int rotation = 0;	
-	protected ActionState state = ActionState.NORMAL;
+	protected ActionTrigger state = ActionTrigger.NORMAL;
 	protected int fallCount = 0;
 	
 	

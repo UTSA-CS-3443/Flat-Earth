@@ -12,11 +12,14 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 
 import communicators.clientToServer.KeysPressed;
+import server.entities.ServerArcher;
 import server.entities.ServerEntityManager;
 import server.entities.ServerKnight;
 import server.entities.ServerNpc;
 import server.entities.ServerSpawner;
-import server.skills.ShootArrow;
+import server.entities.ServerWizard;
+import server.skills.ServerShootArrow;
+import utilities.Settings;
 import utilities.Sys;
 import utilities.ParseMap.Beacon;
 import utilities.ParseMap.MapDetails;
@@ -38,7 +41,7 @@ public class ServerGameMap {
 	
 	private World world;
 
-	private ShootArrow arrow;
+	private ServerShootArrow arrow;
 	
 	
 	public ServerGameMap(MapDetails details, int playerCount) {
@@ -51,17 +54,28 @@ public class ServerGameMap {
 		entityManager = new ServerEntityManager(this);
 	}
 	
-	public void initialize() {		
+	public void initialize(Settings settings) {		
 		// spawn the first few beacons as players. spawn the rest as npcs/enemies
 		// hard coding just spawning a Knight for now
 		ArrayList<Beacon> beacons = details.getBeacons();
 		int i;
+		Sys.print("Currently sets all players in the player count to whatever the player on this machine picks");
 		for (i = 0; i < this.playerCount; i++) {
-			entityManager.add(ServerSpawner.spawnPlayer(ServerKnight.class, beacons.get(i).getX()*details.SCALE, beacons.get(i).getY()*details.SCALE, world));
+			switch(settings.characterType) {
+			case 0:
+				entityManager.add(ServerSpawner.spawnPlayer(ServerKnight.class, beacons.get(i).getX()*details.SCALE, beacons.get(i).getY()*details.SCALE, this));
+				break;
+			case 1:
+				entityManager.add(ServerSpawner.spawnPlayer(ServerArcher.class, beacons.get(i).getX()*details.SCALE, beacons.get(i).getY()*details.SCALE, this));
+				break;
+			case 2:
+				entityManager.add(ServerSpawner.spawnPlayer(ServerWizard.class, beacons.get(i).getX()*details.SCALE, beacons.get(i).getY()*details.SCALE, this));
+				break;
+			}
 		}
 		for(i = playerCount; i < details.getBeacons().size(); i++) { // will eventuall need to spawn the approriate type of npc, that will
 			// be set in the .pp file TODO
-			entityManager.add(ServerSpawner.spawnNpc(ServerNpc.class, beacons.get(i).getX()*details.SCALE, beacons.get(i).getY()*details.SCALE, world));
+			entityManager.add(ServerSpawner.spawnNpc(ServerNpc.class, beacons.get(i).getX()*details.SCALE, beacons.get(i).getY()*details.SCALE, this));
 		}
 		// TODO now initialize polygons]
 		for (PolygonBody pb : details.getPolygonBodies()) {
@@ -88,12 +102,6 @@ public class ServerGameMap {
 		entityManager.updateAll(pressed);
         accumulator -= dt;
 		//}
-
-		if (pressed[0].attack1)
-		{
-			this.arrow = new ShootArrow(entityManager.characters.get(0), this);
-			arrow.perform(this.entityManager.characters.get(0));
-		}
 
 	}
 	

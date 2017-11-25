@@ -6,11 +6,12 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 
 import com.badlogic.gdx.utils.Array;
-import com.sun.security.ntlm.Server;
 import communicators.clientToServer.KeysPressed;
 import communicators.serverToClient.CharacterState;
+import communicators.serverToClient.SkillState;
 import server.ServerGameMap;
 import server.Updateable;
+import server.skills.ServerSkill;
 
 public class ServerEntityManager {
 
@@ -20,12 +21,14 @@ public class ServerEntityManager {
 	private ServerGameMap gameMap;
 
 	public Array<Updateable> updateables;
+	public Array<ServerSkill> activeSkills;
 	
 	
 	public ServerEntityManager(ServerGameMap gameMap) {
 		this.gameMap = gameMap;
 		this.bodiesToDestroy = new Array<Body>();
 		this.updateables = new Array<Updateable>();
+		this.activeSkills = new Array<ServerSkill>();
 		characters = new ArrayList<ServerCharacter>();
 		holes = new ArrayList<Body>();
 	}
@@ -58,7 +61,7 @@ public class ServerEntityManager {
 			((ServerNpc)characters.get(i)).update(v);
 
 		for(i = 0; i < updateables.size; i++)
-			updateables.get(i).update(.3f);
+			updateables.get(i).update(.01f);
 
 		for(i = 0; i < bodiesToDestroy.size; i++)
 			this.gameMap.getWorld().destroyBody(bodiesToDestroy.get(i));
@@ -70,13 +73,19 @@ public class ServerEntityManager {
 	 * there might be ways to optimize this, cause this is a lot of iterations TODO
 	 * @return
 	 */
-	public CharacterState[] getStates() {
+	public CharacterState[] getCharacterStates() {
 		CharacterState css[] = new CharacterState[this.characters.size()];
 		for (int i = 0; i < characters.size(); i++)
 			css[i] = this.characters.get(i).getState();
 		return css;
 	}
 	
+	public SkillState[] getSkillStates() {
+		SkillState[] ss = new SkillState[this.activeSkills.size];
+		for (int i = 0; i < activeSkills.size; i++)
+			ss[i] = this.activeSkills.get(i).getState();
+		return ss;
+	}
 	
 	public void addHole(Body body) {
 		holes.add(body);

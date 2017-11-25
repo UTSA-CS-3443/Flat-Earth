@@ -4,12 +4,13 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 
 import communicators.serverToClient.CharacterState;
+import server.ServerGameMap;
 import utilities.Sys;
 
 public class ServerNpc extends ServerCharacter {
 
-	public ServerNpc(Body body) {
-		super(body);
+	public ServerNpc(ServerGameMap gameMap, Body body) {
+		super(gameMap, body);
 	}
 	
 	public void update(Vector2 vectors[]) {
