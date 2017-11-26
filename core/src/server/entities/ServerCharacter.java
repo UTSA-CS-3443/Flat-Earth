@@ -29,7 +29,7 @@ public abstract class ServerCharacter implements PosAndDir {
 	
 	protected ServerGameMap gameMap;
 	
-	protected float attackFrequency = .5f;
+	protected float attackFrequency = 10f;
 	
 	public ServerCharacter (ServerGameMap gameMap, Body body) {
 		this.gameMap = gameMap;

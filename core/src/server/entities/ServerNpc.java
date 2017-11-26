@@ -5,13 +5,20 @@ import com.badlogic.gdx.physics.box2d.Body;
 
 import communicators.serverToClient.CharacterState;
 import server.ServerGameMap;
+import server.skills.ServerShootFireBall;
+import server.skills.ServerSkill;
 import utilities.ActionTrigger;
 import utilities.Sys;
 
 public class ServerNpc extends ServerCharacter {
 
+	
+	private float lastAttack = 0;
+	
+	
 	public ServerNpc(ServerGameMap gameMap, Body body) {
 		super(gameMap, body);
+		this.skills[0] = new ServerShootFireBall(this, gameMap);
 	}
 	
 	public void update(Vector2 vectors[], float delta) {
@@ -42,33 +49,41 @@ public class ServerNpc extends ServerCharacter {
 			if ((int)closest.x - (int)this.body.getPosition().x == 0) {
 				forceX = 0;
 			} else if (Math.cos(angle) > 0f) {
-				forceX =  .5f * FORCE_CONSTANT;
+				forceX =  .25f * FORCE_CONSTANT;
 				right = 1;
 			} else if (Math.cos(angle) < 0f) {
-				forceX = -(.5f * FORCE_CONSTANT);
+				forceX = -(.25f * FORCE_CONSTANT);
 				left = 1;
 			}
 			if ((int)closest.y - (int)this.body.getPosition().y == 0) {
 				forceY = 0;
 			} else if (Math.sin(angle) > 0f) {
-				forceY =  .5f * FORCE_CONSTANT;
+				forceY =  .25f * FORCE_CONSTANT;
 				up = 1;
 			} else if (Math.sin(angle) < 0f) {
-				forceY = -(.5f * FORCE_CONSTANT);
+				forceY = -(.25f * FORCE_CONSTANT);
 				down = 1;
 			}
 		}
 
+		this.lastAttack += delta;
+		
 		/* Attack distance check */
 		if (distance <= 2f)
 			attack();
 
+		if (distance <= 7f &&
+				(Math.abs(this.body.getPosition().y - closest.y) <= 3f))
+				attack();
+		
+		if (distance <= 7f &&
+				(Math.abs(this.body.getPosition().x - closest.x) <= 3f))
+				attack();
+		
 		/* Modulated code for possible future implementation of a lower-end aggro threshold. */
 		if (distance <= 1f)
 			forceX = forceY = 0;
-		// only change the direction if some sort of movement is made
-		// this fixes some bug where if no movemnt is made, the stand frame will default to north-east
-		// direction is used by client for deciding what animation frame to use
+
 		this.movement = !(forceX == 0 && forceY == 0);
 		if (this.movement) 
 			this.direction = DIRECTIONS[(-down + up)+1][(-left + right)+1];
@@ -78,8 +93,17 @@ public class ServerNpc extends ServerCharacter {
 	
 	public void attack() {
 		
-		//TODO obviously 
-		// spawn some attack spawn, probably add that functionality to the spawner
+		if (this.lastAttack > this.attackFrequency) {
+			this.trigger = ActionTrigger.NORMAL;
+		}
+		
+		if (this.trigger == ActionTrigger.NORMAL) {
+			this.trigger = ActionTrigger.ATTACKING;
+			ServerSkill skill = this.skills[0].copy();
+			skill.setPerformer(this);
+			skill.perform(this);
+			this.lastAttack = 0;
+		}
 		
 	}
 	
@@ -89,3 +113,15 @@ public class ServerNpc extends ServerCharacter {
 	}
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
