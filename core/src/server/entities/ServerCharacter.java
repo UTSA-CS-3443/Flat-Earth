@@ -3,10 +3,10 @@ package server.entities;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 
+import communicators.ActionTrigger;
 import communicators.serverToClient.CharacterState;
 import server.ServerGameMap;
 import server.skills.ServerSkill;
-import utilities.ActionTrigger;
 
 
 public abstract class ServerCharacter implements PosAndDir {

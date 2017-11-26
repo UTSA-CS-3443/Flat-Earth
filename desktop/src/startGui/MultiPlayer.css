@@ -1,0 +1,28 @@
+@font-face {
+	font-family: 'MineCraft';
+	src: url("minecraft_font_by_pwnage_block-d37t6nb.ttf");
+}
+
+#background{
+	-fx-background-color: black;
+}
+
+#host{
+     -fx-font-family: "MineCraft";
+     -fx-font-size: 45px;
+}
+
+#host:hover {
+  -fx-background-color:#7A0000;
+  -fx-text-fill: white;
+}
+
+#client{
+     -fx-font-family: "MineCraft";
+     -fx-font-size: 45px;
+}
+
+#client:hover {
+  -fx-background-color:#7A0000;
+  -fx-text-fill: white;
+}

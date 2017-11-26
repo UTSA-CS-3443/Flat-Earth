@@ -1,6 +1,6 @@
 package communicators.serverToClient;
 
-import utilities.ActionTrigger;
+import communicators.ActionTrigger;
 
 public class CharacterState {
 	

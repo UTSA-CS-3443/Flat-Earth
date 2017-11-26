@@ -1,0 +1,94 @@
+@font-face {
+    font-family: 'MineCraft';
+    src: url("minecraft_font_by_pwnage_block-d37t6nb.ttf");
+}
+
+#back{
+    -fx-background-color: black;
+    -fx-font-family: "MineCraft";
+    -fx-font-size: 45px;
+    -fx-background-image: url("Cosmos2.jpg");
+}
+
+#heading{
+    -fx-font-family: "MineCraft";
+    -fx-text-fill: white;
+    -fx-font-size: 90px;
+}
+
+#single{
+    -fx-text-fill:white;
+    -fx-background-color: Transparent;
+    -fx-background-repeat:no-repeat;
+}
+
+#single:hover {
+  -fx-background-color:#7A0000;
+  -fx-text-fill:white;
+  -fx-rotate: -3deg;
+  -fx-webkit-animation: neon2 1.5s ease-in-out infinite alternate;
+  -fx-moz-animation: neon2 1.5s ease-in-out infinite alternate;
+  -fx-animation: neon2 1.5s ease-in-out infinite alternate;
+}
+
+#multi{
+    -fx-text-fill:white;
+    -fx-background-color: Transparent;
+    -fx-background-repeat:no-repeat;
+}
+
+#multi:hover {
+  -fx-background-color:#7A0000;
+  -fx-text-fill:white;
+  -fx-rotate: 3deg;
+  -fx-animation: FadeOut 1s ease-in-out;
+}
+
+#options{
+  -fx-text-fill:white;
+  -fx-background-color: Transparent;
+  -fx-background-repeat:no-repeat;
+}
+
+#options:hover {
+  -fx-background-color:#7A0000;
+  -fx-text-fill:white;
+  -fx-rotate: -4deg;
+}
+
+
+#exit {
+  -fx-background-radius: 100px;
+  -fx-min-width: 80px;
+  -fx-min-height: 80px;
+  -fx-max-width: 80px;
+  -fx-max-height: 80px;
+  -fx-background-insets: 10, 10, 10, 10;
+}
+
+#exit:hover {
+  -fx-background-color:#7A0000;
+  -fx-text-fill: white;
+  -fx-rotate: 3deg;
+  -fx-animation: FadeOut 1s ease-in-out;
+}
+
+#right{
+    -fx-background-color: Transparent;
+    -fx-font-size: 50px;
+    -fx-text-fill: white;
+}
+
+#left{
+    -fx-background-color: Transparent;
+    -fx-font-size: 50px;
+    -fx-text-fill: white;
+}
+
+
+
+
+#calibrate{
+    -fx-font-size: 15px;
+}
+

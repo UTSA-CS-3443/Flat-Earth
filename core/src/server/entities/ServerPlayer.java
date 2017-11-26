@@ -2,11 +2,11 @@ package server.entities;
 
 import com.badlogic.gdx.physics.box2d.Body;
 
+import communicators.ActionTrigger;
 import communicators.clientToServer.KeysPressed;
 import communicators.serverToClient.CharacterState;
 import server.ServerGameMap;
 import server.skills.ServerSkill;
-import utilities.ActionTrigger;
 import utilities.Sys;
 
 

@@ -69,7 +69,7 @@ public class ClientEntityManager {
 		}
 		
 		for (int i = 0; i < ss.length && i < this.skills.size(); i++) { // remove all the in between wrong stuff
-			while(ss[i].type != this.skills.get(i).type && i < this.skills.size()) {
+			while(i < this.skills.size() && ss[i].type != this.skills.get(i).type) {
 				this.skills.remove(i);
 			}
 		}

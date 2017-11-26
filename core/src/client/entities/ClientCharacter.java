@@ -5,8 +5,8 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
 import client.skills.ClientHealthBars;
+import communicators.ActionTrigger;
 import communicators.serverToClient.CharacterState;
-import utilities.ActionTrigger;
 import utilities.Sys;
 
 

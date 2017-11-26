@@ -1,0 +1,59 @@
+@font-face {
+    font-family: 'MineCraft';
+    src: url("minecraft_font_by_pwnage_block-d37t6nb.ttf");
+}
+
+#set{
+    -fx-background-color: black;
+    -fx-font-family: "MineCraft";
+    -fx-font-size: 45px;
+    -fx-background-image: url("Cosmos.jpg");
+}
+
+#heading{
+    -fx-font-family: "MineCraft";
+    -fx-font-size: 90px;
+}
+
+#music{
+    -fx-text-fill: white;
+    -fx-background-color: Transparent;
+    -fx-background-repeat:no-repeat;
+}
+
+#controller{
+    -fx-text-fill: black;
+}
+
+#slider{
+    -fx-font-size: 25px;
+}
+
+#right{
+    -fx-background-color: Transparent;
+    -fx-font-size: 50px;
+    -fx-text-fill: white;
+}
+
+#left{
+    -fx-background-color: Transparent;
+    -fx-font-size: 50px;
+    -fx-text-fill: white;
+}
+
+#choice{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+#calibrate{
+    -fx-background-color: Transparent;
+    -fx-font-size: 25px;
+    -fx-text-fill: white;
+}
+
+#back{
+
+     -fx-font-size: 25px;
+     -fx-text-fill: white;
+}

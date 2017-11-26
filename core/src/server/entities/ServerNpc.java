@@ -3,11 +3,11 @@ package server.entities;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 
+import communicators.ActionTrigger;
 import communicators.serverToClient.CharacterState;
 import server.ServerGameMap;
 import server.skills.ServerShootFireBall;
 import server.skills.ServerSkill;
-import utilities.ActionTrigger;
 import utilities.Sys;
 
 public class ServerNpc extends ServerCharacter {
@@ -19,6 +19,7 @@ public class ServerNpc extends ServerCharacter {
 	public ServerNpc(ServerGameMap gameMap, Body body) {
 		super(gameMap, body);
 		this.skills[0] = new ServerShootFireBall(this, gameMap);
+		this.attackFrequency *= 1.3f;
 	}
 	
 	public void update(Vector2 vectors[], float delta) {

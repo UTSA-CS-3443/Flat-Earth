@@ -101,7 +101,6 @@ public enum CharacterType
 			animation.get(i).flip(flip,  false);
 			animation.get(i).setSize(animation.get(i).getWidth()*MapDetails.SCALE, animation.get(i).getHeight()*MapDetails.SCALE);
 		}
-		Sys.print(type +  " "+ direction + "size = " +animation.size);
 		return animation;
 	}
 	

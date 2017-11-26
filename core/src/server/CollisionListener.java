@@ -7,10 +7,10 @@ import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
 
+import communicators.ActionTrigger;
 //import server.Skill;
 import server.entities.*;
 import server.skills.ServerSkill;
-import utilities.ActionTrigger;
 import utilities.Sys;
 
 public class CollisionListener implements ContactListener {
@@ -23,11 +23,11 @@ public class CollisionListener implements ContactListener {
 		if(fixtureA.getFilterData().categoryBits == ServerSpawner.FOOT_PHYSICS &&
 				fixtureB.getFilterData().categoryBits == ServerSpawner.HOLE_PHYSICS)
 		{
-			Sys.print("Falling now");
+			//Sys.print("Falling now");
 		} else if(fixtureA.getFilterData().categoryBits == ServerSpawner.HOLE_PHYSICS &&
 				fixtureB.getFilterData().categoryBits == ServerSpawner.FOOT_PHYSICS)
 		{	
-			Sys.print("Falling now");	
+			//Sys.print("Falling now");	
 		} else if(fixtureA.getFilterData().categoryBits == ServerSpawner.ATTACK_PHYSICS &&
 				fixtureB.getFilterData().categoryBits == ServerSpawner.FOOT_PHYSICS)
 		{

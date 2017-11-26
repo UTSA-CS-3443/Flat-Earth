@@ -1,4 +1,4 @@
-package utilities;
+package communicators;
 
 public enum ActionTrigger {
 	FALLING,
