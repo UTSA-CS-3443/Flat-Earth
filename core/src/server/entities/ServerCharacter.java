@@ -31,12 +31,17 @@ public abstract class ServerCharacter implements PosAndDir {
 	
 	protected float attackFrequency = 10f;
 	
+	protected float initialX;
+	protected float initialY;
+	
 	public ServerCharacter (ServerGameMap gameMap, Body body) {
 		this.gameMap = gameMap;
 		this.skills = new ServerSkill[3];
 		this.body = body;
 		this.body.setLinearDamping(5);
 		this.body.setAngularDamping(5);
+		this.initialX = body.getPosition().x;
+		this.initialY = body.getPosition().y;
 	}
 
 	@Override

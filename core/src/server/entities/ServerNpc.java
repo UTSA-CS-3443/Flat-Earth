@@ -73,11 +73,11 @@ public class ServerNpc extends ServerCharacter {
 		if (distance <= 2f)
 			attack();
 
-		if (distance <= 7f &&
+		if (distance <= 15f &&
 				(Math.abs(this.body.getPosition().y - closest.y) <= 3f))
 				attack();
 		
-		if (distance <= 7f &&
+		if (distance <= 15f &&
 				(Math.abs(this.body.getPosition().x - closest.x) <= 3f))
 				attack();
 		

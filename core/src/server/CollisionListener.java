@@ -23,11 +23,11 @@ public class CollisionListener implements ContactListener {
 		if(fixtureA.getFilterData().categoryBits == ServerSpawner.FOOT_PHYSICS &&
 				fixtureB.getFilterData().categoryBits == ServerSpawner.HOLE_PHYSICS)
 		{
-			//Sys.print("Falling now");
+			//((ServerCharacter)fixtureA.getUserData()).trigger = ActionTrigger.FALLING;
 		} else if(fixtureA.getFilterData().categoryBits == ServerSpawner.HOLE_PHYSICS &&
 				fixtureB.getFilterData().categoryBits == ServerSpawner.FOOT_PHYSICS)
 		{	
-			//Sys.print("Falling now");	
+			//((ServerCharacter)fixtureB.getUserData()).trigger = ActionTrigger.FALLING;
 		} else if(fixtureA.getFilterData().categoryBits == ServerSpawner.ATTACK_PHYSICS &&
 				fixtureB.getFilterData().categoryBits == ServerSpawner.FOOT_PHYSICS)
 		{

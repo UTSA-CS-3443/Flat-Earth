@@ -340,6 +340,3 @@ coordinates 261.0 460.99997
 "enemy" "wizard"
 </beacon>
 
-
-
-
