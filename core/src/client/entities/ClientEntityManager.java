@@ -18,21 +18,22 @@ import utilities.Sys;
 public class ClientEntityManager {
 
 	private ArrayList<ClientCharacter> charactersUpdateOrder;
-	private ArrayList<ClientCharacter> charactersYOrder;
+	private ArrayList<Drawable> spritesYOrder;
 	
 	private ArrayList<ClientSkill> skills;
 	
 	
 	public ClientEntityManager() {
 		charactersUpdateOrder = new ArrayList<ClientCharacter>();
-		charactersYOrder = new ArrayList<ClientCharacter>();
+		spritesYOrder = new ArrayList<Drawable>();
 		skills = new ArrayList<ClientSkill>();
 		ClientHealthBars.initialize();
 	}
 	
-	public void add (ClientCharacter character) {
-		charactersUpdateOrder.add(character);
-		charactersYOrder.add(character);
+	public void add (Drawable character) {
+		if(character.getClass() == ClientCharacter.class)
+			charactersUpdateOrder.add((ClientCharacter) character);
+		spritesYOrder.add(character);
 	}
 	
 	
@@ -46,11 +47,12 @@ public class ClientEntityManager {
 	}
 	
 	public void drawAll(SpriteBatch batch) {
-		Collections.sort(charactersYOrder);
+		Collections.sort(spritesYOrder);
 		
-		for (ClientCharacter c : charactersYOrder) {
-			c.getFrame().draw(batch);
-			c.getHealthBar().draw(batch);
+		for (Drawable c : spritesYOrder) {
+			c.getSprite().draw(batch);
+			if(c.getClass() == ClientCharacter.class)
+				((ClientCharacter)(c)).getHealthBar().draw(batch);
 		}
 		
 		for (ClientSkill cs : this.skills) {

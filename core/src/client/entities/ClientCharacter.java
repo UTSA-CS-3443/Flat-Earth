@@ -11,8 +11,13 @@ import utilities.Sys;
 import utilities.ParseMap.MapDetails;
 
 
-public class ClientCharacter implements Comparable<ClientCharacter>
+public class ClientCharacter extends Drawable implements Comparable<Drawable>
 {
+	@Override
+	public Sprite getSprite() {
+		return getFrame();
+	}
+
 	enum Direction { NORTHEAST, NORTH, NORTHWEST, WEST, SOUTHWEST, SOUTH, SOUTHEAST, EAST; }
 	protected Direction[] directionArray = Direction.values();
 	protected CharacterType type;
@@ -237,10 +242,10 @@ public class ClientCharacter implements Comparable<ClientCharacter>
 	}
 
 	@Override
-	public int compareTo(ClientCharacter other) {
-		if (this.y > other.y)
+	public int compareTo(Drawable other) {
+		if (this.y > other.getSprite().getY())
 			return -1;
-		else if (this.y < other.y)
+		else if (this.y < other.getSprite().getY())
 			return 1;
 		return 0;
 	}

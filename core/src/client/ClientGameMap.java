@@ -92,6 +92,14 @@ public class ClientGameMap {
 		for (int i = settings.playerCount; i < details.getBeacons().size(); i++) { // TODO spawning wizards for now, needs to be specific npcs later
 				//entityManager.add(ClientSpawner.spawn(ClientNpc.class, details.getBeacons().get(i).getX()*details.SCALE, details.getBeacons().get(i).getY()*details.SCALE));
 			Beacon b = details.getBeacons().get(i);
+			for(int k = 0; k < b.getProperties().size(); k++)
+			{
+				if(b.getProperties().get(k).type.equals("sprite"))
+				{
+					System.out.println("FOOK YAS");
+					entityManager.add(new ClientGameMapSprite(b.getProperties().get(k).value, b.getX(), b.getY()));
+				}
+			}
 			if(b.getProperties().get(0).value == null) {
 				// this is to fix some bug with the way map details is parsing. gonna also be an archer server side
 				entityManager.add(ClientSpawner.spawn(ClientArcher.class, b.getX()*details.SCALE, b.getY()*details.SCALE));

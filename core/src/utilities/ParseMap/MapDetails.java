@@ -371,12 +371,14 @@ public class MapDetails {
 
 	private ArrayList<PolygonBody> polygonBodies = new ArrayList<PolygonBody>();
 	private ArrayList<Beacon> beacons = new ArrayList<Beacon>();
+	private ArrayList<Sprite> sprites = new ArrayList<>();
 
 	private PolygonBody polygonBody;
 	private Beacon beacon;
 
 	private Vector2 vector;
 	private Property property;
+
 
 	public MapDetails(String fileName) throws IOException, ParseException {
 		//this.mapSprite = new Sprite(new Texture(mapName+".png"));
@@ -455,6 +457,9 @@ public class MapDetails {
 		}
 		//Sys.print(this.property.toString());
 	}
+
+
+
 
 
 	public Sprite getMapSprite() {
