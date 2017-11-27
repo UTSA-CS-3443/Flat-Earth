@@ -31,7 +31,7 @@ public class ClientEntityManager {
 	}
 	
 	public void add (Drawable character) {
-		if(character.getClass() == ClientCharacter.class)
+		if(character.getClass() == ClientWizard.class || character.getClass() == ClientArcher.class || character.getClass() == ClientKnight.class)
 			charactersUpdateOrder.add((ClientCharacter) character);
 		spritesYOrder.add(character);
 	}
@@ -39,13 +39,13 @@ public class ClientEntityManager {
 	
 	
 	public void updateAll(float delta, CharacterState cs[], SkillState ss[]) {
-		for (int i = 0; i < cs.length; i++)
+		for (int i = 0; i < cs.length; i++) {
 			charactersUpdateOrder.get(i).update(delta, cs[i]);
+		}
 		updateSkillsList(ss);
 		for (int i = 0; i < ss.length; i++)
 			skills.get(i).update(ss[i]);
 	}
-	
 	public void drawAll(SpriteBatch batch) {
 		Collections.sort(spritesYOrder);
 		

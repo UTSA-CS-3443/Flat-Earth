@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import utilities.Sys;
@@ -23,23 +24,29 @@ import utilities.Sys;
  */
 public class Launcher extends Application {
 
-	
+
 	public static void launchGui(String[] args) {
 		launch(args);
 	}
-	
-	
+
+
 	@Override
 	public void start(final Stage primaryStage) throws Exception {
-		URL location = getClass().getResource("MainMenu.fxml");
-		//Sys.exit(location.toString());
-		//URL location = new URL("MainMenu.fxml");
-		//Sys.exit(location.toString());
-		Parent root = FXMLLoader.load(location);
-		primaryStage.setTitle("Flat-Earth");
-		Scene scene = new Scene(root, 800, 900);
-		primaryStage.setScene(scene);
-		primaryStage.show();		
+		primaryStage.setTitle("Start Game");
+		Button btn = new Button();
+		btn.setText("Start Game");
+		btn.setOnAction(new EventHandler<ActionEvent>() {
+
+			public void handle(ActionEvent event) {
+				System.out.println("Hello World!");
+				primaryStage.close();
+			}
+		});
+
+		StackPane root = new StackPane();
+		root.getChildren().add(btn);
+		primaryStage.setScene(new Scene(root, 300, 250));
+		primaryStage.show();
 	}
 	
 }

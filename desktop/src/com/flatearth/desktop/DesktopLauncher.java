@@ -51,13 +51,19 @@ public class DesktopLauncher {
 	public static void soloPlay() {
 		MapDetails details = null;
 		try {
-			details = new MapDetails("map_polygons.pp");
+			details = new MapDetails("map.pp");
 		} catch (Exception e) {
 			e.printStackTrace();
 			Sys.exit("DeskptopLauncher: MapDetails failed");
 		}
 		// game state needs to know how many things are gonna be on screen. For now that's the beacon amt
-		GameState gs = new GameState(details.getBeacons().size());
+		int count = 0;
+		for(int i = 0; i < details.getBeacons().size(); i ++)
+		{
+			if(details.getBeacons().get(i).getProperties().get(0).type.equals("\"enemy\"") || details.getBeacons().get(i).getProperties().get(0).type.equals("\"player\""))
+				count ++;
+		}
+		GameState gs = new GameState(count);
 		
 		ArrayList<KeyboardState> kss = new ArrayList<KeyboardState>(); // has to be arraylist for logic thread
 		kss.add(new KeyboardState(s.clientId));
