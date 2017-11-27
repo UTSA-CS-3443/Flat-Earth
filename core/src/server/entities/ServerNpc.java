@@ -10,33 +10,42 @@ import server.skills.ServerShootFireBall;
 import server.skills.ServerSkill;
 import utilities.Sys;
 
-public class ServerNpc extends ServerCharacter {
+public abstract class ServerNpc extends ServerCharacter {
 
 	
 	private float lastAttack = 0;
+	protected float attackDistance;
 	
-	
-	public ServerNpc(ServerGameMap gameMap, Body body) {
-		super(gameMap, body);
-		this.skills[0] = new ServerShootFireBall(this, gameMap);
-		this.attackFrequency *= 1.3f;
+	public ServerNpc(ServerGameMap gameMap, Body body, CharacterType type) {
+		super(gameMap, body, type);
+		
 	}
 	
-	public void update(Vector2 vectors[], float delta) {
+	public void update(PositionAndType pts[], float delta, int selfPosition) {
+		
+		if(falling(delta))
+			return;
 		
 		float forceX = 0;
 		float forceY = 0;
 		int left = 0, right = 0, up = 0, down = 0;
 		/* Create vector for aggro target. */
-		Vector2 closest = vectors[0];
+		Vector2 closest = new Vector2(-1, -1); // dummy vector
 		/* Find closest aggro target by cycling through vectors[]. */
-		for(Vector2 target: vectors)
-			if ((Math.abs(target.x - this.body.getPosition().x) +
-				 Math.abs(target.y - this.body.getPosition().y) <
+		for(int i = 0; i < pts.length; i++) {
+			if (selfPosition == i || this.type == pts[i].type)
+				continue;
+			if ((Math.abs(pts[i].vector.x - this.body.getPosition().x) +
+				 Math.abs(pts[i].vector.y - this.body.getPosition().y) <
 				 Math.abs(closest.x - this.body.getPosition().x) +
 				 Math.abs(closest.y - this.body.getPosition().y)))
-				closest = target;
-
+				closest = pts[i].vector;
+		}
+		
+		if (closest.x == -1 && closest.y == -1) // basically, if there are no enemies
+			// wander();
+			return;
+		
 		float distance = (float) Math.sqrt(Math.pow((closest.x - this.body.getPosition().x), 2)
 								          -Math.pow((closest.y - this.body.getPosition().y), 2));
 
@@ -70,16 +79,14 @@ public class ServerNpc extends ServerCharacter {
 		this.lastAttack += delta;
 		
 		/* Attack distance check */
-		if (distance <= 2f)
+		if (distance <= this.attackDistance)
 			attack();
 
-		if (distance <= 15f &&
-				(Math.abs(this.body.getPosition().y - closest.y) <= 3f))
-				attack();
+		if (distance <= this.attackDistance && (Math.abs(this.body.getPosition().y - closest.y) <= 3f))
+			attack();
 		
-		if (distance <= 15f &&
-				(Math.abs(this.body.getPosition().x - closest.x) <= 3f))
-				attack();
+		if (distance <= this.attackDistance && (Math.abs(this.body.getPosition().x - closest.x) <= 3f))
+			attack();
 		
 		/* Modulated code for possible future implementation of a lower-end aggro threshold. */
 		if (distance <= 1f)
@@ -89,6 +96,8 @@ public class ServerNpc extends ServerCharacter {
 		if (this.movement) 
 			this.direction = DIRECTIONS[(-down + up)+1][(-left + right)+1];
 		//Sys.print("" + this.direction);
+		this.prevForceX = forceX;
+		this.prevForceY = forceY;
 		this.body.applyForceToCenter(forceX, forceY, true);
 	}
 	

@@ -453,6 +453,7 @@ public class MapDetails {
 				this.property = new Property(words[0]);
 			this.beacon.addProperty(this.property);
 		}
+		//Sys.print(this.property.toString());
 	}
 
 

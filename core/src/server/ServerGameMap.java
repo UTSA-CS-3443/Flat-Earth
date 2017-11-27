@@ -16,6 +16,9 @@ import server.entities.ServerArcher;
 import server.entities.ServerEntityManager;
 import server.entities.ServerKnight;
 import server.entities.ServerNpc;
+import server.entities.ServerNpcArcher;
+import server.entities.ServerNpcKnight;
+import server.entities.ServerNpcWizard;
 import server.entities.ServerSpawner;
 import server.entities.ServerWizard;
 import server.skills.ServerShootArrow;
@@ -74,8 +77,20 @@ public class ServerGameMap {
 			}
 		}
 		for(i = playerCount; i < details.getBeacons().size(); i++) { // will eventuall need to spawn the approriate type of npc, that will
-			// be set in the .pp file TODO
-			entityManager.add(ServerSpawner.spawnNpc(ServerNpc.class, beacons.get(i).getX()*details.SCALE, beacons.get(i).getY()*details.SCALE, this));
+			Beacon b = details.getBeacons().get(i);
+			if(b.getProperties().get(0).value == null) {
+				// this is to fix some bug with the way map details is parsing. gonna also be an archer client side
+				entityManager.add(ServerSpawner.spawnNpc(ServerNpcArcher.class, b.getX()*details.SCALE, b.getY()*details.SCALE, this));
+			} else if(b.getProperties().get(0).value.equals("\"knight\"")) {
+				entityManager.add(ServerSpawner.spawnNpc(ServerNpcKnight.class, b.getX()*details.SCALE, b.getY()*details.SCALE, this));
+			} else if(b.getProperties().get(0).value.equals("\"wizard\"")) {
+				entityManager.add(ServerSpawner.spawnNpc(ServerNpcWizard.class, b.getX()*details.SCALE, b.getY()*details.SCALE, this));
+			} else if(b.getProperties().get(0).value.equals("\"archer\"")) {
+				entityManager.add(ServerSpawner.spawnNpc(ServerNpcArcher.class, b.getX()*details.SCALE, b.getY()*details.SCALE, this));
+			} else {
+				// this is to fix some bug with the way map details is parsing. gonna also be an archer client side
+				entityManager.add(ServerSpawner.spawnNpc(ServerNpcArcher.class, b.getX()*details.SCALE, b.getY()*details.SCALE, this));
+			}
 		}
 		// TODO now initialize polygons]
 		for (PolygonBody pb : details.getPolygonBodies()) {

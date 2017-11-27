@@ -3,9 +3,13 @@ package client;
 import communicators.serverToClient.CharacterState;
 import communicators.serverToClient.GameState;
 import communicators.serverToClient.SkillState;
+import server.entities.ServerNpcArcher;
+import server.entities.ServerNpcKnight;
+import server.entities.ServerNpcWizard;
 import server.entities.ServerSpawner;
 import utilities.Sys;
 import utilities.Settings;
+import utilities.ParseMap.Beacon;
 import utilities.ParseMap.MapDetails;
 import utilities.ParseMap.PolygonBody;
 import client.entities.ClientArcher;
@@ -86,7 +90,21 @@ public class ClientGameMap {
 			}
 		}
 		for (int i = settings.playerCount; i < details.getBeacons().size(); i++) { // TODO spawning wizards for now, needs to be specific npcs later
-				entityManager.add(ClientSpawner.spawn(ClientNpc.class, details.getBeacons().get(i).getX()*details.SCALE, details.getBeacons().get(i).getY()*details.SCALE));
+				//entityManager.add(ClientSpawner.spawn(ClientNpc.class, details.getBeacons().get(i).getX()*details.SCALE, details.getBeacons().get(i).getY()*details.SCALE));
+			Beacon b = details.getBeacons().get(i);
+			if(b.getProperties().get(0).value == null) {
+				// this is to fix some bug with the way map details is parsing. gonna also be an archer server side
+				entityManager.add(ClientSpawner.spawn(ClientArcher.class, b.getX()*details.SCALE, b.getY()*details.SCALE));
+			} else if(b.getProperties().get(0).value.equals("\"knight\"")) {
+				entityManager.add(ClientSpawner.spawn(ClientKnight.class, b.getX()*details.SCALE, b.getY()*details.SCALE));
+			} else if(b.getProperties().get(0).value.equals("\"wizard\"")) {
+				entityManager.add(ClientSpawner.spawn(ClientWizard.class, b.getX()*details.SCALE, b.getY()*details.SCALE));
+			} else if(b.getProperties().get(0).value.equals("\"archer\"")) {
+				entityManager.add(ClientSpawner.spawn(ClientArcher.class, b.getX()*details.SCALE, b.getY()*details.SCALE));
+			} else {
+				// this is to fix some bug with the way map details is parsing. gonna also be an archer server side
+				entityManager.add(ClientSpawner.spawn(ClientArcher.class, b.getX()*details.SCALE, b.getY()*details.SCALE));
+			}
 		}
 		
 		// spanw the polygons, for debugging

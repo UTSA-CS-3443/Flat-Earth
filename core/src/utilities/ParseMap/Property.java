@@ -5,8 +5,8 @@ package utilities.ParseMap;
  * @author rajkumar
  */
 public class Property {
-    private String type;
-    private String value;
+    public String type;
+    public String value;
 
     public Property(String type, String value)
     {
@@ -18,4 +18,9 @@ public class Property {
     {
         this.type = type;
     }
+    
+    public String toString () {
+    	return type + "|" + value;
+    }
+    
 }

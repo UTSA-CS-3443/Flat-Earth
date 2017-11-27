@@ -58,7 +58,12 @@ public class ServerSpawner
 				new Vector2(-size/2,size/3),
 				new Vector2((-size/3)/2,size));
 		
-		player = new ServerNpc(gameMap, body);
+		if(type == ServerNpcKnight.class)
+			player = new ServerNpcKnight(gameMap, body);
+		else if(type == ServerNpcWizard.class)
+			player = new ServerNpcWizard(gameMap, body);
+		else if(type == ServerNpcArcher.class)
+			player = new ServerNpcArcher(gameMap, body);
 		
 		body.setUserData(type.cast(player));
 

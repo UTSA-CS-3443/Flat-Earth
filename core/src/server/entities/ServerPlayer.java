@@ -14,32 +14,17 @@ import utilities.Sys;
 public class ServerPlayer extends ServerCharacter {
 	
 	private float lastAttack = 0;
+
 	
-	protected boolean fallingBefore = false;
-	protected float fallTimer;
-	protected float fallTime = .8f;
-	
-	public ServerPlayer(ServerGameMap gameMap, Body body) {
-		super(gameMap, body);
+	public ServerPlayer(ServerGameMap gameMap, Body body, CharacterType type) {
+		super(gameMap, body, type);
 		this.direction = 270; // direction to start off should be looking down
 	}
 	
 	public void update(KeysPressed pressed, float delta) {
 		
-//		if (this.trigger == ActionTrigger.FALLING) {
-//			if(!this.fallingBefore) {
-//				this.fallingBefore = true;
-//				this.fallTimer = 0;
-//			}
-//			this.fallTimer += delta;
-//			if (this.fallTimer > this.fallTime) {
-//				this.trigger = ActionTrigger.NORMAL;
-//				this.body.getPosition().x = this.initialX;
-//				this.body.getPosition().y = this.initialY;
-//				this.fallingBefore = false;
-//			}
-//			return;
-//		}
+		if (falling(delta))
+			return;
 		
 		float forceX = (pressed.left * -FORCE_CONSTANT) + (pressed.right *FORCE_CONSTANT);
 		float forceY = (pressed.up * FORCE_CONSTANT) + (pressed.down * -FORCE_CONSTANT);
@@ -65,7 +50,8 @@ public class ServerPlayer extends ServerCharacter {
 			this.lastAttack = 0;
 		}
 
-
+		this.prevForceX = forceX;
+		this.prevForceY = forceY;
 		this.body.applyForceToCenter(forceX, forceY, true);
 	}
 	

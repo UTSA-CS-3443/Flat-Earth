@@ -50,22 +50,28 @@ public class ServerEntityManager {
 	public void updateAll(KeysPressed pressed[], float delta) {
 		
 		int i;
-		//Sys.print("sshahahah" + pressed.length);
-		Vector2 v[] = new Vector2[pressed.length];
+		PositionAndType pts[] = new PositionAndType[characters.size()];
 		
+		// update the players and get their positions
 		for (i = 0; i < pressed.length; i++) {
 			ServerCharacter c = characters.get(i);
 			((ServerPlayer)c).update(pressed[i], delta);
-			v[i] = c.getPosition();
-			//Sys.print(v[i].toString());
+			pts[i] = c.getPositionAndType();
 		}
 		
+		// get the positions of the npcs
+		for(i = pressed.length; i < characters.size(); i++)
+			pts[i] = characters.get(i).getPositionAndType();
+			
+		// update the npcs
 		for (i = pressed.length; i < characters.size(); i++)
-			((ServerNpc)characters.get(i)).update(v, delta);
-
+			((ServerNpc)characters.get(i)).update(pts, delta, i);
+		
+		// update the skills
 		for(i = 0; i < updateables.size; i++)
 			updateables.get(i).update(delta);
-
+		
+		// get rid of dead skills
 		for(i = 0; i < bodiesToDestroy.size; i++)
 			this.gameMap.getWorld().destroyBody(bodiesToDestroy.get(i));
 		bodiesToDestroy.clear();

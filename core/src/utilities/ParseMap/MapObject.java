@@ -15,4 +15,8 @@ public abstract class MapObject
         this.properties.add(property);
     }
 
+    public ArrayList<Property> getProperties() {
+    	return this.properties;
+    }
+    
 }

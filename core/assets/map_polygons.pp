@@ -327,16 +327,79 @@ coordinates 163.0 154.99997
 
 <beacon>
 coordinates 468.0 138.99997
-"enemy" "knight"
+"npc" "knight"
 </beacon>
 
 <beacon>
 coordinates 487.0 381.0
-"enemy" "archer"
+"npc" "archer"
 </beacon>
 
 <beacon>
 coordinates 261.0 460.99997
-"enemy" "wizard"
+"npc" "knight"
 </beacon>
+
+<beacon>
+coordinates 215.0 154.99997
+"npc" "archer" 
+</beacon>
+
+<beacon>
+coordinates 163.0 200.99997
+"npc" "wizard"
+</beacon>
+
+<beacon>
+coordinates 468.0 170.99997
+"npc" "wizard"
+</beacon>
+
+<beacon>
+coordinates 487.0 400.0
+"npc" "archer"
+</beacon>
+
+<beacon>
+coordinates 280.0 280.99997
+"npc" "knight" 
+</beacon>
+
+<beacon>
+coordinates 300.0 325.99997
+"npc" "archer" 
+</beacon>
+
+<beacon>
+coordinates 240.0 350.99997
+"npc" "wizard" 
+</beacon>
+
+<beacon>
+coordinates 280.0 280.99997
+"npc" "wizard" 
+</beacon>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

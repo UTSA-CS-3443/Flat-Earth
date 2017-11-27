@@ -8,6 +8,7 @@ import client.skills.ClientHealthBars;
 import communicators.ActionTrigger;
 import communicators.serverToClient.CharacterState;
 import utilities.Sys;
+import utilities.ParseMap.MapDetails;
 
 
 public class ClientCharacter implements Comparable<ClientCharacter>
@@ -37,14 +38,25 @@ public class ClientCharacter implements Comparable<ClientCharacter>
 	// this is for the attacking phase
 	protected float prevFrameIndex = 0;
 	
+	// this is for the falling animations
+	protected float directionDelta = 0f;
+	protected float spinningDegrees = 0f;
+	protected float fallingScale = 0f;
+	
+	protected float ogSpriteWidth;
+	protected float ogSpriteHeight;
+	
 	
 	protected ClientCharacter(CharacterType type)
 	{
 		this.direction = Direction.SOUTH; // Default
 		this.type = type;
 		this.frameIndex = 0;	
+		this.ogSpriteWidth = getStandFrame().getWidth();
+		this.ogSpriteHeight = getStandFrame().getHeight();
 	}
 	
+	// gotta clean this up. finite state machine this shit
 	public void update(float delta, CharacterState cs)
 	{
 		float frameThreshold = .05f; // for animations
@@ -57,14 +69,39 @@ public class ClientCharacter implements Comparable<ClientCharacter>
 		// this is where those finite state machines come into play
 		// should probably implement that
 		
-		if (this.trigger == ActionTrigger.NORMAL && cs.trigger == ActionTrigger.ATTACKING) {
+		/*********************falling phase**********************************************/
+		if (this.trigger == ActionTrigger.FALLING && cs.trigger != ActionTrigger.FALLING) { // stop falling
+			this.trigger = cs.trigger;
+		}
+		
+		if (this.trigger == ActionTrigger.FALLING) { // continue falling
+			directionDelta += 10f;
+			this.spinningDegrees += directionDelta;
+			if (this.spinningDegrees >= 345) {
+				this.spinningDegrees = 0;
+				this.directionDelta = 0f;
+			}
+			this.degrees = this.spinningDegrees;
+			this.fallingScale = (fallingScale >= 1) ? .99f : fallingScale + .01f;
+		}
+		
+		if (this.trigger != ActionTrigger.FALLING && cs.trigger == ActionTrigger.FALLING) { // start falling
+			this.trigger = ActionTrigger.FALLING;
+			directionDelta = 0f;
+			this.spinningDegrees = 0f;
+			this.fallingScale = 0f;
+		}
+		
+		
+		/*********************attacking phase *******************************************************/
+		if (this.trigger == ActionTrigger.NORMAL && cs.trigger == ActionTrigger.ATTACKING) { // start attacking
 			this.frameIndex = 0;
 			this.prevFrameIndex = 0;
 			this.trigger = ActionTrigger.ATTACKING;
 		}
 		
 		if (this.trigger == ActionTrigger.ATTACKING) {
-			if (this.prevFrameIndex != 0 && this.frameIndex == 0) { //reset attacking phase shit
+			if (this.prevFrameIndex != 0 && this.frameIndex == 0) { //reset attacking phase
 				this.trigger = ActionTrigger.NORMAL;
 			} else {
 				frameThreshold = .1f; // gotta move the attacking animations a little slower
@@ -84,7 +121,6 @@ public class ClientCharacter implements Comparable<ClientCharacter>
 			frameIndex = 0;
 		}
 		
-				
 		updateDirection();
 	}
 	
@@ -101,13 +137,19 @@ public class ClientCharacter implements Comparable<ClientCharacter>
 		//if attacking
 		//return getAttackFrame();
 		Sprite s = null;
-		if (this.trigger == ActionTrigger.ATTACKING)
+		float scale = 0;;
+		if (this.trigger == ActionTrigger.FALLING) {
+			s = getStandFrame();
+			scale -= fallingScale;
+		} else if (this.trigger == ActionTrigger.ATTACKING)
 			s = getAttackFrame();
 		else if(!this.charMovement)
 			s = getStandFrame();
 		else
 			s = getWalkFrame(); 
 		s.setPosition(this.x - s.getWidth() / 2, this.y);
+		// hard coded the 1 cause time
+		s.setSize(1 + scale, 1 + scale);
 		return s;
 	}
 	
