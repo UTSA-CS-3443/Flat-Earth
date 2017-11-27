@@ -23,6 +23,9 @@ public class ServerPlayer extends ServerCharacter {
 	
 	public void update(KeysPressed pressed, float delta) {
 		
+		if(dead(delta))
+			return;
+		
 		if (falling(delta))
 			return;
 		

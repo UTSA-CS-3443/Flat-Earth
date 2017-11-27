@@ -74,11 +74,10 @@ public class DesktopLauncher {
 	public static void printMessages() {
 		Sys.print("------");
 		Sys.print("Currently not getting map from the map atlas. Check ClientgameMap.java");
-		Sys.print("Have to set the map to the right placement");
 		Sys.print("ServerGameMap, took out the while loop that nobody knows how it works or what it does but we should put it back. it was messing things up though");
-		Sys.print("Some spawn points are off the map, most likely a problem with the map maker");
 		Sys.print("Eventually get rid of console prints and exits");
 		Sys.print("gotta get rid of the sleep in logic.java");
+		Sys.print("the weird jump when falling off is in serverCharacter, it's commented");
 		Sys.print("------");
 	}
 	

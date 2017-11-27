@@ -23,6 +23,9 @@ public abstract class ServerNpc extends ServerCharacter {
 	
 	public void update(PositionAndType pts[], float delta, int selfPosition) {
 		
+		if(dead(delta))
+			return;
+		
 		if(falling(delta))
 			return;
 		

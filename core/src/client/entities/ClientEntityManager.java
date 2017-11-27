@@ -3,6 +3,7 @@ package client.entities;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import client.skills.ClientArrow;
@@ -10,6 +11,7 @@ import client.skills.ClientFireBall;
 import client.skills.ClientHealthBars;
 import client.skills.ClientSkill;
 import client.skills.ClientSlash;
+import communicators.ActionTrigger;
 import communicators.serverToClient.CharacterState;
 import communicators.serverToClient.SkillState;
 import server.skills.SkillType;
@@ -22,12 +24,14 @@ public class ClientEntityManager {
 	
 	private ArrayList<ClientSkill> skills;
 	
+	private float flameCounter = 0f;
 	
 	public ClientEntityManager() {
 		charactersUpdateOrder = new ArrayList<ClientCharacter>();
 		charactersYOrder = new ArrayList<ClientCharacter>();
 		skills = new ArrayList<ClientSkill>();
 		ClientHealthBars.initialize();
+		DeadFlameAnimation.initialize();
 	}
 	
 	public void add (ClientCharacter character) {
@@ -50,6 +54,14 @@ public class ClientEntityManager {
 		
 		for (ClientCharacter c : charactersYOrder) {
 			c.getFrame().draw(batch);
+			if (c.trigger == ActionTrigger.DEAD) {
+				Sprite s = DeadFlameAnimation.getFlame((int)flameCounter);
+				s.setPosition(c.x - c.getFrame().getWidth()/2, c.y);
+				s.draw(batch);
+				flameCounter += .18f;
+				if (flameCounter >= 100f)
+					flameCounter = 0f;
+			}
 			c.getHealthBar().draw(batch);
 		}
 		

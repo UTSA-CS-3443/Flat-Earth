@@ -31,7 +31,7 @@ public class ServerSlash extends PerformableSkill {
         this.yInitial = this.position.y;
         this.category = ServerSpawner.ATTACK_PHYSICS;
         this.mask = ServerSpawner.BOUNDING_BODY_PHYSICS | ServerSpawner.FOOT_PHYSICS;
-        this.power = 15;
+        this.power = 6;
 	}
 
 	@Override

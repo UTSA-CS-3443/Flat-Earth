@@ -41,7 +41,7 @@ public class ServerShootArrow extends PerformableSkill
         this.mask = ServerSpawner.BOUNDING_BODY_PHYSICS | ServerSpawner.FOOT_PHYSICS;
         this.distanceCovered = 0;
         this.done = false;
-        this.power = 10;
+        this.power = 4;
     }
 
     @Override

@@ -39,7 +39,7 @@ public class ServerShootFireBall extends PerformableSkill
         this.yInitial = this.position.y;
         this.distanceCovered = 0;
         this.done = false;
-        this.power = 8;
+        this.power = 4;
     }
 
     @Override

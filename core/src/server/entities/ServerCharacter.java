@@ -42,6 +42,10 @@ public abstract class ServerCharacter implements PosAndDir {
 	protected float prevForceX;
 	protected float prevForceY;
 	
+	protected boolean deadBefore = false;
+	protected float deadTimer;
+	protected float deadTime = 10f;
+	
 	// this is not the one in the client package
 	// this is used in the npcs ai whatever, so you only attack different types
 	protected CharacterType type;
@@ -76,14 +80,37 @@ public abstract class ServerCharacter implements PosAndDir {
 			if(!this.fallingBefore) {
 				this.fallingBefore = true;
 				this.fallTimer = 0;
-				this.body.setTransform(this.body.getPosition().x + this.prevForceX*30, this.body.getPosition().y + this.prevForceY*30, this.direction);
+				// hardcoded for now, this is what makes that weird jump, since the body's of the holes are touching
+				this.body.setTransform(this.body.getPosition().x + this.prevForceX*10, this.body.getPosition().y + this.prevForceY*10, this.direction);
 			}
 			this.fallTimer += delta;
 			if (this.fallTimer > this.fallTime) {
 				this.trigger = ActionTrigger.NORMAL;
-				//this.body.getPosition().set(initialX, initialY);
 				this.body.setTransform(initialX, initialY, 315);
 				this.fallingBefore = false;
+			} else 
+				return true;
+		}
+		return false;
+	}
+	
+	// copied and pasted the falling code
+	public boolean dead(float delta) {
+		
+		if (this.health <= 0)
+			this.trigger = ActionTrigger.DEAD;
+		
+		if (this.trigger == ActionTrigger.DEAD) {
+			if(!this.deadBefore) {
+				this.deadBefore = true;
+				this.deadTimer = 0;
+			}
+			this.deadTimer += delta;
+			if (this.deadTimer > this.deadTime) {
+				this.trigger = ActionTrigger.NORMAL;
+				this.body.setTransform(initialX, initialY, 315);
+				this.deadBefore = false;
+				this.health = 100;
 			} else 
 				return true;
 		}

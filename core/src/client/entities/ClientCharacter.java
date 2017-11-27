@@ -56,7 +56,7 @@ public class ClientCharacter implements Comparable<ClientCharacter>
 		this.ogSpriteHeight = getStandFrame().getHeight();
 	}
 	
-	// gotta clean this up. finite state machine this shit
+	// gotta clean this up. finite state machine. really hard coded and messy
 	public void update(float delta, CharacterState cs)
 	{
 		float frameThreshold = .05f; // for animations
@@ -121,6 +121,8 @@ public class ClientCharacter implements Comparable<ClientCharacter>
 			frameIndex = 0;
 		}
 		
+		this.trigger = cs.trigger;
+		
 		updateDirection();
 	}
 	
@@ -137,7 +139,7 @@ public class ClientCharacter implements Comparable<ClientCharacter>
 		//if attacking
 		//return getAttackFrame();
 		Sprite s = null;
-		float scale = 0;;
+		float scale = 0;
 		if (this.trigger == ActionTrigger.FALLING) {
 			s = getStandFrame();
 			scale -= fallingScale;
