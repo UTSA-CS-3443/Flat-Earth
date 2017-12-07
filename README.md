@@ -1,6 +1,6 @@
 # Flat-Earth
 
-### Configuring and running on eclipse:
+### Configuring and running on eclipse
 
 -Open FlatEarth file tree
 right click build.gradle
