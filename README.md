@@ -2,12 +2,12 @@
 
 ### Configuring and running on eclipse:
 
--Open FlatEarth file tree
+--Open FlatEarth file tree
 right click build.gradle
 gradle > refresh gradle project (you need Internet access for this)
 should start downloading dependencies, let it finish
 -----------------------	
--Click Run menu option at the top
+--Click Run menu option at the top
 run > run configurations 
 in the window, select the "arguments" tab
 in working directory section, click workspace
