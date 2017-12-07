@@ -4,12 +4,10 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 
 import communicators.serverToClient.SkillState;
 import server.skills.SkillType;
-import utilities.Sys;
 
 public class ClientArrow extends ClientSkill {
 
 	Sprite sprite;
-	private boolean rotated = false;
 	
 	public ClientArrow(float x, float y, float direction) {
 		super(x, y, direction, SkillType.ARROW);

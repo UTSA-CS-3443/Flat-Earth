@@ -7,7 +7,6 @@ import communicators.ActionTrigger;
 import communicators.serverToClient.CharacterState;
 import server.ServerGameMap;
 import server.skills.ServerSkill;
-import utilities.Sys;
 
 
 public abstract class ServerCharacter implements PosAndDir {
@@ -38,13 +37,13 @@ public abstract class ServerCharacter implements PosAndDir {
 	
 	protected boolean fallingBefore = false;
 	protected float fallTimer;
-	protected float fallTime = 10f;
+	protected float fallTime = 800f;
 	protected float prevForceX;
 	protected float prevForceY;
 	
 	protected boolean deadBefore = false;
 	protected float deadTimer;
-	protected float deadTime = 10f;
+	protected float deadTime = 800f;
 	
 	// this is not the one in the client package
 	// this is used in the npcs ai whatever, so you only attack different types

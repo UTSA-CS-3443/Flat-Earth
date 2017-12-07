@@ -6,9 +6,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 import communicators.ActionTrigger;
 import communicators.serverToClient.CharacterState;
 import server.ServerGameMap;
-import server.skills.ServerShootFireBall;
 import server.skills.ServerSkill;
-import utilities.Sys;
 
 public abstract class ServerNpc extends ServerCharacter {
 
@@ -92,8 +90,8 @@ public abstract class ServerNpc extends ServerCharacter {
 			attack();
 		
 		/* Modulated code for possible future implementation of a lower-end aggro threshold. */
-		if (distance <= 1f)
-			forceX = forceY = 0;
+		//if (distance <= 1f)
+		//	forceX = forceY = 0;
 
 		this.movement = !(forceX == 0 && forceY == 0);
 		if (this.movement) 

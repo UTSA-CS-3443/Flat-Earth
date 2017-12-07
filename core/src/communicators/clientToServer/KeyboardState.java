@@ -3,7 +3,6 @@ package communicators.clientToServer;
 //obviously not optimized, just want to get something working
 // maybe just send key codes
 
-import utilities.Sys;
 
 /**
  * holds the state of the keyboard
@@ -32,7 +31,7 @@ public class KeyboardState {
 	
 	// probably only get's used in multiplayer, so the recieveing thread/listener knows
 	// who's sending what
-	private int id;
+	public int id;
 	
 	// TODO these might be getting serialized as well, don't send these
 	// as in put them in a seperate file or something
@@ -53,6 +52,9 @@ public class KeyboardState {
 	public KeyboardState(int id) {
 		this.bitField = 0;
 		this.id = id;
+	}
+	
+	public KeyboardState() { // for kryonet, it needs a zero argument constructor
 	}
 	
 	// presses

@@ -1,7 +1,6 @@
 package client.entities;
 
 import client.Game;
-import utilities.Sys;
 import utilities.ParseMap.MapDetails;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;

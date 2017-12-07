@@ -2,7 +2,6 @@ package communicators.serverToClient;
 
 import java.util.ArrayList;
 
-import utilities.Sys;
 
 /**
  * this class is set by the Controller/logic handler
@@ -22,6 +21,9 @@ public class GameState {
 		states = new ArrayList<CharacterState>();
 		for (int i = 0; i < amt; i++)
 			states.add(new CharacterState());
+	}
+	
+	public GameState() {// for kryonet, it needs a zero argument constructor
 	}
 	
 	
@@ -56,6 +58,12 @@ public class GameState {
 
 	public synchronized SkillState[] getSkillStates() {
 		return this.skillStates;
+	}
+
+
+	public void update(GameState gs) {
+		this.setStates(gs.getCharacterStates());
+		this.setSkillStates(gs.skillStates);
 	}
 	
 }

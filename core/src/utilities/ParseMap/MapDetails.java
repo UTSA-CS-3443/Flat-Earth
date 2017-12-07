@@ -337,11 +337,9 @@
 //	
 package utilities.ParseMap;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 
-import utilities.Sys;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -363,6 +361,7 @@ public class MapDetails {
 	// what is this
 	private boolean isPolygon;
 	private boolean isBeacon;
+	//private boolean isSprite;
 	/****/
 	private Sprite mapSprite; // it'd be nice to do all io in here
 
@@ -377,7 +376,7 @@ public class MapDetails {
 
 	private Vector2 vector;
 	private Property property;
-
+	
 	public MapDetails(String fileName) throws IOException, ParseException {
 		//this.mapSprite = new Sprite(new Texture(mapName+".png"));
 		String line;
@@ -388,9 +387,11 @@ public class MapDetails {
 		this.mapName = line;
 
 		while ((line = brd.readLine()) != null) {
+		
 			if (line.equals("<polygon>")) {
 				this.isPolygon = true;
 				this.isBeacon = false;
+			//	this.isSprite = false;
 				this.polygonBody = new PolygonBody();
 				continue;
 			} else if (line.equals("</polygon>")) {
@@ -400,18 +401,31 @@ public class MapDetails {
 			} else if (line.equals("<beacon>")) {
 				this.isBeacon = true;
 				this.isPolygon = false;
+			//	this.isSprite = false;
 				this.beacon = new Beacon();
 				continue;
 			} else if (line.equals("</beacon>")) {
 				this.isBeacon = false;
 				this.beacons.add(this.beacon);
-				continue;
-			}
+				continue; }
+//			} else if (line.equals("<sprite>")) {
+//				this.isSprite = true;
+//				this.isPolygon = false;
+//				this.isBeacon = false;
+//				this.beacon = new Beacon();
+//				continue;
+//			} else if (line.equals("</sprite>")) {
+//				this.isSprite = false;
+//				this.beacons.add(this.beacon);
+//				continue;
+//			} 
 
 			if (this.isPolygon)
 				createPolygonProperties(line);
 			else if (this.isBeacon)
 				createBeaconProperties(line);
+//			else if(this.isSprite)
+//				createSpriteProperties(line);
 		}
 		brd.close();
 		frd.close();
@@ -449,11 +463,17 @@ public class MapDetails {
 		} else {
 			if (words.length > 1)
 				this.property = new Property(words[0], words[1]);
-			else
+			else {
 				this.property = new Property(words[0]);
+			}
 			this.beacon.addProperty(this.property);
 		}
 		//Sys.print(this.property.toString());
+	}
+	
+	
+	public final void createSpriteProperties(String line) {
+		
 	}
 
 

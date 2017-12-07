@@ -3,7 +3,6 @@ package server.skills;
 import communicators.serverToClient.SkillState;
 import server.entities.PosAndDir;
 import server.entities.ServerCharacter;
-import server.entities.ServerPlayer;
 
 public abstract class ServerSkill
 {

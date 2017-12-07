@@ -2,8 +2,6 @@ package utilities.ParseMap;
 
 import com.badlogic.gdx.math.Vector2;
 
-import communicators.serverToClient.CharacterState;
-
 import java.util.ArrayList;
 
 /**

@@ -4,7 +4,6 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Input.Keys;
 
 import communicators.clientToServer.KeyboardState;
-import utilities.Sys;
 
 /**
  * This implements and event based interface (libgdx's). instantiated in Game(). 

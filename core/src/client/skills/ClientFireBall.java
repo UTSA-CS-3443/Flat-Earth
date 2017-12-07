@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 
 import communicators.serverToClient.SkillState;
 import server.skills.SkillType;
-import utilities.Sys;
+
 
 public class ClientFireBall extends ClientSkill {
 

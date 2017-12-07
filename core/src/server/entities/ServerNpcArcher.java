@@ -10,7 +10,7 @@ public class ServerNpcArcher extends ServerNpc {
 	public ServerNpcArcher(ServerGameMap gameMap, Body body) {
 		super(gameMap, body, CharacterType.ARCHER);
 		this.skills[0] = new ServerShootArrow(this, gameMap);
-		this.attackFrequency *= 1.3f;
+		this.attackFrequency *= 120f;
 		this.attackDistance = 15f;
 	}
 

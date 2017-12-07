@@ -3,9 +3,7 @@ package client;
 import communicators.serverToClient.CharacterState;
 import communicators.serverToClient.GameState;
 import communicators.serverToClient.SkillState;
-import server.entities.ServerNpcArcher;
-import server.entities.ServerNpcKnight;
-import server.entities.ServerNpcWizard;
+
 import server.entities.ServerSpawner;
 import utilities.Sys;
 import utilities.Settings;
@@ -21,7 +19,6 @@ import client.entities.ClientNpc;
 import client.entities.ClientSpawner;
 import client.entities.ClientWizard;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -61,6 +58,10 @@ public class ClientGameMap {
 	
 	// needs to get all the details from the mapdetails
 	public void initialize(Settings settings) {
+		
+		int npcSpawnCount = 0;
+		Beacon b;
+		
 		//Exit.exit("GameMap.java: figure out ");
 		//this.mapSprite = new Sprite(Game.atlas.findRegion(details.mapName));
 		this.mapSprite = new Sprite(new Texture(details.mapName));
@@ -72,13 +73,13 @@ public class ClientGameMap {
 		// for the orthographic camera
 		switch(settings.characterType) {
 		case 0:
-			this.player = ClientSpawner.spawn(ClientKnight.class, details.getBeacons().get(settings.clientId).getX()*details.SCALE, details.getBeacons().get(settings.clientId).getY()*details.SCALE);
+			this.player = ClientSpawner.spawn(ClientKnight.class, details.getBeacons().get(settings.clientId).getX()*MapDetails.SCALE, details.getBeacons().get(settings.clientId).getY()*MapDetails.SCALE);
 			break;
 		case 1:
-			this.player = ClientSpawner.spawn(ClientArcher.class, details.getBeacons().get(settings.clientId).getX()*details.SCALE, details.getBeacons().get(settings.clientId).getY()*details.SCALE);
+			this.player = ClientSpawner.spawn(ClientArcher.class, details.getBeacons().get(settings.clientId).getX()*MapDetails.SCALE, details.getBeacons().get(settings.clientId).getY()*MapDetails.SCALE);
 			break;
 		case 2:
-			this.player = ClientSpawner.spawn(ClientWizard.class, details.getBeacons().get(settings.clientId).getX()*details.SCALE, details.getBeacons().get(settings.clientId).getY()*details.SCALE);
+			this.player = ClientSpawner.spawn(ClientWizard.class, details.getBeacons().get(settings.clientId).getX()*MapDetails.SCALE, details.getBeacons().get(settings.clientId).getY()*MapDetails.SCALE);
 			break;
 		}
 		// spawn the players
@@ -86,25 +87,19 @@ public class ClientGameMap {
 			if (i == settings.clientId) {
 				entityManager.add(this.player);
 			} else { // just spawning wizards for now, but will eventaully have to be what the players are (should be sent over the server, in the settings object)
-				entityManager.add(ClientSpawner.spawn(ClientNpc.class, details.getBeacons().get(i).getX()*details.SCALE, details.getBeacons().get(i).getY()*details.SCALE));
+				entityManager.add(ClientSpawner.spawn(ClientNpc.class, details.getBeacons().get(i).getX()*MapDetails.SCALE, details.getBeacons().get(i).getY()*MapDetails.SCALE));
 			}
 		}
 		for (int i = settings.playerCount; i < details.getBeacons().size(); i++) { // TODO spawning wizards for now, needs to be specific npcs later
 				//entityManager.add(ClientSpawner.spawn(ClientNpc.class, details.getBeacons().get(i).getX()*details.SCALE, details.getBeacons().get(i).getY()*details.SCALE));
-			Beacon b = details.getBeacons().get(i);
-			if(b.getProperties().get(0).value == null) {
-				// this is to fix some bug with the way map details is parsing. gonna also be an archer server side
-				entityManager.add(ClientSpawner.spawn(ClientArcher.class, b.getX()*details.SCALE, b.getY()*details.SCALE));
-			} else if(b.getProperties().get(0).value.equals("\"knight\"")) {
-				entityManager.add(ClientSpawner.spawn(ClientKnight.class, b.getX()*details.SCALE, b.getY()*details.SCALE));
-			} else if(b.getProperties().get(0).value.equals("\"wizard\"")) {
-				entityManager.add(ClientSpawner.spawn(ClientWizard.class, b.getX()*details.SCALE, b.getY()*details.SCALE));
-			} else if(b.getProperties().get(0).value.equals("\"archer\"")) {
-				entityManager.add(ClientSpawner.spawn(ClientArcher.class, b.getX()*details.SCALE, b.getY()*details.SCALE));
-			} else {
-				// this is to fix some bug with the way map details is parsing. gonna also be an archer server side
-				entityManager.add(ClientSpawner.spawn(ClientArcher.class, b.getX()*details.SCALE, b.getY()*details.SCALE));
-			}
+			b = details.getBeacons().get(i);
+			if(npcSpawnCount % 3 == 0)
+				entityManager.add(ClientSpawner.spawn(ClientKnight.class, b.getX()*MapDetails.SCALE, b.getY()*MapDetails.SCALE));
+			else if(npcSpawnCount % 3 == 1) 
+				entityManager.add(ClientSpawner.spawn(ClientWizard.class, b.getX()*MapDetails.SCALE, b.getY()*MapDetails.SCALE));
+			else if(npcSpawnCount % 3 == 2) 
+				entityManager.add(ClientSpawner.spawn(ClientArcher.class, b.getX()*MapDetails.SCALE, b.getY()*MapDetails.SCALE));
+			npcSpawnCount++;
 		}
 		
 		// spanw the polygons, for debugging

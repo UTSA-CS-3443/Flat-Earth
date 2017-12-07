@@ -2,18 +2,13 @@ package startGui;
 
 import java.net.URL;
 
-import com.flatearth.desktop.DesktopLauncher;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.fxml.FXML;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import utilities.Sys;
 
 /**
  * 

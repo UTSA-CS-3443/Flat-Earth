@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import communicators.clientToServer.KeyboardState;
 import communicators.clientToServer.KeysPressed;
 import communicators.serverToClient.GameState;
-import utilities.Sys;
 import utilities.Settings;
 import utilities.ParseMap.MapDetails;
 
@@ -47,10 +46,10 @@ public class Logic implements Runnable {
 	public void run() {
 		
 		KeysPressed pressed[] = new KeysPressed[this.playerCount];
-		float currentTime, lastTime = System.currentTimeMillis();
+		float currentTime = System.nanoTime(), lastTime = System.nanoTime();
 		
 		while(!Thread.currentThread().isInterrupted()) {
-			Sys.sleep(1, "Logic.java: sleep error");
+			//Sys.sleep(1, "Logic.java: sleep error");
 			// get keys pressed TODO maybe lock the objects, otherwise this will 
 			// be inefficient cause of having to wait for all of the keyboard states. 
 			// either that or make a wrapper class that holds the array and lock that
@@ -60,13 +59,12 @@ public class Logic implements Runnable {
 				pressed[i] = this.kss.get(i).getKeysPressed();
 				//Sys.print(pressed[i].toString() + " at " + i);
 			}
-			// get the delta time
-			currentTime = System.currentTimeMillis();
-			float deltaTime = currentTime - lastTime;
 			lastTime = currentTime;
-			
+			currentTime = System.nanoTime();
+			//Sys.print("" + (currentTime - lastTime));
+			//Sys.print("" + currentTime + " -- " + lastTime);
 			//update everything
-			map.update(pressed, .01f); // delta time for now
+			map.update(pressed, (currentTime - lastTime) / 1000000); // delta time for now
 			
 			//wrtie to gamestate
 			this.gs.setStates(map.getEntityManager().getCharacterStates());

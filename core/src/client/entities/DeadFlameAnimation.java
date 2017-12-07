@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
-import utilities.Sys;
+
 import utilities.ParseMap.MapDetails;
 
 public class DeadFlameAnimation {

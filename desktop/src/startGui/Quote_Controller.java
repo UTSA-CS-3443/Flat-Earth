@@ -1,12 +1,9 @@
 package startGui;
 
 import javafx.animation.FadeTransition;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.net.URL;

@@ -5,11 +5,8 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.util.Duration;
 
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class MultiPlayer_Controller implements EventHandler {
 

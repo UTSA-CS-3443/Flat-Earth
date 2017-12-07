@@ -2,19 +2,16 @@ package server.entities;
 
 import java.util.ArrayList;
 
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 
 import com.badlogic.gdx.utils.Array;
 
-import communicators.ActionTrigger;
 import communicators.clientToServer.KeysPressed;
 import communicators.serverToClient.CharacterState;
 import communicators.serverToClient.SkillState;
 import server.ServerGameMap;
 import server.Updateable;
 import server.skills.ServerSkill;
-import utilities.Sys;
 
 public class ServerEntityManager {
 

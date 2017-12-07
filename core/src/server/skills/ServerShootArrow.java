@@ -2,13 +2,11 @@ package server.skills;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.World;
 
 import communicators.serverToClient.SkillState;
 import server.ServerGameMap;
 import server.entities.PosAndDir;
 import server.entities.ServerCharacter;
-import server.entities.ServerEntityManager;
 import server.entities.ServerSpawner;
 
 public class ServerShootArrow extends PerformableSkill
@@ -25,13 +23,13 @@ public class ServerShootArrow extends PerformableSkill
     private float distanceCovered;
     private PosAndDir caster;
 
-    private boolean done;
+    //private boolean done;
     
     public ServerShootArrow(PosAndDir caster, ServerGameMap gameMap)
     {
         super(caster, 3);
         this.caster = caster;
-        this.speed = 2;
+        this.speed = .02f;
         this.size = .5f;
         this.range = 15;
         this.gameMap = gameMap;
@@ -40,7 +38,7 @@ public class ServerShootArrow extends PerformableSkill
         this.category = ServerSpawner.ATTACK_PHYSICS;
         this.mask = ServerSpawner.BOUNDING_BODY_PHYSICS | ServerSpawner.FOOT_PHYSICS;
         this.distanceCovered = 0;
-        this.done = false;
+        //this.done = false;
         this.power = 4;
     }
 
@@ -61,7 +59,7 @@ public class ServerShootArrow extends PerformableSkill
                 new Vector2(-this.size, -this.size / 2));
         this.body.setUserData(this);
 
-        this.done = true;
+        //this.done = true;
     }
 
     @Override

@@ -1,6 +1,5 @@
 package server;
 
-import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
@@ -11,7 +10,6 @@ import communicators.ActionTrigger;
 //import server.Skill;
 import server.entities.*;
 import server.skills.ServerSkill;
-import utilities.Sys;
 
 public class CollisionListener implements ContactListener {
 	// TODO this whole class, once animations are done

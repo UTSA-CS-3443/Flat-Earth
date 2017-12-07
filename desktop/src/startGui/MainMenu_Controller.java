@@ -20,7 +20,7 @@ import java.util.logging.Logger;
 
 import com.flatearth.desktop.DesktopLauncher;
 
-import utilities.Sys;
+
 
 public class MainMenu_Controller implements EventHandler<ActionEvent> {
 
@@ -38,7 +38,8 @@ public class MainMenu_Controller implements EventHandler<ActionEvent> {
     
     int choseCharacter = 2;
 
-    @FXML
+    @Override
+	@FXML
     public void handle(ActionEvent e) {
 
         Button pressed = (Button) e.getSource();
@@ -105,18 +106,18 @@ public class MainMenu_Controller implements EventHandler<ActionEvent> {
         fade.play();
     }
 
-    private void loadGameScene()
-    {
-        Parent singlePlayer;
-        try {
-            singlePlayer = (GridPane) FXMLLoader.load(getClass().getResource("Quote.fxml"));
-            Scene scene  = new Scene(singlePlayer, 900,900);
-            Stage currStage = (Stage) back.getScene().getWindow();
-            currStage.setScene(scene);
-        } catch (IOException e) {
-            Logger.getLogger(MainMenu_Controller.class.getName()).log(Level.SEVERE, null, e);
-        }
-    }
+//    private void loadGameScene()
+//    {
+//        Parent singlePlayer;
+//        try {
+//            singlePlayer = (GridPane) FXMLLoader.load(getClass().getResource("Quote.fxml"));
+//            Scene scene  = new Scene(singlePlayer, 900,900);
+//            Stage currStage = (Stage) back.getScene().getWindow();
+//            currStage.setScene(scene);
+//        } catch (IOException e) {
+//            Logger.getLogger(MainMenu_Controller.class.getName()).log(Level.SEVERE, null, e);
+//        }
+//    }
 
     private void makeFadeOutSettings()
     {

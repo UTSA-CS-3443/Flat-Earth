@@ -4,7 +4,6 @@ import com.badlogic.gdx.physics.box2d.Body;
 
 import server.ServerGameMap;
 import server.skills.ServerShootArrow;
-import server.skills.ServerSlash;
 
 public class ServerArcher extends ServerPlayer {
 

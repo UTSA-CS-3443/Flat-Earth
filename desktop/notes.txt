@@ -34,3 +34,103 @@ probably javafx send initial gamestate, which has amount of enemies, positions o
 // give character state id
 
 do something with entity manager and server entity manager
+
+//	
+//	
+//	public static void clientPlay() {
+//		
+//		
+//		
+//		//Outlining code here
+//		  
+//		  //First open a new window asking for IP
+//		   
+//		  Client client = new Client();
+//		  client.start();
+//		  try{
+//		  		client.connect(5000, IP, tcp_port, udp_port); //Wait time, IP_address, tcp, udp
+//		  													//Some games have standardized ports that they always connect to
+//		  													//so maybe we can do that
+//		  } catch(IOException e){
+//		  		e.printStackTrace();
+//		  		//Also open window here saying connection failed.
+//		  }
+//		  Kryo kryoClient = new Kryo();
+//		  
+//		  kryoClient.register(GameState.class);//Register classes to send/receive data from server
+//		  kryoClient.register(KeyboardState.class);
+//		  
+//		   client.addListener(new Listener() {
+//		   	//Connection is sender object, and object is the object received from connection
+//		   	public void received(Connection connection, Object object){
+//		 			if(object instanceof some_class){
+//		 				some_class some = (some_class)object;
+//		 				some.update();
+//		 
+//		 				//add keyboard state to arraylist
+//		 
+//		 				connection.sendUDP(some);//Can also use TCP
+//		 			}
+//		   	}
+//		   });
+//		 
+//		   while(client.isConnected()) {
+//				 //ClientConnections holds all connections gathered in initial connection phase
+//				 
+//				c.sendUDP(this.gs);
+//				c.update();
+//				 
+//		   }
+//	}
+//	
+//	public static void serverPlay() {
+//		
+//		
+//		
+//		 //Outlining code here
+//		    
+//		    //Create a server and bind it to the some ports
+//		    Server server = new Server();
+//		    try{
+//		    
+//		    	server.bind(tcp_port, udp_port);
+//		    
+//		    }
+//		    catch(IOException e){
+//		    	//Tell user server could not be started
+//		    	//probably caused by closed ports
+//		    }
+//		    
+//		    //Use Kryo to register classes for serialization
+//		    Kryo kryoServer = new Kryo();
+//		    kryoServer.register(KeyboardState.class);
+//		    kryoServer.register(GameState.class);
+//		    
+//		    //add a listener
+//		    //TODO Add an initial connection object that stores connections and stops on host pressing a button (maybe set object var to false)
+//		    server.addListener(new Listener(){
+//		    	public void received(Connection connection, Object object){
+//		    		//If object received from connection is of type some_class then do something
+//		    		if(object instanceof KeyboardState){
+//		    			KeyboardState keyboardState = (KeyboardState)object; 
+//		    			kss.get(keyboardState.id).updateData(keyboardState);
+//		    			
+//		    			//Send object back to client
+//		    			connection.sendTCP(keyboardState);//Can also use TCP
+//		    			
+//		    		}
+//		    	}
+//		    });
+//		   
+//		 serverStillUp = true;
+//		 server.run(); // i think
+//		 while(serverStillUp) {
+//			 //ClientConnections holds all connections gathered in initial connection phase
+//			 for(Connection c : clientConnections) {
+//				 c.sendUDP(this.gs);
+//				 c.update();
+//			 }
+//		 }
+//		 server.stop();
+//		
+//	}

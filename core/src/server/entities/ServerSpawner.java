@@ -4,8 +4,6 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 
 import server.ServerGameMap;
-import utilities.Sys;
-import utilities.ParseMap.MapDetails;
 
 public class ServerSpawner
 {

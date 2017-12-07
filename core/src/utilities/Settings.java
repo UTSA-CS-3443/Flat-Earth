@@ -18,7 +18,10 @@ public class Settings {
 	
 	// received from the server
 	public int playerCount = 1;
-	public int allCharacterTypes; 
+	public int allCharacterTypes[]; 
 	public int clientId;
+	
+	
+	
 	
 }

@@ -1,14 +1,11 @@
 package client.entities;
 
 
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
 import client.skills.ClientHealthBars;
 import communicators.ActionTrigger;
 import communicators.serverToClient.CharacterState;
-import utilities.Sys;
-import utilities.ParseMap.MapDetails;
 
 
 public class ClientCharacter implements Comparable<ClientCharacter>
@@ -230,13 +227,13 @@ public class ClientCharacter implements Comparable<ClientCharacter>
 		}
 	}
 	
-	private float degreeFix(float angle)
-	{
-	    angle %= 360f;
-	    if (angle <= 0f)
-	        return angle + 360f;
-	    return angle;
-	}
+//	private float degreeFix(float angle)
+//	{
+//	    angle %= 360f;
+//	    if (angle <= 0f)
+//	        return angle + 360f;
+//	    return angle;
+//	}
 
 	@Override
 	public int compareTo(ClientCharacter other) {

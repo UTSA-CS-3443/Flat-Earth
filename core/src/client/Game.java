@@ -12,12 +12,10 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 
 import communicators.clientToServer.KeyboardState;
 import communicators.serverToClient.GameState;
-import utilities.Sys;
 import utilities.ParseMap.MapDetails;
 import utilities.Settings;
 
-import java.io.IOException;
-import java.text.ParseException;
+
 public class Game extends ApplicationAdapter {
 	public static SpriteBatch batch;
 	public static OrthographicCamera cam;

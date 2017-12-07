@@ -3,7 +3,6 @@ package server.skills;
 import com.badlogic.gdx.math.Vector2;
 import server.Updateable;
 import server.entities.PosAndDir;
-import server.entities.ServerCharacter;
 
 public abstract class PerformableSkill extends ServerSkill implements PosAndDir, Updateable
 {

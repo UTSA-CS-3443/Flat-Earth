@@ -1,7 +1,5 @@
 package utilities.ParseMap;
 
-import java.util.ArrayList;
-
 /**
  * @author rajkumar
  */
@@ -21,4 +19,13 @@ public class Beacon extends MapObject{
     public float getY() {
     	return this.y;
     }
+    
+    public String toString() {
+    	String s = "Beacon: Coordinates: " + this.x + " " + this.y + "------";
+    	for (Property p : this.properties)
+    		s += p.toString() + "------";
+    	s += "Beacon count: " + this.properties.size();
+    	return s;
+    }
+    
 }
