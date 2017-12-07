@@ -10,16 +10,35 @@ import server.skills.ServerSkill;
 
 
 
+/**
+ * For the clients, not the npc. updated by the
+ * keys pressed received
+ * 
+ * @author mauricio
+ *
+ */
 public class ServerPlayer extends ServerCharacter {
 	
+	/**
+	 * last time attacked
+	 */
 	private float lastAttack = 0;
 
 	
+	/**
+	 * @param gameMap map its on
+	 * @param body physics
+	 * @param type type of char
+	 */
 	public ServerPlayer(ServerGameMap gameMap, Body body, CharacterType type) {
 		super(gameMap, body, type);
 		this.direction = 270; // direction to start off should be looking down
 	}
 	
+	/**
+	 * @param pressed keys that wered pressed
+	 * @param delta time
+	 */
 	public void update(KeysPressed pressed, float delta) {
 		
 		if(dead(delta))
@@ -57,6 +76,9 @@ public class ServerPlayer extends ServerCharacter {
 		this.body.applyForceToCenter(forceX, forceY, true);
 	}
 	
+	/* (non-Javadoc)
+	 * @see server.entities.ServerCharacter#getState()
+	 */
 	@Override
 	public CharacterState getState() {
 		return new CharacterState(this.movement, this.body.getPosition().x, this.body.getPosition().y, this.direction, this.health, this.trigger);

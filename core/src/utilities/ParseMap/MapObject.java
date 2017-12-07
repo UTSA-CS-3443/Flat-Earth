@@ -3,6 +3,8 @@ package utilities.ParseMap;
 import java.util.ArrayList;
 
 /**
+ * Beacons and polygons have properties
+ * 
  * @author rajkumar
  */
 

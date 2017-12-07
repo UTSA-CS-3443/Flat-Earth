@@ -16,29 +16,85 @@ import utilities.ParseMap.MapDetails;
 import utilities.Settings;
 
 
+/**
+ * Main class for client side, holds the game loop. Libgdx
+ * runs this
+ * 
+ * @author ash
+ * @author mauricio
+ *
+ */
 public class Game extends ApplicationAdapter {
+	/**
+	 * batch that gets drawn
+	 */
 	public static SpriteBatch batch;
+	/**
+	 * camera that follows player
+	 */
 	public static OrthographicCamera cam;
+	/**
+	 * map
+	 */
 	public ClientGameMap map;
+	/**
+	 * assets
+	 */
 	public static AssetManager assets;
+	/**
+	 * game atlas, holds the sprites
+	 */
 	public static TextureAtlas atlas;
 			
+	/**
+	 * Game state
+	 */
 	private GameState gs;
+	/**
+	 * KeybaordState for player
+	 */
 	private KeyboardState ks;
 	
+	/**
+	 * id used by server
+	 */
 	public int clientId; 
 	
+	/**
+	 * settings chosen at start
+	 */
 	private Settings s;
 	
+	/**
+	 * map details 
+	 */
 	MapDetails details;
 	
 	// for debugging
+	/**
+	 * debug mode
+	 */
 	public static boolean debug = true;
+	/**
+	 * debug mode
+	 */
 	public static boolean debugFromStart = false;
+	/**
+	 * debug stuff
+	 */
 	public static Box2DDebugRenderer b2dr;
+	/**
+	 * debug stuff
+	 */
 	public static Matrix4 debugMatrix;
 
 	
+	/**
+	 * @param s setting froms beginning of gmae
+	 * @param gs GameState shared by modifiyng thread
+	 * @param ks kaybaord state of this player
+	 * @param details map stuff
+	 */
 	public Game(Settings s, GameState gs, KeyboardState ks, MapDetails details) {
 		this.ks = ks;
 		this.gs = gs;
@@ -49,6 +105,9 @@ public class Game extends ApplicationAdapter {
 
 	// TODO all this needs to be less hardcoded
 	// cant tell if this is an old comment 
+	/* (non-Javadoc)
+	 * @see com.badlogic.gdx.ApplicationAdapter#create()
+	 */
 	@Override
 	public void create () {
 		// TODO have we even given it anything for it too pull w and h?
@@ -78,6 +137,9 @@ public class Game extends ApplicationAdapter {
 		
 	}
 
+	/* (non-Javadoc)
+	 * @see com.badlogic.gdx.ApplicationAdapter#render()
+	 */
 	@Override
 	public void render () {
 
@@ -104,11 +166,17 @@ public class Game extends ApplicationAdapter {
 
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.badlogic.gdx.ApplicationAdapter#dispose()
+	 */
 	@Override
 	public void dispose () {
 		batch.dispose();
 		//this.map.dispose();
 	}
+	/* (non-Javadoc)
+	 * @see com.badlogic.gdx.ApplicationAdapter#resize(int, int)
+	 */
 	@Override
 	public void resize(int width, int height) {
 	    cam.viewportWidth = width/32f;

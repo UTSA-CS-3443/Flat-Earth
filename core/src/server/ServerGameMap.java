@@ -22,25 +22,48 @@ import utilities.ParseMap.Beacon;
 import utilities.ParseMap.MapDetails;
 import utilities.ParseMap.PolygonBody;
 
+/**
+ * holds all entities, holes, anything on screen that can cause
+ * a collision
+ * 
+ * @author mauricio
+ *
+ */
 public class ServerGameMap {
 
-	public float length;
-	public float width;
-
+	/**
+	 * count of players
+	 */
 	private int playerCount;
 	
+	/**
+	 * entity manager
+	 */
 	private ServerEntityManager entityManager;
 	
 	//private float accumulator;
+	/**
+	 * delta time threshold
+	 */
 	private float dt = 0.0133f;
 	
+	/**
+	 * details from launcher
+	 */
 	MapDetails details;
 	
+	/**
+	 * world, for collisions
+	 */
 	private World world;
 
 	//private ServerShootArrow arrow;
 	
 	
+	/**
+	 * @param details map stuff
+	 * @param playerCount amt of players
+	 */
 	public ServerGameMap(MapDetails details, int playerCount) {
 		this.world = new World(new Vector2(0, 0), false);
 		world.setContactListener(new CollisionListener());
@@ -51,6 +74,11 @@ public class ServerGameMap {
 		entityManager = new ServerEntityManager(this);
 	}
 	
+	/**
+	 * initializes the map objects, players, and polygons for falling
+	 * 
+	 * @param settings settings from launcher
+	 */
 	public void initialize(Settings settings) {		
 		
 		int npcSpawnCount = 0;
@@ -92,12 +120,25 @@ public class ServerGameMap {
 		}
 	}
 	
+	/**
+	 * @return
+	 */
 	public ServerEntityManager getEntityManager() {
 		return this.entityManager;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public World getWorld() { return this.world; }
 	
+	/**
+	 * aupdates the mananger
+	 * 
+	 * @param pressed pressed keys from players
+	 * @param delta time
+	 */
 	public void update(KeysPressed pressed[], float delta) {
 		//System.out.println("serverGameMap: this uopdate is called---------");
 		//accumulator += delta;

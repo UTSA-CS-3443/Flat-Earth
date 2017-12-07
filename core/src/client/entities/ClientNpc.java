@@ -1,6 +1,10 @@
 package client.entities;
 
-
+/**
+ * npc
+ * @author mauricio
+ *
+ */
 
 public class ClientNpc extends ClientCharacter {
 

@@ -10,27 +10,41 @@ import utilities.ParseMap.MapDetails;
 
 
 /**
- * 	playerCount should be the same as the size of kss. both will be 1 if launching
- *	as solo play. this is built to be dynamic to be ran for the server, and also 
- *	to be part of the solo play launch
+ *
+ * Main logic thread, holds the game loop. Runs as thread
+ * playerCount should be the same as the size of kss. both will be 1 if launching
+ * as solo play. this is built to be dynamic to be ran for the server, and also 
+ * to be part of the solo play launch
  * @author mauricio
  *
- *	should be used like this:
- *		MapDetails details = new MapDetails(mapName);
- *		Logic logic = new Logic(count, gs, kss);
- *		logic.setMapLogistics(details)
- *
  */
-
 public class Logic implements Runnable {
 
+	/**
+	 * game map
+	 */
 	public static ServerGameMap map;
 	
+	/**
+	 * game state, send to client/kryo server
+	 */
 	private GameState gs;
+	/**
+	 * list of keyboard states, per player
+	 */
 	private ArrayList<KeyboardState> kss;
 	
+	/**
+	 * count of players
+	 */
 	private int playerCount;
 	
+	/**
+	 * @param settings settings
+	 * @param gs gamestate
+	 * @param kss keyboard states of players
+	 * @param details map details
+	 */
 	public Logic(Settings settings,GameState gs, ArrayList<KeyboardState> kss, MapDetails details) {
 		//Exit.exit("Logic.java: Need to properly set the game state objects for playercount" +
 		//			"\n Also need to set the keyboard states right, all before calling this");
@@ -42,6 +56,9 @@ public class Logic implements Runnable {
 	}
 	
 	
+	/* (non-Javadoc)
+	 * @see java.lang.Runnable#run()
+	 */
 	@Override
 	public void run() {
 		

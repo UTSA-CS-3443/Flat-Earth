@@ -4,7 +4,11 @@ import com.badlogic.gdx.physics.box2d.Body;
 
 import server.ServerGameMap;
 import server.skills.ServerShootArrow;
-
+/**
+ * archer npc
+ * @author mauricio
+ *
+ */
 public class ServerNpcArcher extends ServerNpc {
 
 	public ServerNpcArcher(ServerGameMap gameMap, Body body) {

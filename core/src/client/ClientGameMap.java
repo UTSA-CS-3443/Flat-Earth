@@ -25,27 +25,47 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 
+/**
+ * Holds everything on the map
+ * @author mauricio
+ *
+ */
+
 public class ClientGameMap {
 	
-	// TODO for debugging, should eventually not be here
-	public World world;
+	/**
+	 * For debugging, holds the pylgons
+	 */
+	World world;
 	
+	/**
+	 * Managers the skills and characetrs on screen
+	 */
 	public ClientEntityManager entityManager;
-	
+	/**
+	 * passed in by DesktopLauncerh
+	 */
 	public MapDetails details;
-	
+	/**
+	 * the map
+	 */
 	private Sprite mapSprite;
+	/**
+	 * space behind map
+	 */
 	private Sprite spaceSprite;
-		
-	// a refernce to the player. This is still stored in the entity manager,
-	// but we need this here for the orthographic camera
+	/**
+	 * a refernce to the player. This is still stored in the entity manager,
+	 * but we need this here for the orthographic camera
+	 */
 	private ClientCharacter player;
-	
-	// purpose for the client id is to store the player at that position in the
-	// entity manager, cause that's the order the server will send over it's 
-	// data
-	// kinda weird that this has to take the settings but it's the only way the server
-	// will communicate before the game actually starts
+	/**
+	 * purpose for the client id is to store the player at that position in the
+	 * entity manager, cause that's the order the server will send over it's 
+	 * data
+	 * kinda weird that this has to take the settings but it's the only way the server
+	 * will communicate before the game actually starts
+	 */
 	public ClientGameMap(MapDetails details, Settings settings) {
 		entityManager = new ClientEntityManager();
 		this.details = details;		
@@ -56,7 +76,12 @@ public class ClientGameMap {
 		this.initialize(settings);
 	}
 	
-	// needs to get all the details from the mapdetails
+	/**
+	 * initializes the game map from the settings object. spawns all the players
+	 * from the mapdetails object
+	 * 
+	 * @param settings from beginning of game
+	 */
 	public void initialize(Settings settings) {
 		
 		int npcSpawnCount = 0;
@@ -114,17 +139,26 @@ public class ClientGameMap {
 		
 		// here would be where we spawn all the trees or whatever but that's not in the MapDetails yet
 	}
-	
+
 	public ClientEntityManager getEntityManager() {
 		return this.entityManager;
 	}
-	
+	/**
+	 * get supdated data from the GameState (sent from sever)
+	 * call update ont the entity manager 
+	 * @param delta delta time
+	 * @param gs taken from servevr
+	 */
 	public void update(float delta, GameState gs) {
 		CharacterState cs[] = gs.getCharacterStates();
 		SkillState ss[] = gs.getSkillStates();
 		entityManager.updateAll(delta, cs, ss);
 	}
 	
+	/**
+	 * draws to the batch/screem
+	 * @param batch screen
+	 */
 	public void draw(SpriteBatch batch) {
 		this.spaceSprite.setCenter(this.player.x, this.player.y);
 		this.spaceSprite.draw(batch);

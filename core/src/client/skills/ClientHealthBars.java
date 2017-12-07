@@ -7,13 +7,22 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 
 import utilities.ParseMap.MapDetails;
 
+/**
+ * 
+ * gets helath bar animations
+ * @author mauricio
+ *
+ */
 public class ClientHealthBars {
 	
-	// hardcoded af just to make ash mad
-	// also just lazy
-	
+	/**
+	 * list of bars
+	 */
 	protected static ArrayList<Sprite> bars;
 	
+	/**
+	 * reads in the bars
+	 */
 	public static void initialize() {
 		bars = new ArrayList<Sprite>();
 		for (int i = 0; i <= 100; i += 5) {
@@ -23,6 +32,11 @@ public class ClientHealthBars {
 		}
 	}
 	
+	/**
+	 * gets appropriate bar
+	 * @param percent percent of health
+	 * @return
+	 */
 	public static Sprite getAppropriateHealthBar(float percent) {
 		if (percent < 0)
 			return bars.get(0);

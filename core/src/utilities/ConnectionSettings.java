@@ -36,8 +36,13 @@ public class ConnectionSettings {
 //        }
 //    }
 	
-	
+	/**
+	 * port for server tcp
+	 */
 	public int serverTcpPort = 8080;
+	/**
+	 * port for udp
+	 */
 	public int serverUdpPort = 1099;
 
 }

@@ -4,7 +4,11 @@ import com.badlogic.gdx.physics.box2d.Body;
 
 import server.ServerGameMap;
 import server.skills.ServerShootFireBall;
-
+/**
+ * wizard npc
+ * @author mauricio
+ *
+ */
 public class ServerNpcWizard extends ServerNpc {
 	
 	public ServerNpcWizard(ServerGameMap gameMap, Body body) {

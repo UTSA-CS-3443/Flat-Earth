@@ -4,7 +4,11 @@ import com.badlogic.gdx.physics.box2d.Body;
 
 import server.ServerGameMap;
 import server.skills.ServerSlash;
-
+/**
+ * knight npc
+ * @author mauricio
+ *
+ */
 public class ServerNpcKnight extends ServerNpc {
 
 	public ServerNpcKnight(ServerGameMap gameMap, Body body) {

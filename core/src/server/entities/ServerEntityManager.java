@@ -13,17 +13,42 @@ import server.ServerGameMap;
 import server.Updateable;
 import server.skills.ServerSkill;
 
+/**
+ * @author mauricio
+ *
+ */
 public class ServerEntityManager {
 
+	/**
+	 * list of characters
+	 */
 	public ArrayList<ServerCharacter> characters; // TODO this is not optimized
+	/**
+	 * bodies to destroy next round, modded by skills themselces
+	 */
 	public Array<Body> bodiesToDestroy;
+	/**
+	 * polygon holes
+	 */
 	ArrayList<Body> holes;
+	/**
+	 * map
+	 */
 	private ServerGameMap gameMap;
 
+	/**
+	 * updateables
+	 */
 	public Array<Updateable> updateables;
+	/**
+	 * skills
+	 */
 	public Array<ServerSkill> activeSkills;
 	
 	
+	/**
+	 * @param gameMap map
+	 */
 	public ServerEntityManager(ServerGameMap gameMap) {
 		this.gameMap = gameMap;
 		this.bodiesToDestroy = new Array<Body>();
@@ -34,6 +59,10 @@ public class ServerEntityManager {
 	}
 	
 	// if the id is even needed
+	/**
+	 * add a character
+	 * @param character
+	 */
 	public void add(ServerCharacter character) {
 		characters.add(character);
 	}
@@ -42,7 +71,8 @@ public class ServerEntityManager {
 	 * pressed.length will also be the amount of players, so loop through the first n in
 	 * the array list (where n is the amount of players), update them, then update the 
 	 * rest based on the coordinates (Vector2's) of those players
-	 * @param pressed
+	 * @param pressed keys pressed by each player
+	 * @param delta time
 	 */
 	public void updateAll(KeysPressed pressed[], float delta) {
 		
@@ -79,6 +109,9 @@ public class ServerEntityManager {
 	 * there might be ways to optimize this, cause this is a lot of iterations TODO
 	 * @return
 	 */
+	/**
+	 * @return
+	 */
 	public CharacterState[] getCharacterStates() {
 		CharacterState css[] = new CharacterState[this.characters.size()];
 		for (int i = 0; i < characters.size(); i++) {
@@ -87,6 +120,9 @@ public class ServerEntityManager {
 		return css;
 	}
 	
+	/**
+	 * @return
+	 */
 	public SkillState[] getSkillStates() {
 		SkillState[] ss = new SkillState[this.activeSkills.size];
 		for (int i = 0; i < activeSkills.size; i++)
@@ -94,6 +130,10 @@ public class ServerEntityManager {
 		return ss;
 	}
 	
+	/**
+	 * add a hole
+	 * @param body hole to add
+	 */
 	public void addHole(Body body) {
 		holes.add(body);
 	}

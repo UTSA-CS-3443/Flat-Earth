@@ -8,17 +8,39 @@ import communicators.serverToClient.CharacterState;
 import server.ServerGameMap;
 import server.skills.ServerSkill;
 
+/**
+ * Npc "AI" class
+ * 
+ * @author mauricio
+ *
+ */
 public abstract class ServerNpc extends ServerCharacter {
 
 	
+	/**
+	 * last time attacked
+	 */
 	private float lastAttack = 0;
+	/**
+	 * distance
+	 */
 	protected float attackDistance;
 	
+	/**
+	 * @param gameMap map its on
+	 * @param body physics
+	 * @param type type of char
+	 */
 	public ServerNpc(ServerGameMap gameMap, Body body, CharacterType type) {
 		super(gameMap, body, type);
 		
 	}
 	
+	/**
+	 * @param pts positions of other characters
+	 * @param delta time
+	 * @param selfPosition index in pts of self
+	 */
 	public void update(PositionAndType pts[], float delta, int selfPosition) {
 		
 		if(dead(delta))
@@ -102,6 +124,9 @@ public abstract class ServerNpc extends ServerCharacter {
 		this.body.applyForceToCenter(forceX, forceY, true);
 	}
 	
+	/**
+	 * attack, starts attack phase
+	 */
 	public void attack() {
 		
 		if (this.lastAttack > this.attackFrequency) {
@@ -118,6 +143,9 @@ public abstract class ServerNpc extends ServerCharacter {
 		
 	}
 	
+	/* (non-Javadoc)
+	 * @see server.entities.ServerCharacter#getState()
+	 */
 	@Override
 	public CharacterState getState() {
 		return new CharacterState(this.movement, this.body.getPosition().x, this.body.getPosition().y, this.direction, this.health, this.trigger);

@@ -2,6 +2,8 @@ package utilities.ParseMap;
 
 
 /**
+ * map stuff have properties
+ * 
  * @author rajkumar
  */
 public class Property {

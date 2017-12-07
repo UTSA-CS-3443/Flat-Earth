@@ -12,15 +12,28 @@ import communicators.clientToServer.KeyboardState;
  *
  */
 
+/**
+ * @author mauricio
+ *
+ */
 public class GameInput implements InputProcessor {
 
+	/**
+	 * State of the keyboad, updated here, sent to server elsewhere
+	 */
 	private KeyboardState ks;
 	
+	/**
+	 * @param ks
+	 */
 	public GameInput(KeyboardState ks) {
 		this.ks = ks;
 	}
 	
 	// on key down, write to the Keyboardstate
+	/* (non-Javadoc)
+	 * @see com.badlogic.gdx.InputProcessor#keyDown(int)
+	 */
 	@Override
 	public boolean keyDown(int keycode) {
 		switch(keycode) {
@@ -44,6 +57,9 @@ public class GameInput implements InputProcessor {
 	}
 
 	// On button up, write to the keyboardState
+	/* (non-Javadoc)
+	 * @see com.badlogic.gdx.InputProcessor#keyUp(int)
+	 */
 	@Override
 	public boolean keyUp(int keycode) {
 		switch(keycode) {
@@ -67,31 +83,49 @@ public class GameInput implements InputProcessor {
 		return false;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.badlogic.gdx.InputProcessor#keyTyped(char)
+	 */
 	@Override
 	public boolean keyTyped(char character) {
 		return false;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.badlogic.gdx.InputProcessor#touchDown(int, int, int, int)
+	 */
 	@Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
 		return false;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.badlogic.gdx.InputProcessor#touchUp(int, int, int, int)
+	 */
 	@Override
 	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
 		return false;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.badlogic.gdx.InputProcessor#touchDragged(int, int, int)
+	 */
 	@Override
 	public boolean touchDragged(int screenX, int screenY, int pointer) {
 		return false;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.badlogic.gdx.InputProcessor#mouseMoved(int, int)
+	 */
 	@Override
 	public boolean mouseMoved(int screenX, int screenY) {
 		return false;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.badlogic.gdx.InputProcessor#scrolled(int)
+	 */
 	@Override
 	public boolean scrolled(int amount) {
 		Game.cam.zoom += amount;

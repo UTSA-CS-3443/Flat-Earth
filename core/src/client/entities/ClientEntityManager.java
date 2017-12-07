@@ -17,15 +17,36 @@ import communicators.serverToClient.SkillState;
 import server.skills.SkillType;
 import utilities.Sys;
 
+/**
+ * manages the entities on screen, updates them
+ * 
+ * @author mauricio
+ *
+ */
 public class ClientEntityManager {
 
+	/**
+	 * list of ccharacters in order sent from server
+	 */
 	private ArrayList<ClientCharacter> charactersUpdateOrder;
+	/**
+	 * same list but sorted by y
+	 */
 	private ArrayList<ClientCharacter> charactersYOrder;
 	
+	/**
+	 * list of skills
+	 */
 	private ArrayList<ClientSkill> skills;
 	
+	/**
+	 * counter for death flames
+	 */
 	private float flameCounter = 0f;
 	
+	/**
+	 * 
+	 */
 	public ClientEntityManager() {
 		charactersUpdateOrder = new ArrayList<ClientCharacter>();
 		charactersYOrder = new ArrayList<ClientCharacter>();
@@ -34,13 +55,23 @@ public class ClientEntityManager {
 		DeadFlameAnimation.initialize();
 	}
 	
-	public void add (ClientCharacter character) {
+	/**
+	 * adds a characetrs to the list
+	 * 
+	 * @param character
+	 */
+	public void add(ClientCharacter character) {
 		charactersUpdateOrder.add(character);
 		charactersYOrder.add(character);
 	}
 	
 	
 	
+	/**
+	 * @param delta time
+	 * @param cs states of all characters from server
+	 * @param ss states of skills from sever
+	 */
 	public void updateAll(float delta, CharacterState cs[], SkillState ss[]) {
 		for (int i = 0; i < cs.length; i++)
 			charactersUpdateOrder.get(i).update(delta, cs[i]);
@@ -49,6 +80,11 @@ public class ClientEntityManager {
 			skills.get(i).update(ss[i]);
 	}
 	
+	/**
+	 * draws everything
+	 * 
+	 * @param batch
+	 */
 	public void drawAll(SpriteBatch batch) {
 		Collections.sort(charactersYOrder);
 		
@@ -72,7 +108,11 @@ public class ClientEntityManager {
 			
 	}
 	
-	// kinda ugly but should kind of work
+	/**
+	 *  kinda ugly but should kind of work
+	 * updates the skill list based on whats gotten from server
+	 * @param ss
+	 */
 	public void updateSkillsList(SkillState ss[]) {
 		
 		if (ss.length == 0) { // empty the list

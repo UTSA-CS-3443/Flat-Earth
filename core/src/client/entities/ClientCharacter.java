@@ -8,42 +8,124 @@ import communicators.ActionTrigger;
 import communicators.serverToClient.CharacterState;
 
 
+/**
+ * Character parent class, used by all types of characters
+ * 
+ * @author mauricio
+ *
+ */
 public class ClientCharacter implements Comparable<ClientCharacter>
 {
+	/**
+	 * enum for direction
+	 * 
+	 * @author mauricio
+	 *
+	 */
 	enum Direction { NORTHEAST, NORTH, NORTHWEST, WEST, SOUTHWEST, SOUTH, SOUTHEAST, EAST; }
+	/**
+	 * array of the directions
+	 */
 	protected Direction[] directionArray = Direction.values();
+	/**
+	 * all characters have a type
+	 */
 	protected CharacterType type;
+	/**
+	 * for the animations
+	 */
 	protected int frameIndex;
+	/**
+	 * for the animations
+	 */
 	protected float frameTime;
+	/**
+	 * direction of player
+	 */
 	protected Direction direction;
 	
+	/**
+	 * did the character move this round?
+	 */
 	protected boolean charMovement;
+	/**
+	 * degrees received by server
+	 */
 	protected float degrees;
 	
+	/**
+	 * x position
+	 */
 	public float x;
+	/**
+	 * y osition
+	 */
 	public float y;
 	
+	/**
+	 * health
+	 */
 	protected int health;
+	/**
+	 * max helath
+	 */
 	protected int maxHealth = 100;
 	
+	/**
+	 * scale for falling
+	 */
 	protected float xscale = .9f;
+	/**
+	 * scale for falling
+	 */
 	protected float yscale = 1.1f;
+	/**
+	 * roation index for falling
+	 */
 	protected int rotation = 0;	
+	/**
+	 * triggers different animation states
+	 */
 	protected ActionTrigger trigger = ActionTrigger.NORMAL;
+	/**
+	 * how long have i falled?
+	 */
 	protected int fallCount = 0;
 	
 	// this is for the attacking phase
+	/**
+	 * keep track for attacking phase
+	 */
 	protected float prevFrameIndex = 0;
 	
 	// this is for the falling animations
+	/**
+	 * for falling
+	 */
 	protected float directionDelta = 0f;
+	/**
+	 * for falling/spinning
+	 */
 	protected float spinningDegrees = 0f;
+	/**
+	 * scale for falling
+	 */
 	protected float fallingScale = 0f;
 	
+	/**
+	 * original sprite width, to fix falling
+	 */
 	protected float ogSpriteWidth;
+	/**
+	 * to fix falling
+	 */
 	protected float ogSpriteHeight;
 	
 	
+	/**
+	 * constructs a character
+	 * @param type of character this is
+	 */
 	protected ClientCharacter(CharacterType type)
 	{
 		this.direction = Direction.SOUTH; // Default
@@ -54,6 +136,12 @@ public class ClientCharacter implements Comparable<ClientCharacter>
 	}
 	
 	// gotta clean this up. finite state machine. really hard coded and messy
+	/**
+	 * updates the characters position/frame/states based on whatever was sent by the server
+	 * 
+	 * @param delta time
+	 * @param cs state sent by server
+	 */
 	public void update(float delta, CharacterState cs)
 	{
 		float frameThreshold = .05f; // for animations
@@ -123,6 +211,9 @@ public class ClientCharacter implements Comparable<ClientCharacter>
 		updateDirection();
 	}
 	
+	/**
+	 * updates direction
+	 */
 	public void updateDirection()
 	{
 		int directionIndex = ((int)this.degrees/45)-1;
@@ -131,6 +222,9 @@ public class ClientCharacter implements Comparable<ClientCharacter>
 		direction = Direction.values()[directionIndex];
 	}
 	
+	/**
+	 * @return 
+	 */
 	public Sprite getFrame()
 	{		
 		//if attacking
@@ -152,12 +246,18 @@ public class ClientCharacter implements Comparable<ClientCharacter>
 		return s;
 	}
 	
+	/**
+	 * @return
+	 */
 	public Sprite getHealthBar() {
 		Sprite bar = ClientHealthBars.getAppropriateHealthBar(((float)this.health/this.maxHealth) * 100f);
 		bar.setPosition(this.x - bar.getWidth() / 2, this.y + 1.15f);
 		return bar;
 	}
 	
+	/**
+	 * @return
+	 */
 	protected Sprite getWalkFrame()
 	{
 		switch(this.direction)
@@ -181,6 +281,9 @@ public class ClientCharacter implements Comparable<ClientCharacter>
 		}
 	}
 	
+	/**
+	 * @return
+	 */
 	protected Sprite getStandFrame()
 	{
 		switch(this.direction)
@@ -204,6 +307,9 @@ public class ClientCharacter implements Comparable<ClientCharacter>
 		}
 	}
 	
+	/**
+	 * @return
+	 */
 	protected Sprite getAttackFrame()
 	{
 		switch(this.direction)
@@ -235,6 +341,9 @@ public class ClientCharacter implements Comparable<ClientCharacter>
 //	    return angle;
 //	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Comparable#compareTo(java.lang.Object)
+	 */
 	@Override
 	public int compareTo(ClientCharacter other) {
 		if (this.y > other.y)

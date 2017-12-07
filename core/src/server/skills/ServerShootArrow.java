@@ -9,22 +9,66 @@ import server.entities.PosAndDir;
 import server.entities.ServerCharacter;
 import server.entities.ServerSpawner;
 
+/**
+ * Handles the arrow everytime and archer shoots. object
+ * is only held by arachers (should only be held)
+ * 
+ * @author mauricio
+ *
+ */
 public class ServerShootArrow extends PerformableSkill
 {
+    /**
+     * for physics
+     */
     private Body body;
+    /**
+     * size
+     */
     private float size;
+    /**
+     * map for removing
+     */
     private ServerGameMap gameMap;
+    /**
+     * 
+     */
     private float xInitial;
+    /**
+     * 
+     */
     private float yInitial;
+    /**
+     * for physics
+     */
     private short category = ServerSpawner.ATTACK_PHYSICS;
+    /**
+     * physics
+     */
     private short mask = ServerSpawner.FOOT_PHYSICS;
+    /**
+     * speed
+     */
     private float speed;
+    /**
+     * range
+     */
     private float range;
+    /**
+     * dist
+     */
     private float distanceCovered;
+    /**
+     * who casted
+     */
     private PosAndDir caster;
 
     //private boolean done;
     
+    /**
+     * @param caster who casted
+     * @param gameMap map for remvoing self
+     */
     public ServerShootArrow(PosAndDir caster, ServerGameMap gameMap)
     {
         super(caster, 3);
@@ -42,6 +86,9 @@ public class ServerShootArrow extends PerformableSkill
         this.power = 4;
     }
 
+    /* (non-Javadoc)
+     * @see server.skills.ServerSkill#perform(server.entities.PosAndDir)
+     */
     @Override
     public void perform(PosAndDir initial)
     {
@@ -62,6 +109,9 @@ public class ServerShootArrow extends PerformableSkill
         //this.done = true;
     }
 
+    /* (non-Javadoc)
+     * @see server.Updateable#update(float)
+     */
     @Override
     public void update(float delta)
     {
@@ -82,16 +132,25 @@ public class ServerShootArrow extends PerformableSkill
     	this.body.setTransform(this.position, this.direction);
     }
 
+	/* (non-Javadoc)
+	 * @see server.skills.ServerSkill#copy()
+	 */
 	@Override
 	public ServerSkill copy() {
 		return new ServerShootArrow(this.caster, this.gameMap);
 	}
 
+	/* (non-Javadoc)
+	 * @see server.skills.ServerSkill#getState()
+	 */
 	@Override
 	public SkillState getState() {
 		return new SkillState(this.position.x, this.position.y, this.direction, SkillType.ARROW);
 	}
 	
+	/* (non-Javadoc)
+	 * @see server.skills.ServerSkill#setPerformer(server.entities.ServerCharacter)
+	 */
 	@Override 
 	public void setPerformer(ServerCharacter c) {
 		this.performer = c;

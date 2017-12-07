@@ -5,14 +5,26 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 
 import utilities.ParseMap.MapDetails;
 
-// this is only temporary, idk
-// don't vomit at this class
-
+/**
+ * for client skill animations
+ * 
+ * @author mauricio
+ *
+ */
 public class ClientSkillAnimations {
 	
+	/**
+	 * arrow
+	 */
 	static Sprite arrowSprite = null;
+	/**
+	 * firball
+	 */
 	static Sprite fireBallSprite = null;
 	
+	/**
+	 * @return
+	 */
 	public static Sprite getArrow() {
 		if (arrowSprite == null) {
 			arrowSprite = new Sprite(new Texture("arrow.png"));
@@ -21,6 +33,9 @@ public class ClientSkillAnimations {
 		return arrowSprite;
 	}
 	
+	/**
+	 * @return
+	 */
 	public static Sprite getFireBall() {
 		if (fireBallSprite == null) {
 			fireBallSprite = new Sprite(new Texture("Fireball.png"));

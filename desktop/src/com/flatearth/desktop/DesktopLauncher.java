@@ -23,20 +23,41 @@ import startGui.Launcher;
 import utilities.*;
 import utilities.ParseMap.MapDetails;
 
-
+/**
+ * Main class. Call javafx, which sets the settings, then starts the game.
+ * also has a terminal mode for the set up (instead of javafx)
+ * 
+ * @author mauricio
+ *
+ */
 
 public class DesktopLauncher {
 	
-	//thread pool for launching the threads
+	/**
+	 * thread pool for launching the threads
+	 */
 	private static ExecutorService es; 
-	// general settings, will be set by javafx
+	/**
+	 * general settings, will be set by javafx
+	 */
 	public static Settings s;
-	
+	/**
+	 * for host play
+	 */
 	static GameServer server;
+	/**
+	 * for client play
+	 */
 	static GameClient client;
-	
+	/**
+	 * for terminal mode
+	 */
 	static boolean terminalMode = false;
-	
+	/**
+	 * calls javafx, which sets the settings, calls appropriate start method
+	 * 
+	 * @param args
+	 */
 	public static void main (String[] args) {
 		//printMessages();
 		// create thread pool
@@ -78,7 +99,9 @@ public class DesktopLauncher {
 			Sys.print("nothing");
 		}
 	}
-	
+	/**
+	 * launches a Game object(view) and Logic object(control)
+	 */
 	public static void soloPlay() {
 		MapDetails details = null;
 		try {
@@ -99,7 +122,9 @@ public class DesktopLauncher {
 		new LwjglApplication(new Game(s, gs, kss.get(0), details), config);
 	}
 
-	// this is all pseudo
+	/**
+	 * starts the server, launches the Logic object, launches a client
+	 */
 	public static void hostPlay() {
 		MapDetails details = null;
 		try {
@@ -121,7 +146,10 @@ public class DesktopLauncher {
 		
 	}
 	
-	// something like this
+	/**
+	 * Starts the client, launches the Game object
+	 * @param details
+	 */
 	public static void clientPlay(MapDetails details) {
 		
 		MapDetails d = null; // this is temporary, eventually wont be like this with client side prediction
@@ -150,8 +178,14 @@ public class DesktopLauncher {
 /*---------------------------------------------------terminal launchers-----------------------------------------------*/	
 	
 	/*-----client------*/
-	// something like this. this should pause the javafx with that while loop, and entirely 
-	// just wait for the server to reply. bad design tho
+	/**
+	 * for terminal mode, simulates javafx
+	 * 
+	 *  something like this. this should pause the javafx with that while loop, and entirely 
+	 * just wait for the server to reply. bad design tho
+	 * @param host IP
+	 * @param currentCharChoice charactert type chosen
+	 */
 	public static void connectButtonHit(String host, int currentCharChoice) {
 		// parameters wouldnt get passed in here, but taken from the gui
 		
@@ -176,7 +210,9 @@ public class DesktopLauncher {
 		// kill javafx
 		
 	}
-	
+	/**
+	 * for terminal more, simulates javafx
+	 */
 	public static void clientTerminalLauncher() {
 		Scanner console = new Scanner(System.in);
 		Sys.print("Enter ip: ");
@@ -186,7 +222,9 @@ public class DesktopLauncher {
 	}
 	
 	/*----server stuff-----*/
-	
+	/**
+	 * for terminal mode, simulates javafx
+	 */
 	public static void startListeningButtonHit() {
 		
 		DesktopLauncher.server.startInitialServer();
@@ -195,13 +233,21 @@ public class DesktopLauncher {
 		
 	}
 	
-	// returning int for now, just for the terminal stuff
+	/**
+	 * for termninal more, simulatesjavafx
+	 * 
+	 * returning int for now, just for the terminal stuff
+	 * @return nummber of connections made on server
+	 */
 	public static int countButtonHit() {
 		
 		return /*SomeJavafxLabel.value = */DesktopLauncher.server.getConnectionCount();
 		
 	}
 	
+	/**
+	 * for terminal mode, simulates javafx
+	 */
 	public static void startButtonHit() {
 		
 		int count = server.getConnectionCount(); // this is ONYL for the the hardcoding part, for the local host bs
@@ -220,7 +266,9 @@ public class DesktopLauncher {
 //		DesktopLauncher.s.music = 
 		
 	}
-	
+	/**
+	 * for terminal mode, simulates javafx. launches the server terminal
+	 */
 	public static void serverTerminalLauncher() {
 		Scanner console = new Scanner(System.in);
 		startListeningButtonHit();
@@ -242,6 +290,9 @@ public class DesktopLauncher {
 	
 	
 	//TODO all of these
+	/**
+	 * just for messages
+	 */
 	public static void printMessages() {
 		Sys.print("------");
 		Sys.print("Currently not getting map from the map atlas. Check ClientgameMap.java");

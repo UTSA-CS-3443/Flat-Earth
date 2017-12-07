@@ -1,0 +1,15 @@
+client
+client.entities
+client.skills
+com.flatearth.desktop
+communicators
+communicators.clientNetworks
+communicators.clientToServer
+communicators.serverNetworks
+communicators.serverToClient
+server
+server.entities
+server.skills
+startGui
+utilities
+utilities.ParseMap

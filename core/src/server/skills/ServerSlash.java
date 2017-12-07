@@ -9,19 +9,59 @@ import server.entities.PosAndDir;
 import server.entities.ServerCharacter;
 import server.entities.ServerSpawner;
 
+/**
+ * slash for the knight, handles the construction
+ * 
+ * @author mauricio
+ *
+ */
 public class ServerSlash extends PerformableSkill {
 	
+	/**
+	 * for collisions
+	 */
 	private Body body;
+    /**
+     * size
+     */
     private float size;
+	/**
+	 * map its on, for removing itself
+	 */
 	private ServerGameMap gameMap;
+	/**
+	 * x inti
+	 */
 	private float xInitial;
+	/**y inti
+	 * 
+	 */
 	private float yInitial;
+	/**
+	 * for physics
+	 */
 	private short category = ServerSpawner.ATTACK_PHYSICS;
+	/**
+	 * for physics
+	 */
 	private short mask = ServerSpawner.FOOT_PHYSICS;
+	/**
+	 * who casted
+	 */
 	private PosAndDir caster;
+	/**
+	 * alive tiem
+	 */
 	private float timeAlive = 0;
+	/**
+	 * alotted time
+	 */
 	private float maxTimeAlive = .7f;
 		
+	/**
+	 * @param caster who casted
+	 * @param gameMap map its on
+	 */
 	public ServerSlash(PosAndDir caster, ServerGameMap gameMap) {
 		super(caster, 5);
         this.caster = caster;
@@ -34,6 +74,9 @@ public class ServerSlash extends PerformableSkill {
         this.power = 6;
 	}
 
+	/* (non-Javadoc)
+	 * @see server.skills.ServerSkill#perform(server.entities.PosAndDir)
+	 */
 	@Override
 	public void perform(PosAndDir initial) {
 		this.gameMap.getEntityManager().updateables.add(this);
@@ -49,6 +92,9 @@ public class ServerSlash extends PerformableSkill {
         this.body.setUserData(this);
 	}
 
+	/* (non-Javadoc)
+	 * @see server.Updateable#update(float)
+	 */
 	@Override
 	public void update(float delta) {
 		if (timeAlive > maxTimeAlive) {
@@ -60,16 +106,25 @@ public class ServerSlash extends PerformableSkill {
 		timeAlive += delta;
 	}
 	
+	/* (non-Javadoc)
+	 * @see server.skills.ServerSkill#copy()
+	 */
 	@Override
 	public ServerSkill copy() {
 		return new ServerSlash(this.caster, this.gameMap);
 	}
 
+	/* (non-Javadoc)
+	 * @see server.skills.ServerSkill#getState()
+	 */
 	@Override
 	public SkillState getState() {
 		return new SkillState(this.position.x, this.position.y, this.direction, SkillType.SLASH);
 	}
 	
+	/* (non-Javadoc)
+	 * @see server.skills.ServerSkill#setPerformer(server.entities.ServerCharacter)
+	 */
 	@Override 
 	public void setPerformer(ServerCharacter c) {
 		this.performer = c;

@@ -1,6 +1,8 @@
 package utilities.ParseMap;
 
 /**
+ * Spawn beacons
+ * 
  * @author rajkumar
  */
 
