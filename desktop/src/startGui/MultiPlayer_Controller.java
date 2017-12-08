@@ -1,6 +1,7 @@
 package startGui;
 
 import javafx.animation.FadeTransition;
+
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -13,6 +14,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import utilities.Sys;
 
 import java.io.IOException;
 import java.net.URL;
@@ -24,6 +26,13 @@ public class MultiPlayer_Controller implements EventHandler {
 
     @FXML
     BorderPane background;
+    
+    @FXML
+    Button back;
+    @FXML
+    Button client;
+    @FXML
+    Button host;
 
     public void initialize() {
         background.setOpacity(0);
@@ -44,7 +53,6 @@ public class MultiPlayer_Controller implements EventHandler {
     public void handle(Event event) {
         Button pressed = (Button) event.getSource();
         String name = pressed.getId();
-
         if (name.equals("host")) {
             loadHostScene();
         } else if (name.equals("client")) {
@@ -70,7 +78,7 @@ public class MultiPlayer_Controller implements EventHandler {
     {
         Parent singlePlayer;
         try {
-            singlePlayer = (GridPane) FXMLLoader.load(getClass().getResource("/View/MainMenu.fxml"));
+            singlePlayer = (GridPane) FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
             Scene scene  = new Scene(singlePlayer, 900,900);
             Stage currStage = (Stage) background.getScene().getWindow();
             currStage.setScene(scene);
@@ -99,11 +107,11 @@ public class MultiPlayer_Controller implements EventHandler {
     {
         Parent singlePlayer;
         try {
-            singlePlayer = (BorderPane) FXMLLoader.load(getClass().getResource("/View/Host.fxml"));
+            singlePlayer = (BorderPane) FXMLLoader.load(getClass().getResource("Host.fxml"));
             Scene scene  = new Scene(singlePlayer, 900,900);
             Stage currStage = (Stage) background.getScene().getWindow();
             currStage.setScene(scene);
-        } catch (IOException e) {
+        } catch (Exception e) {
             Logger.getLogger(MainMenu_Controller.class.getName()).log(Level.SEVERE, null, e);
         }
     }

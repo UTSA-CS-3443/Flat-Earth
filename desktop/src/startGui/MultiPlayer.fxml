@@ -18,7 +18,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="host" mnemonicParsing="false" text="Host" GridPane.halignment="CENTER">
+            <Button fx:id="host" mnemonicParsing="false" onAction="#handle" text="Host" GridPane.halignment="CENTER">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin></Button>
@@ -30,7 +30,7 @@
       </GridPane>
    </center>
    <top>
-      <Button alignment="TOP_LEFT" mnemonicParsing="false" text="❮" BorderPane.alignment="TOP_LEFT">
+      <Button fx:id="back" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handle" text="❮" BorderPane.alignment="TOP_LEFT">
          <BorderPane.margin>
             <Insets left="20.0" top="20.0" />
          </BorderPane.margin></Button>
