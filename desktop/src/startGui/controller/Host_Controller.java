@@ -1,4 +1,4 @@
-package startGui;
+package startGui.controller;
 
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -42,7 +42,7 @@ public class Host_Controller implements EventHandler{
     {
         Parent singlePlayer;
         try {
-            singlePlayer = (BorderPane) FXMLLoader.load(getClass().getResource("MultiPlayer.fxml"));
+            singlePlayer = (BorderPane) FXMLLoader.load(getClass().getResource("../view/MultiPlayer.fxml"));
             Scene scene  = new Scene(singlePlayer, 900,900);
             Stage currStage = (Stage) back.getScene().getWindow();
             currStage.setScene(scene);

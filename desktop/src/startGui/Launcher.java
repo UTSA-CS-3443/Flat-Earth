@@ -26,7 +26,7 @@ public class Launcher extends Application {
 	
 	@Override
 	public void start(final Stage primaryStage) throws Exception {
-		URL location = getClass().getResource("MainMenu.fxml");
+		URL location = getClass().getResource("view/MainMenu.fxml");
 		//Sys.exit(location.toString());
 		//URL location = new URL("MainMenu.fxml");
 		//Sys.exit(location.toString());

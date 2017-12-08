@@ -1,4 +1,4 @@
-package startGui;
+package startGui.controller;
 
 import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
@@ -51,13 +51,13 @@ public class MainMenu_Controller implements EventHandler<ActionEvent> {
                 clickedR = 0;
                 clickedL = 0;
                 left.setText("❮");
-                img.setImage(new Image(getClass().getResourceAsStream("archer.png")));
+                img.setImage(new Image(getClass().getResourceAsStream("../view/archer.png")));
                 this.choseCharacter = 1;
             } else if (clickedR == 0) {
                 clickedR = -1;
                 clickedL = 1;
                 right.setText("_");
-                img.setImage(new Image(getClass().getResourceAsStream("knight.png")));
+                img.setImage(new Image(getClass().getResourceAsStream("../view/knight.png")));
                 this.choseCharacter = 0;
             }
         } else if (name.equals("left")) {
@@ -65,19 +65,19 @@ public class MainMenu_Controller implements EventHandler<ActionEvent> {
                 clickedL = 0;
                 clickedR = 0;
                 right.setText("❯");
-                img.setImage(new Image(getClass().getResourceAsStream("archer.png")));
+                img.setImage(new Image(getClass().getResourceAsStream("../view/archer.png")));
                 this.choseCharacter = 1;
             } else if (clickedL == 0) {
                 clickedL = -1;
                 clickedR = 1;
                 left.setText("_");
-                img.setImage(new Image(getClass().getResourceAsStream("Wizard_normal.png")));
+                img.setImage(new Image(getClass().getResourceAsStream("../view/Wizard_normal.png")));
                 this.choseCharacter = 2;
             }
         } else if ( name.equals("single") ){
             //DesktoptopLunhcer.s.cract
-            img.setImage(new Image(getClass().getResourceAsStream("Wizard_eyesclosed.png")));
-            img.setImage(new Image(getClass().getResourceAsStream("Wizard_magic_blue.png")));
+            img.setImage(new Image(getClass().getResourceAsStream("../view/Wizard_eyesclosed.png")));
+            img.setImage(new Image(getClass().getResourceAsStream("../view/Wizard_magic_blue.png")));
             makeFadeOutGame();
             Stage stage = (Stage) pressed.getScene().getWindow();
             DesktopLauncher.s.characterType = this.choseCharacter;
@@ -139,7 +139,7 @@ public class MainMenu_Controller implements EventHandler<ActionEvent> {
     {
         Parent singlePlayer;
         try {
-            singlePlayer = (GridPane) FXMLLoader.load(getClass().getResource("Settings.fxml"));
+            singlePlayer = (GridPane) FXMLLoader.load(getClass().getResource("../view/Settings.fxml"));
             Scene scene  = new Scene(singlePlayer, 900,900);
             Stage currStage = (Stage) back.getScene().getWindow();
             currStage.setScene(scene);
@@ -168,7 +168,7 @@ public class MainMenu_Controller implements EventHandler<ActionEvent> {
     {
         Parent multiPlayer;
         try {
-            multiPlayer = FXMLLoader.load(getClass().getResource("MultiPlayer.fxml"));
+            multiPlayer = FXMLLoader.load(getClass().getResource("../view/MultiPlayer.fxml"));
             Scene scene  = new Scene(multiPlayer, 900,900);
             Stage currStage = (Stage) back.getScene().getWindow();
             currStage.setScene(scene);

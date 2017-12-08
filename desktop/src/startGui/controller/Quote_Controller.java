@@ -1,4 +1,4 @@
-package startGui;
+package startGui.controller;
 
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;

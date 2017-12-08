@@ -1,4 +1,4 @@
-package startGui;
+package startGui.controller;
 
 import javafx.animation.FadeTransition;
 import javafx.event.Event;
@@ -92,7 +92,7 @@ public class Settings_Controller implements EventHandler{
     {
         Parent singlePlayer;
         try {
-            singlePlayer = (GridPane) FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
+            singlePlayer = (GridPane) FXMLLoader.load(getClass().getResource("../view/MainMenu.fxml"));
             Scene scene  = new Scene(singlePlayer, 900,900);
             Stage currStage = (Stage) set.getScene().getWindow();
             currStage.setScene(scene);

@@ -1,4 +1,4 @@
-package startGui;
+package startGui.controller;
 
 import javafx.animation.FadeTransition;
 
@@ -78,7 +78,7 @@ public class MultiPlayer_Controller implements EventHandler {
     {
         Parent singlePlayer;
         try {
-            singlePlayer = (GridPane) FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
+            singlePlayer = (GridPane) FXMLLoader.load(getClass().getResource("../view/MainMenu.fxml"));
             Scene scene  = new Scene(singlePlayer, 900,900);
             Stage currStage = (Stage) background.getScene().getWindow();
             currStage.setScene(scene);
@@ -107,7 +107,7 @@ public class MultiPlayer_Controller implements EventHandler {
     {
         Parent singlePlayer;
         try {
-            singlePlayer = (BorderPane) FXMLLoader.load(getClass().getResource("Host.fxml"));
+            singlePlayer = (BorderPane) FXMLLoader.load(getClass().getResource("../view/Host.fxml"));
             Scene scene  = new Scene(singlePlayer, 900,900);
             Stage currStage = (Stage) background.getScene().getWindow();
             currStage.setScene(scene);

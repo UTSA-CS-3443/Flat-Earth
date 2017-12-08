@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 
-<GridPane fx:id="set" alignment="center" hgap="10" stylesheets="@Settings.css" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="startGui.Settings_Controller">
+<GridPane fx:id="set" alignment="center" hgap="10" stylesheets="@Settings.css" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="startGui.controller.Settings_Controller">
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="600.0" minWidth="10.0" prefWidth="600.0" />
     </columnConstraints>
