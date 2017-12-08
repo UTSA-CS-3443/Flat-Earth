@@ -6,7 +6,61 @@
 #background{
 	-fx-background-color: black;
 	-fx-font-family: "MineCraft";
-     	-fx-font-size: 45px;
+	-fx-font-size: 45px;
 	-fx-text-fill: white;
 }
-	
+
+#back{
+	-fx-background-color: black;
+	-fx-font-family: "MineCraft";
+	-fx-text-fill: white;
+}
+
+#host{
+	-fx-font-family: "MineCraft";
+}
+
+#id{
+	-fx-background-color: black;
+	-fx-font-family: "MineCraft";
+	-fx-font-size: 45px;
+	-fx-text-fill: white;
+}
+
+#ip{
+	-fx-background-color: black;
+	-fx-font-family: "MineCraft";
+	-fx-font-size: 45px;
+	-fx-text-fill: white;
+}
+
+#num{
+	-fx-background-color: black;
+	-fx-font-family: "MineCraft";
+	-fx-font-size: 45px;
+	-fx-text-fill: white;
+}
+
+#listen{
+	-fx-background-color: black;
+	-fx-font-family: "MineCraft";
+	-fx-font-size: 45px;
+	-fx-text-fill: white;
+}
+
+#listen:hover {
+	-fx-background-color:#7A0000;
+	-fx-text-fill: white;
+}
+
+#start{
+	-fx-background-color: black;
+	-fx-font-family: "MineCraft";
+	-fx-font-size: 45px;
+	-fx-text-fill: white;
+}
+
+#start:hover {
+	-fx-background-color:#7A0000;
+	-fx-text-fill: white;
+}
