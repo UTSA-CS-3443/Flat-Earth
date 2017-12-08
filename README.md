@@ -32,3 +32,9 @@ For settings, select Keyboard or controller (xbox controller)
 # Multi Player
 
 Still in alpha
+
+
+-----------------------
+# UML
+
+uml image is hard to read, open the .xml file in draw.io
