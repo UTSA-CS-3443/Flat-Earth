@@ -17,28 +17,61 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * controller for settings
+ * 
+ * @author mauricio
+ *
+ */
 public class Settings_Controller implements EventHandler{
 
+    /**
+     * set of stuff
+     */
     @FXML
     GridPane set;
+    /**
+     * buttonr right
+     */
     @FXML
     Button right;
+    /**
+     * button left
+     */
     @FXML
     Button left;
+    /**
+     * choice of controller
+     */
     @FXML
     Label choice;
+    /**
+     * call butt
+     */
     @FXML
     Button calibrate;
 
+    /**
+     * 
+     */
     int clickedR = 1;
+    /**
+     * 
+     */
     int clickedL = -1;
 
 
+    /**
+     * starts it
+     */
     public void initialize() {
         set.setOpacity(0);
         fadeInTransition();
     }
 
+    /**
+     * handles fade
+     */
     private void fadeInTransition(){
         FadeTransition fade = new FadeTransition();
         fade.setDuration(Duration.seconds(1.0));
@@ -49,6 +82,9 @@ public class Settings_Controller implements EventHandler{
 
     }
 
+    /* (non-Javadoc)
+     * @see javafx.event.EventHandler#handle(javafx.event.Event)
+     */
     @Override
     public void handle(Event e) {
         Button pressed = (Button) e.getSource();
@@ -88,6 +124,9 @@ public class Settings_Controller implements EventHandler{
         }
     }
 
+    /**
+     * laods main screen
+     */
     private void loadMainScene()
     {
         Parent singlePlayer;

@@ -1,7 +1,6 @@
 client
 client.entities
 client.skills
-com.flatearth.desktop
 communicators
 communicators.clientNetworks
 communicators.clientToServer
@@ -10,6 +9,6 @@ communicators.serverToClient
 server
 server.entities
 server.skills
-startGui
+startGui.controller
 utilities
 utilities.ParseMap

@@ -21,24 +21,46 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+/**
+ * controller for multip tab
+ * @author mauricio
+ *
+ */
 public class MultiPlayer_Controller implements EventHandler {
 
+    /**
+     * background
+     */
     @FXML
     BorderPane background;
     
+    /**
+     * button
+     */
     @FXML
     Button back;
+    /**
+     * button
+     */
     @FXML
     Button client;
+    /**
+     * button
+     */
     @FXML
     Button host;
 
+    /**
+     * starts the tab
+     */
     public void initialize() {
         background.setOpacity(0);
         fadeInTransition();
     }
 
+    /**
+     * fades
+     */
     private void fadeInTransition(){
         FadeTransition fade = new FadeTransition();
         fade.setDuration(Duration.seconds(1.0));
@@ -49,6 +71,9 @@ public class MultiPlayer_Controller implements EventHandler {
 
     }
 
+    /* (non-Javadoc)
+     * @see javafx.event.EventHandler#handle(javafx.event.Event)
+     */
     @Override
     public void handle(Event event) {
         Button pressed = (Button) event.getSource();
@@ -74,6 +99,9 @@ public class MultiPlayer_Controller implements EventHandler {
 //        }
 //    }
 
+    /**
+     * 
+     */
     private void loadMainScene()
     {
         Parent singlePlayer;
@@ -87,6 +115,9 @@ public class MultiPlayer_Controller implements EventHandler {
         }
     }
 
+    /**
+     * not used
+     */
     private void makeFadeOutHost()
     {
         FadeTransition fade = new FadeTransition();
@@ -103,6 +134,9 @@ public class MultiPlayer_Controller implements EventHandler {
         fade.play();
     }
 
+    /**
+     * loads host screen
+     */
     private void loadHostScene()
     {
         Parent singlePlayer;

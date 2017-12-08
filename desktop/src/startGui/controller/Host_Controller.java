@@ -18,14 +18,29 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
+/**
+ * controller for hosting tab
+ * 
+ * @author mauricio
+ *
+ */
 public class Host_Controller implements EventHandler{
 
+    /**
+     * background
+     */
     @FXML
     BorderPane back;
 
+    /**
+     * label for num
+     */
     @FXML
     Label num;
 
+    /* (non-Javadoc)
+     * @see javafx.event.EventHandler#handle(javafx.event.Event)
+     */
     @Override
     public void handle(Event e) {
         Button pressed = (Button) e.getSource();
@@ -38,6 +53,9 @@ public class Host_Controller implements EventHandler{
         }
     }
 
+    /**
+     * loads the game
+     */
     private void loadMultiPlayerScene()
     {
         Parent singlePlayer;
